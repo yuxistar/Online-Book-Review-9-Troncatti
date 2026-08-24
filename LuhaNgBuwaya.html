@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Luha ng Buwaya | Online Book Review</title>
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #EEF2E6;
+            color: #263126;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           HIDDEN INTRO CHECKBOX
+           ================================================== */
+
+        #intro-toggle {
+            display: none;
+        }
+
+
+        /* ==================================================
+           CROCODILE INTRO
+           ================================================== */
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(142, 159, 91, 0.20),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    to bottom,
+                    #07140F,
+                    #10271D 50%,
+                    #081812
+                );
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            z-index: 5000;
+
+            transition:
+                opacity 1.3s ease,
+                visibility 1.3s ease;
+        }
+
+
+        /* ==================================================
+           MOON / GLOW
+           ================================================== */
+
+        .intro-glow {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(205, 194, 119, 0.16),
+                    transparent 65%
+                );
+
+            animation:
+                glowPulse 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* ==================================================
+           WATER
+           ================================================== */
+
+        .water {
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 100%;
+            height: 180px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #1D594A,
+                    #0D3028
+                );
+
+            overflow: hidden;
+        }
+
+
+        .water::before,
+        .water::after {
+            content: "";
+
+            position: absolute;
+
+            left: -10%;
+
+            width: 120%;
+            height: 80px;
+
+            border-radius: 50%;
+
+            border-top: 3px solid rgba(180, 196, 143, 0.25);
+        }
+
+
+        .water::before {
+            top: 25px;
+
+            animation:
+                waterMove 7s ease-in-out infinite;
+        }
+
+
+        .water::after {
+            top: 75px;
+
+            opacity: 0.6;
+
+            animation:
+                waterMove 9s ease-in-out infinite reverse;
+        }
+
+
+        @keyframes waterMove {
+
+            0%,
+            100% {
+                transform: translateX(-3%);
+            }
+
+            50% {
+                transform: translateX(3%);
+            }
+
+        }
+
+
+        /* ==================================================
+           CROCODILE GIF
+           ================================================== */
+
+        .crocodile {
+
+            position: absolute;
+
+            width: 280px;
+            max-width: 35vw;
+
+            bottom: 95px;
+            left: -320px;
+
+            z-index: 5;
+
+            animation:
+                crocodileSwim 9s ease-in-out infinite;
+
+            filter:
+                drop-shadow(
+                    0 10px 10px rgba(0, 0, 0, 0.35)
+                );
+        }
+
+
+        @keyframes crocodileSwim {
+
+            0% {
+                left: -320px;
+                transform:
+                    translateY(12px)
+                    rotate(2deg);
+            }
+
+            45% {
+                left: 42%;
+                transform:
+                    translateY(-12px)
+                    rotate(-2deg);
+            }
+
+            55% {
+                left: 48%;
+                transform:
+                    translateY(5px)
+                    rotate(2deg);
+            }
+
+            100% {
+                left: 110%;
+                transform:
+                    translateY(-10px)
+                    rotate(-2deg);
+            }
+
+        }
+
+
+        /* ==================================================
+           INTRO CONTENT
+           ================================================== */
+
+        .intro-content {
+
+            position: relative;
+
+            z-index: 10;
+
+            margin-bottom: 130px;
+
+            animation:
+                introAppear 1.8s ease forwards;
+        }
+
+
+        @keyframes introAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .intro-small {
+
+            color: #B8C9A3;
+
+            font-size: 16px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .intro-title {
+
+            color: #F1EEDC;
+
+            font-family: Georgia, serif;
+
+            font-size: 60px;
+
+            letter-spacing: 2px;
+
+            margin: 0;
+
+            text-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .intro-author {
+
+            color: #C6B86A;
+
+            font-family: Georgia, serif;
+
+            font-size: 23px;
+
+            margin-top: 10px;
+        }
+
+
+        .intro-enter {
+
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 12px 30px;
+
+            border:
+                1px solid #C6B86A;
+
+            border-radius: 30px;
+
+            color: #F1EEDC;
+
+            font-size: 16px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                0.4s ease;
+
+            background:
+                rgba(12, 39, 29, 0.6);
+        }
+
+
+        .intro-enter:hover {
+
+            background-color: #C6B86A;
+
+            color: #10251C;
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 8px 25px rgba(198, 184, 106, 0.3);
+        }
+
+
+        /* ==================================================
+           INTRO EXIT
+           ================================================== */
+
+        #intro-toggle:checked ~ .intro-screen {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        /* ==================================================
+           HEADER
+           ================================================== */
+
+        header {
+
+            background-color: #102C21;
+
+            color: #F1EEDC;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        header h1 {
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 45px;
+
+            margin: 0;
+        }
+
+
+        /* ==================================================
+           NAVIGATION BAR
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .navbar ul {
+
+            list-style-type: none;
+
+            background-color: #1C4939;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: flex-start;
+        }
+
+
+        .navbar li {
+
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .navbar a {
+
+            color: #F1EEDC;
+
+            text-decoration: none;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .navbar a:hover {
+
+            background-color: #DDE5CE;
+
+            color: #28523E;
+        }
+
+
+        /* ==================================================
+   GROUP MEMBERS DROPDOWN
+   ================================================== */
+
+.dropdown {
+    position: relative;
+}
+
+/* Make Group Members look exactly like the other navbar links */
+
+.dropdown details {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown summary {
+    list-style: none;
+
+    color: #F5F3EF;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* Remove the default arrow */
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::marker {
+    display: none;
+}
+
+/* Hover effect matches Homepage and About */
+
+.dropdown summary:hover {
+    background-color: #FFE9D1;
+
+    color: #B89B5E;
+}
+
+
+/* ==================================================
+   MEMBER LIST
+   ================================================== */
+
+.member-list {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background-color: #302B27;
+
+    min-width: 280px;
+
+    padding: 8px 0;
+
+    margin: 0;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown when clicked */
+
+.dropdown details[open] .member-list {
+    display: block;
+}
+
+
+/* ==================================================
+   MEMBER NAMES
+   ================================================== */
+
+.member-list a {
+    display: block;
+
+    color: #F5F3EF;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+/* Member hover */
+
+.member-list a:hover {
+    background-color: #FFE9D1;
+
+    color: #8A6F35;
+}
+        
+
+
+/* ==================================================
+           VIDEO BANNER
+           ================================================== */
+
+        .luha-picture {
+            position: relative;
+
+            width: 100%;
+
+            height: 420px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .luha-picture video {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+        }
+
+
+        .video-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(5, 29, 36, 0.30),
+                    rgba(5, 29, 36, 0.72)
+                );
+
+            z-index: 1;
+        }
+
+
+        .video-glow {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(198, 180, 112, 0.20),
+                    transparent 65%
+                );
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        .banner-text {
+            position: relative;
+
+            z-index: 3;
+
+            padding: 30px;
+        }
+
+
+        .luha-picture h1 {
+            font-family: Georgia, serif;
+
+            font-size: 55px;
+
+            margin: 0;
+
+            text-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .luha-picture p {
+            font-size: 21px;
+
+            margin-top: 5px;
+
+            text-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+
+
+
+        /* ==================================================
+           MAIN
+           ================================================== */
+
+        main {
+
+            width: 85%;
+
+            max-width: 1000px;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           INTRODUCTION
+           ================================================== */
+
+        .intro {
+
+            background-color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid #CBD8C8;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.05);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .intro:hover {
+
+            box-shadow:
+                0 8px 22px rgba(44, 91, 69, 0.22);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .intro h2 {
+
+            font-family:
+                Cambria,
+                Georgia,
+                serif;
+
+            color: #28523E;
+        }
+
+
+        /* ==================================================
+           CONTENT SLIDER
+           ================================================== */
+
+        .content-slider {
+
+            position: relative;
+
+            width: 100%;
+
+            margin: 30px auto;
+        }
+
+
+        .content-card {
+
+            display: none;
+
+            background-color: #FFFFFF;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border-left:
+                5px solid #63885F;
+
+            box-shadow:
+                0 5px 14px rgba(15, 52, 35, 0.10);
+
+            min-height: 500px;
+
+            animation:
+                cardSlide 0.6s ease;
+        }
+
+
+        @keyframes cardSlide {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(40px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        /* ==================================================
+           CARD TARGET SYSTEM
+           ================================================== */
+
+        .content-card:target {
+
+            display: block;
+        }
+
+
+        .content-slider:not(:has(.content-card:target))
+        #panimula {
+
+            display: block;
+        }
+
+
+
+
+        /* ==================================================
+           CARD HEADINGS
+           ================================================== */
+
+        .content-card h2 {
+
+            color: #28523E;
+
+            font-family:
+                Georgia,
+                serif;
+
+            text-align: center;
+
+            border-bottom:
+                2px solid #C6B86A;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+        }
+
+
+        .content-card h3 {
+
+            color: #3B6249;
+
+            font-family:
+                Georgia,
+                serif;
+        }
+
+
+        .content-card p {
+
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           BOOK INFO
+           ================================================== */
+
+        .book-info {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #CBD8C8;
+
+            text-align: center;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .book-info:hover {
+
+            box-shadow:
+                0 8px 22px rgba(0, 255, 34, 0.54);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .book-info h3 {
+
+            margin-bottom: 5px;
+
+            color: #28523E;
+        }
+
+
+        /* ==================================================
+           CHARACTERS
+           ================================================== */
+
+        .characters {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .character {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            border-top:
+                4px solid #63885F;
+
+            border-left:
+                1px solid #CBD8C8;
+
+            border-right:
+                1px solid #CBD8C8;
+
+            border-bottom:
+                1px solid #CBD8C8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .character:hover {
+
+            box-shadow:
+                0 8px 22px rgba(0, 255, 34, 0.54);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .character h3 {
+
+            margin-top: 0;
+
+            color: #28523E;
+        }
+
+
+        /* ==================================================
+           BANGHAY
+           ================================================== */
+
+        .banghay {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin: 15px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #63885F;
+
+            border-top:
+                1px solid #CBD8C8;
+
+            border-right:
+                1px solid #CBD8C8;
+
+            border-bottom:
+                1px solid #CBD8C8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .banghay:hover {
+
+            box-shadow:
+                0 8px 22px rgba(0, 255, 34, 0.54);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .banghay h3 {
+
+            margin-top: 0;
+
+            color: #28523E;
+        }
+
+
+        /* ==================================================
+           REFERENCES
+           ================================================== */
+
+        .source-list {
+
+            background-color: #FFFFFF;
+
+            padding: 22px 28px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #CBD8C8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .source-list:hover {
+
+            box-shadow:
+                0 8px 22px rgba(44, 91, 69, 0.18);
+        }
+
+
+        .source-list p {
+
+            text-align: left;
+
+            margin-bottom: 20px;
+        }
+
+
+        .source-list p:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .source-list a {
+
+            color: #39705A;
+
+            word-break: break-word;
+        }
+
+
+        .source-list a:hover {
+
+            color: #9A8846;
+        }
+
+
+        /* ==================================================
+           CONCLUSION
+           ================================================== */
+
+        .conclusion {
+
+            background-color: #F5F3E4;
+
+            color: #4A493B;
+
+            border-left-color:
+                #C6B86A;
+        }
+
+
+        .conclusion h2,
+        .conclusion h3 {
+
+            color: #756B3E;
+
+            border-color:
+                #C6B86A;
+        }
+
+
+        /* ==================================================
+           CARD NAVIGATION
+           ================================================== */
+
+        .card-navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #CBD8C8;
+        }
+
+
+        .card-navigation a {
+
+            background-color: #1C4939;
+
+            color: #F1EEDC;
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+
+            text-align: center;
+        }
+
+
+        .card-navigation a:hover {
+
+            background-color: #C6B86A;
+
+            color: #FFFFFF;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .card-number {
+
+            color: #587466;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           BACK TO TOP
+           ================================================== */
+
+        .back-to-top {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background:
+                #39705A;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                0.4s ease;
+
+            animation:
+                showBackToTop linear;
+
+            animation-timeline:
+                scroll();
+        }
+
+
+        @keyframes showBackToTop {
+
+            0% {
+
+                opacity: 0;
+
+                visibility: hidden;
+            }
+
+            50% {
+
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+            100% {
+
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+        }
+
+
+        .back-to-top:hover {
+
+            transform:
+                translateY(-5px);
+
+            background:
+                #C6B86A;
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background-color: #102C21;
+
+            color: #F1EEDC;
+
+            text-align: center;
+
+            padding: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        footer h6 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: normal;
+        }
+
+
+        /* ==================================================
+           RESPONSIVE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                font-size: 17px;
+            }
+
+
+            .intro-title {
+
+                font-size: 40px;
+            }
+
+
+            .intro-small {
+
+                font-size: 12px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .crocodile-banner {
+
+                height: 320px;
+            }
+
+
+            .crocodile-banner h1 {
+
+                font-size: 38px;
+            }
+
+
+            .crocodile-banner p {
+
+                font-size: 17px;
+            }
+
+
+            .characters {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .navbar ul {
+
+                flex-wrap: wrap;
+            }
+
+
+            .navbar a {
+
+                padding: 10px 12px;
+
+                font-size: 15px;
+            }
+
+
+            main {
+
+                width: 92%;
+            }
+
+
+            .content-card {
+
+                padding: 20px;
+            }
+
+
+            .card-navigation a {
+
+                padding: 8px 12px;
+
+                font-size: 14px;
+            }
+
+
+            .crocodile {
+
+                width: 210px;
+
+                max-width: 50vw;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HIDDEN INTRO CHECKBOX
+         ================================================== -->
+
+    <input
+        type="checkbox"
+        id="intro-toggle"
+    >
+
+
+    <!-- ==================================================
+         CROCODILE INTRO
+         ================================================== -->
+
+    <div class="intro-screen">
+
+        <div class="intro-glow"></div>
+
+
+        <!-- ==================================================
+             CROCODILE GIF
+
+             Put crocodile.gif in the same folder
+             as this HTML file.
+             ================================================== -->
+
+        <img
+            src="whyisitflirtingwithme.gif"
+            alt="Animated crocodile"
+            class="crocodile"
+        >
+
+
+        <div class="intro-content">
+
+            <div class="intro-small">
+
+                Isang Nobela ni Amado V. Hernandez
+
+            </div>
+
+
+            <h1 class="intro-title">
+
+                Luha ng Buwaya
+
+            </h1>
+
+
+            <div class="intro-author">
+
+                Online Book Review
+
+            </div>
+
+
+            <label
+                for="intro-toggle"
+                class="intro-enter"
+            >
+
+                Click to Enter
+
+            </label>
+
+        </div>
+
+
+        <div class="water"></div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOP
+         ================================================== -->
+
+    <a id="top"></a>
+
+
+    <a
+        href="#top"
+        class="back-to-top"
+    >
+
+        ↑
+
+    </a>
+
+
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+
+    <header>
+
+        <h1>
+
+            Online Book Review
+
+        </h1>
+
+    </header>
+
+
+   <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+   <nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+
+     <!-- ==================================================
+         buwaya VIDEO BANNER
+         ================================================== -->
+
+    <div class="luha-picture">
+
+
+     
+
+        <video
+            autoplay
+            muted
+            loop
+            playsinline>
+
+            <source
+                src="buwaya.mp4"
+                type="video/mp4">
+
+            
+
+        </video>
+
+
+        <div class="video-overlay"></div>
+
+        <div class="video-glow"></div>
+
+
+        <div class="banner-text">
+
+            <h1>
+                Luha ng Buwaya
+            </h1>
+
+
+            <p>
+                Isang Pangkalahatang-ideya ng Nobela
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             INTRODUCTION
+             ================================================== -->
+
+        <div class="intro">
+
+            <h2>
+                Ito ay isang pangkalahatang-ideya ng
+                Luha ng Buwaya.
+            </h2>
+
+
+            <p>
+                Enjoy reading!
+            </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             CONTENT SLIDER
+             ================================================== -->
+
+        <div class="content-slider">
+
+
+            <!-- ==================================================
+                 1. PANIMULA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="panimula"
+            >
+
+                <h2>
+                    Panimula / Pagkilala sa Akda
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Pamagat ng Nobela
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            LUHA NG BUWAYA
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        May Akda
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Si Amado V. Hernandez ay kilala bilang
+                        "Makata ng Manggagawa" dahil sa kanyang
+                        mga nobela at tula na tumatalakay sa
+                        kahirapan at pang-aapi sa mga magsasaka.
+                        Ginawaran din siya bilang
+                        "Pambansang Alagad ng Sining sa Panitikan"
+                        noong 1973. Bukod sa pagsusulat, kilala rin
+                        siya bilang tagapagtanggol ng karapatan
+                        ng mga manggagawa at magsasaka sa Pilipinas.
+
+                    </p>
+
+                </div>
+
+
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Uri ng Akdang Pampanitikan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Ito ay isang nobela na isinulat ng
+                        Pambansang Alagad ng Sining.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Bansang Pinagmulan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Nagmula sa Pilipinas. Isinulat ito ni
+                        Amado V. Hernandez noong 1962.
+                        Ipinapakita dito ang suliranin ng mga
+                        Pilipinong magsasaka sa pang-aapi
+                        ng mga mayayaman.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <span></span>
+
+
+                    <span class="card-number">
+                        1 / 8
+                    </span>
+
+
+                    <a href="#tauhan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 2. TAUHAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tauhan"
+            >
+
+                <h2>
+                    Tauhan
+                </h2>
+
+
+                <div class="characters">
+
+
+                    <div class="character">
+
+                        <h3>
+                            Bandong
+                        </h3>
+
+                        <p>
+                            Isang guro sa Sampilong na
+                            pansamantalang itinalaga bilang
+                            prinsipal. Siya ang naging tagapayo
+                            at pinuno ng mga magsasaka at
+                            eskuwater sa kanilang pakikibaka.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Pina
+                        </h3>
+
+                        <p>
+                            Anak ni Mang Pablo at itinuturing
+                            na pinakamagandang dalaga sa
+                            Sampilong. Mahal siya ni Bandong.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Donya Leona Grande
+                        </h3>
+
+                        <p>
+                            Ang pangunahing kontrabida.
+                            Siya ang may-ari ng pinakamalawak
+                            na lupain sa Sampilong.
+                            Mapang-api at makapangyarihan.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Andres
+                        </h3>
+
+                        <p>
+                            Isang iskwater na nanggaling sa
+                            Maynila. Apo sa tuhod ni Kabesang
+                            Resong na dating may-ari ng lupain
+                            sa Sampilong. Asawa ni Sedes.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Don Severo Grande
+                        </h3>
+
+                        <p>
+                            Asawa ni Donya Leona at kasabwat
+                            sa pang-aapi sa mga magsasaka.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Dislaw
+                        </h3>
+
+                        <p>
+                            Encargado at alalay nina Grande.
+                            Karibal ni Bandong kay Pina.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Mang Pablo
+                        </h3>
+
+                        <p>
+                            Pangulo ng PTA sa Sampilong
+                            at ama ni Pina.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Hepe Hugo
+                        </h3>
+
+                        <p>
+                            Hepe ng pulisya na tumutulong
+                            sa pamilya Grande.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#panimula">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        2 / 8
+                    </span>
+
+
+                    <a href="#tagpuan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 3. TAGPUAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tagpuan"
+            >
+
+                <h2>
+                    Tagpuan
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Sampilong
+                    </h3>
+
+                    <p>
+                        Isang nayon sa lalawigan kung saan
+                        laganap ang pang-aapi ng mga mayayaman
+                        sa mahihirap na magsasaka at eskuwater.
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Maynila
+                    </h3>
+
+                    <p>
+                        Lugar kung saan tumakas ang pamilya
+                        Grande matapos matalo sa kaso.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tauhan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        3 / 8
+                    </span>
+
+
+                    <a href="#banghay">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 4. BANGHAY
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="banghay"
+            >
+
+                <h2>
+                    Banghay ng Pangyayari
+                </h2>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        1. Panimula
+                    </h3>
+
+                    <p>
+                        Dumating si Bandong sa Sampilong upang
+                        pumalit pansamantala bilang prinsipal.
+                        Dito niya nakilala si Pina at si Andres.
+                        Nalaman niya ang kalagayan ng mga
+                        magsasaka na inaapi ni Donya Leona
+                        dahil sa lupain. Nagsimula siyang
+                        tumulong sa pag-oorganisa sa kanila.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        2. Saglit na Kasiglahan
+                    </h3>
+
+                    <p>
+                        Kinasuhan si Bandong at ibinintang sa
+                        mga magsasaka ang pagsunog sa kamalig
+                        nina Donya Leona. Dito, halos nawalan
+                        na ng pag-asa ang mga eskuwater dahil
+                        sa pang-aapi at pananalita ng mga
+                        may kapangyarihan. Ngunit sa kabila
+                        nito, mas tumibay ang kanilang pagkakaisa
+                        upang ipaglaban ang kanilang karapatan.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        3. Kasukdulan
+                    </h3>
+
+                    <p>
+                        Binuo ni Bandong at Andres ang samahan
+                        ng mga magsasaka at kooperatiba ng mga
+                        iskwater. Tumanggi si Donya Leona sa
+                        mga kahilingan ng mga magsasaka kaya
+                        nagwelga ang mga ito. Kinamkam ni Donya
+                        Leona ang "Bagong Nayon" at kinasuhan
+                        si Bandong ng kasong administratibo.
+                        Sinunog ang kamalig ng mga Grande at
+                        ibinintang ito sa mga magsasaka.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        4. Kakalasan
+                    </h3>
+
+                    <p>
+                        Napatunayan sa korte na may karapatan
+                        pa rin si Andres sa lupa ng kanyang
+                        lolo. Nahuli at umamin si Kosme na
+                        siya ang sumunog ng kamalig sa utos
+                        ni Donya Leona. Dahil sa kahihiyan
+                        at galit, nagkasakit ng malubha sina
+                        Donya Leona at Don Severo.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        5. Wakas
+                    </h3>
+
+                    <p>
+                        Napawalang-sala si Bandong at siya na
+                        ang tuluyang itinalaga bilang prinsipal.
+                        Nagwagi ang mga magsasaka at eskuwater.
+                        Nag-propose si Bandong kay Pina at
+                        nagpahayag ng intensyon na tumakbo sa
+                        pagka-alkalde upang mas marami pang
+                        matulungan.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tagpuan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        4 / 8
+                    </span>
+
+
+                    <a href="#buod">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 5. BUOD
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="buod"
+            >
+
+                <h2>
+                    Buod ng Nobela
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Maikling Lagom ng Buong Nobela
+                    </h3>
+
+
+                    <p>
+                        Ang "Luha ng Buwaya" ay nagsasalaysay
+                        ng buhay sa nayon ng Sampilong na
+                        kontrolado ng pamilyang Grande.
+                        Ipinakita rito ang matinding
+                        paghihirap ng mga magsasaka at
+                        eskuwater dahil sa pang-aapi at
+                        pangangamkam ng lupa.
+                    </p>
+
+
+                    <p>
+                        Sa pagdating ni Bandong, nabigyan
+                        ng pag-asa ang mga inaapi. Sa tulong
+                        ni Andres, nagkaisa ang mga tao at
+                        ipinaglaban nila ang kanilang karapatan
+                        sa pamamagitan ng batas.
+                    </p>
+
+
+                    <p>
+                        Sa huli, nanaig ang katarungan at
+                        natalo ang kasakiman ng mga may
+                        kapangyarihan.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#banghay">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        5 / 8
+                    </span>
+
+
+                    <a href="#puna">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 6. PUNA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="puna"
+            >
+
+                <h2>
+                    Puna: Paksa / Tema
+                </h2>
+
+
+                <p>
+                    Ang nobela ni Amado V. Hernandez ay isang
+                    makatotohanang paglalarawan ng suliranin
+                    sa lipunan, lalo na sa usapin ng lupa
+                    at katarungan.
+                </p>
+
+
+                <p>
+                    Epektibo ang paggamit ng may-akda sa mga
+                    tauhan na kumakatawan sa iba't ibang
+                    sektor: si Bandong para sa edukasyon at
+                    pamumuno, si Donya Leona para sa
+                    pang-aabuso, at si Andres para sa
+                    karaniwang mamamayan.
+                </p>
+
+
+                <p>
+                    Ang aral ng nobela ay nananatiling
+                    makabuluhan hanggang sa kasalukuyan.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#buod">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        6 / 8
+                    </span>
+
+
+                    <a href="#sanggunian">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 7. SANGGUNIAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="sanggunian"
+            >
+
+                <h2>
+                    Sanggunian
+                </h2>
+
+
+                <div
+                    class="source-list"
+                    style="
+                        margin-top:70px;
+                        text-align:center;
+                    "
+                >
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            Hernandez, Amado V.
+                        </strong>
+
+                        <br>
+
+                        <em>
+                            Luha ng Buwaya.
+                        </em>
+
+                        1962.
+
+                    </p>
+
+
+                    <p style="text-align:center;">
+
+                        <a
+                            href="https://www.scribd.com/document/430094920/Luha-Ng-Buwaya"
+                            target="_blank"
+                        >
+
+                            https://www.scribd.com/document/430094920/Luha-Ng-Buwaya
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#puna">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        7 / 8
+                    </span>
+
+
+                    <a href="#konklusyon">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 8. KONKLUSYON
+                 ================================================== -->
+
+            <section
+                class="content-card conclusion"
+                id="konklusyon"
+            >
+
+                <h2>
+                    Konklusyon
+                </h2>
+
+
+                <h3>
+                    Mensahe
+                </h3>
+
+
+                <p>
+                    Sa kabuuan, ang "Luha ng Buwaya" ay
+                    nagpapaalala na ang pagkakaisa at
+                    paninindigan para sa tama ay maaaring
+                    magdulot ng pagbabago.
+                </p>
+
+
+                <p>
+                    Ipinapakita nito na kahit gaano kalakas
+                    ang kapangyarihan ng iilan, matatalo pa
+                    rin ito kung ang mamamayan ay
+                    magtutulungan.
+                </p>
+
+
+                <p>
+                    Ang tunay na pag-unlad ng isang bayan
+                    ay nakasalalay sa katarungan at paggalang
+                    sa karapatan ng bawat isa.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#sanggunian">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        8 / 8
+                    </span>
+
+
+                    <a href="#panimula">
+                        Back to Start ↻
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <h6>
+            Grade 9 Property
+        </h6>
+
+    </footer>
+
+
+</body>
+
+</html>

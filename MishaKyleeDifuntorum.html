@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Misha Kylee Difuntorum | Group Member</title>
+
+
+    <style>
+
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            color: #ffd9ef;
+
+            font-family:
+                "Trebuchet MS",
+                sans-serif;
+
+            overflow-x: hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 10%,
+                    #5a073d 0%,
+                    #310522 35%,
+                    #180313 70%,
+                    #0b0108 100%
+                );
+
+            position: relative;
+
+        }
+
+
+        /* ==================================================
+           DARK BACKGROUND GLOW
+           ================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: -20;
+
+            background:
+
+                radial-gradient(
+                    circle at 12% 15%,
+                    rgba(255,93,184,0.12) 0 70px,
+                    transparent 71px
+                ),
+
+                radial-gradient(
+                    circle at 88% 18%,
+                    rgba(214,20,133,0.18) 0 130px,
+                    transparent 131px
+                ),
+
+                radial-gradient(
+                    circle at 78% 78%,
+                    rgba(255,72,175,0.10) 0 100px,
+                    transparent 101px
+                ),
+
+                radial-gradient(
+                    circle at 15% 88%,
+                    rgba(169,14,102,0.18) 0 140px,
+                    transparent 141px
+                );
+
+        }
+
+
+        /* ==================================================
+           SUBTLE GLOW DOT PATTERN
+           ================================================== */
+
+        .dot-pattern {
+
+            position: fixed;
+
+            width: 240px;
+
+            height: 240px;
+
+            pointer-events: none;
+
+            z-index: -10;
+
+            opacity: 0.22;
+
+            background-image:
+
+                radial-gradient(
+                    #ef54a9 2px,
+                    transparent 2px
+                );
+
+            background-size: 18px 18px;
+
+        }
+
+
+        .dots-left {
+
+            top: 18%;
+
+            left: -45px;
+
+            transform:
+                rotate(-12deg);
+
+        }
+
+
+        .dots-right {
+
+            bottom: 8%;
+
+            right: -50px;
+
+            transform:
+                rotate(18deg);
+
+        }
+
+
+        /* ==================================================
+           ABSTRACT CIRCLES
+           ================================================== */
+
+        .abstract-circle {
+
+            position: fixed;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -8;
+
+        }
+
+
+        .circle-one {
+
+            width: 190px;
+
+            height: 190px;
+
+            top: 10%;
+
+            right: -70px;
+
+            border:
+                18px solid
+                rgba(219,31,138,0.18);
+
+            box-shadow:
+                0 0 35px
+                rgba(219,31,138,0.15);
+
+        }
+
+
+        .circle-two {
+
+            width: 130px;
+
+            height: 130px;
+
+            top: 45%;
+
+            left: -50px;
+
+            border:
+                12px solid
+                rgba(235,72,166,0.18);
+
+        }
+
+
+        .circle-three {
+
+            width: 250px;
+
+            height: 250px;
+
+            bottom: 10%;
+
+            right: -120px;
+
+            border:
+                3px solid
+                rgba(238,62,157,0.15);
+
+        }
+
+
+        /* ==================================================
+           PINK RIBBONS
+           ================================================== */
+
+        .pink-ribbon {
+
+            position: fixed;
+
+            width: 900px;
+
+            height: 55px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(160,8,91,0.16),
+                    rgba(230,44,151,0.28),
+                    transparent
+                );
+
+            transform:
+                rotate(-23deg);
+
+            top: 25%;
+
+            left: -220px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -9;
+
+        }
+
+
+        .pink-ribbon-two {
+
+            position: fixed;
+
+            width: 1000px;
+
+            height: 25px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(142,11,80,0.14),
+                    rgba(232,77,168,0.25),
+                    transparent
+                );
+
+            transform:
+                rotate(22deg);
+
+            bottom: 22%;
+
+            right: -300px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -9;
+
+        }
+
+
+        /* ==================================================
+           STAR / SPARK DECORATIONS
+           ================================================== */
+
+        .spark {
+
+            position: fixed;
+
+            width: 70px;
+
+            height: 70px;
+
+            pointer-events: none;
+
+            z-index: -7;
+
+            opacity: 0.32;
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(240,62,166,0.5)
+                );
+
+        }
+
+
+        .spark::before,
+        .spark::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 70px;
+
+            height: 10px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #ed4da5,
+                    transparent
+                );
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+        }
+
+
+        .spark::after {
+
+            transform:
+                translate(-50%, -50%)
+                rotate(90deg);
+
+        }
+
+
+        .spark-one {
+
+            top: 20%;
+
+            right: 14%;
+
+            transform:
+                rotate(20deg);
+
+        }
+
+
+        .spark-two {
+
+            bottom: 20%;
+
+            left: 12%;
+
+            transform:
+                scale(0.65)
+                rotate(15deg);
+
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #250217,
+                    #720943,
+                    #420528,
+                    #720943,
+                    #250217
+                );
+
+            box-shadow:
+
+                0 5px 25px
+                rgba(0,0,0,0.6);
+
+            border-bottom:
+                2px solid
+                rgba(255,105,190,0.25);
+
+        }
+
+
+        .navbar ul {
+
+            list-style: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .navbar li {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        .navbar a,
+        .dropdown summary {
+
+            display: block;
+
+            padding: 15px 20px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .navbar a:hover,
+        .dropdown summary:hover {
+
+            background:
+                rgba(255,78,170,0.20);
+
+            color:
+                #ffd7ed;
+
+        }
+
+
+        /* ==================================================
+           DROPDOWN
+           ================================================== */
+
+        .dropdown {
+
+            position: relative;
+
+        }
+
+
+        .dropdown summary {
+
+            list-style: none;
+
+        }
+
+
+        .dropdown summary::-webkit-details-marker {
+
+            display: none;
+
+        }
+
+
+        .dropdown summary::after {
+
+            content: " ▾";
+
+            font-size: 12px;
+
+        }
+
+
+        .member-list {
+
+            display: none;
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            min-width: 250px;
+
+            background:
+                rgba(28,2,18,0.98);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+
+                0 12px 35px
+                rgba(0,0,0,0.7);
+
+            border:
+                1px solid
+                rgba(255,91,180,0.25);
+
+            border-radius:
+                0 0 15px 15px;
+
+            overflow: hidden;
+
+        }
+
+
+        .dropdown details[open] .member-list {
+
+            display: block;
+
+        }
+
+
+        .member-list a {
+
+            display: block;
+
+            padding: 12px 18px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+            background:
+                transparent;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .member-list a:hover {
+
+            background:
+                #b81b78;
+
+            color:
+                #ffffff;
+
+            padding-left: 25px;
+
+        }
+
+
+        /* ==================================================
+           HERO
+           ================================================== */
+
+        .member-hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                90px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ==================================================
+           HERO HALO
+           ================================================== */
+
+        .member-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 650px;
+
+            height: 650px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,96,188,0.20) 0%,
+                    rgba(177,14,102,0.18) 35%,
+                    rgba(105,5,59,0.12) 60%,
+                    transparent 72%
+                );
+
+            top: -40px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            pointer-events: none;
+
+        }
+
+
+        /* ==================================================
+           HERO RINGS
+           ================================================== */
+
+        .hero-ring {
+
+            position: absolute;
+
+            width: 520px;
+
+            height: 520px;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(230,63,155,0.25);
+
+            transform:
+                rotate(18deg);
+
+            pointer-events: none;
+
+            box-shadow:
+                0 0 35px
+                rgba(214,28,132,0.12);
+
+        }
+
+
+        .hero-ring::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 25px;
+
+            border-radius: 50%;
+
+            border:
+                2px dashed
+                rgba(236,75,164,0.22);
+
+        }
+
+
+        .hero-ring::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 65px;
+
+            border-radius: 50%;
+
+            border:
+                8px solid
+                rgba(220,64,153,0.10);
+
+        }
+
+
+        /* ==================================================
+           LABEL
+           ================================================== */
+
+        .member-label {
+
+            position: relative;
+
+            z-index: 5;
+
+            color:
+                #f15aaf;
+
+            font-size: 15px;
+
+            letter-spacing: 6px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+
+            font-weight: bold;
+
+            text-shadow:
+                0 0 12px
+                rgba(238,66,157,0.45);
+
+        }
+
+
+        /* ==================================================
+           PHOTO
+           ================================================== */
+
+        .member-photo-wrapper {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 330px;
+
+            height: 330px;
+
+            padding: 10px;
+
+            border-radius: 50%;
+
+            background:
+
+                conic-gradient(
+                    from 20deg,
+                    #4b032d,
+                    #a90f65,
+                    #f14ba5,
+                    #5e0539,
+                    #d92c8d,
+                    #4b032d
+                );
+
+            box-shadow:
+
+                0 25px 60px
+                rgba(0,0,0,0.65),
+
+                0 0 35px
+                rgba(214,35,137,0.35),
+
+                0 0 0 12px
+                rgba(255,82,174,0.08),
+
+                inset 0 0 20px
+                rgba(255,255,255,0.3);
+
+            animation:
+                photoFloat 4s ease-in-out infinite;
+
+        }
+
+
+        .member-photo {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border:
+                7px solid
+                rgba(255,255,255,0.95);
+
+            display: block;
+
+        }
+
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-12px)
+                    rotate(1deg);
+
+            }
+
+        }
+
+
+        /* ==================================================
+           NAME
+           ================================================== */
+
+        .member-name {
+
+            position: relative;
+
+            z-index: 5;
+
+            margin-top: 38px;
+
+            margin-bottom: 5px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 50px;
+
+            color:
+                #ffe0f1;
+
+            text-shadow:
+
+                0 4px 12px
+                rgba(0,0,0,0.65),
+
+                0 0 18px
+                rgba(225,45,147,0.25);
+
+        }
+
+
+        .member-subtitle {
+
+            position: relative;
+
+            z-index: 5;
+
+            color:
+                #ed75b8;
+
+            font-size: 19px;
+
+            font-style: italic;
+
+        }
+
+
+        /* ==================================================
+           SCROLL INDICATOR
+           ================================================== */
+
+        .scroll-indicator {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            color:
+                #ed65b2;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            animation:
+                bounce 2s infinite;
+
+            z-index: 5;
+
+        }
+
+
+        .scroll-arrow {
+
+            display: block;
+
+            font-size: 25px;
+
+            margin-top: 5px;
+
+        }
+
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+
+                transform:
+                    translateX(-50%)
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateX(-50%)
+                    translateY(8px);
+
+            }
+
+        }
+
+
+        /* ==================================================
+           INFORMATION AREA
+           ================================================== */
+
+        .info-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            margin:
+                0 auto;
+
+            padding:
+                100px 30px
+                170px;
+
+        }
+
+
+       .info-row {
+
+    width: 100%;
+
+    min-height: 390px;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+
+    margin-bottom: -110px;
+
+}
+
+
+        .info-row:nth-child(even) {
+
+            transform:
+                translateY(20px);
+
+        }
+
+
+        /* ==================================================
+           INFO CARD
+           ================================================== */
+
+        .info-bubble {
+
+            width: 68%;
+
+            min-height: 270px;
+
+            position: relative;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.97),
+                    rgba(255,228,244,0.94)
+                );
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            padding: 50px;
+
+            border-radius:
+                32px 18px 32px 18px;
+
+            border:
+                2px solid
+                rgba(255,255,255,0.95);
+
+            box-shadow:
+
+                0 25px 55px
+                rgba(0,0,0,0.42),
+
+                0 0 25px
+                rgba(190,22,117,0.12),
+
+                inset 0 1px 0
+                rgba(255,255,255,1);
+
+            opacity: 0;
+
+            transition:
+
+                opacity 1.2s ease,
+
+                transform 1.2s ease;
+
+        }
+
+
+        /* ==================================================
+           LEFT CARD
+           ================================================== */
+
+        .info-row.left .info-bubble {
+
+            margin-right: auto;
+
+            transform:
+
+                translateX(-100px)
+                scale(0.94);
+
+        }
+
+
+        .info-row.left .info-bubble.show {
+
+            opacity: 1;
+
+            transform:
+
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        /* ==================================================
+           RIGHT CARD
+           ================================================== */
+
+        .info-row.right .info-bubble {
+
+            margin-left: auto;
+
+            transform:
+
+                translateX(100px)
+                scale(0.94);
+
+        }
+
+
+        .info-row.right .info-bubble.show {
+
+            opacity: 1;
+
+            transform:
+
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        /* ==================================================
+           CARD DECORATION
+           ================================================== */
+
+        .info-bubble::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+
+            height: 20px;
+
+            background:
+                #fff0f8;
+
+            transform:
+                rotate(45deg);
+
+            border:
+                2px solid
+                rgba(255,255,255,0.95);
+
+        }
+
+
+        .info-row.left .info-bubble::before {
+
+            right: -12px;
+
+            top: 50%;
+
+            border-left: none;
+
+            border-bottom: none;
+
+        }
+
+
+        .info-row.right .info-bubble::before {
+
+            left: -12px;
+
+            top: 50%;
+
+            border-right: none;
+
+            border-top: none;
+
+        }
+
+
+        /* ==================================================
+           CARD TITLE
+           ================================================== */
+
+        .info-bubble h2 {
+
+            margin-top: 0;
+
+            color:
+                #8f0757;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 38px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .info-bubble h2::after {
+
+            content: "";
+
+            display: block;
+
+            width: 70px;
+
+            height: 4px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #970960,
+                    #e66aad
+                );
+
+            margin-top: 12px;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ==================================================
+           CARD TEXT
+           ================================================== */
+
+        .info-bubble p {
+
+            font-size: 22px;
+
+            line-height: 1.8;
+
+            margin: 0;
+
+            color:
+                #513046;
+
+        }
+
+
+    
+
+
+        /* ==================================================
+           MOTTO
+           ================================================== */
+
+        .motto-row {
+
+            min-height: 470px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            position: relative;
+
+            margin-top: 20px;
+
+        }
+
+
+        .motto {
+
+            width: 68%;
+
+            padding: 65px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #250217,
+                    #650737,
+                    #a50e66
+                );
+
+            color:
+                #ffffff;
+
+            border-radius:
+                40px 20px 40px 20px;
+
+            box-shadow:
+
+                0 30px 65px
+                rgba(0,0,0,0.6),
+
+                0 0 30px
+                rgba(185,19,116,0.22);
+
+            border:
+                2px solid
+                rgba(255,91,180,0.3);
+
+            opacity: 0;
+
+            transform:
+
+                translateX(100px)
+                scale(0.94);
+
+            transition:
+
+                opacity 1.2s ease,
+
+                transform 1.2s ease;
+
+        }
+
+
+        /* ==================================================
+           MOTTO DECORATION
+           ================================================== */
+
+        .motto::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            border:
+                20px solid
+                rgba(255,90,180,0.10);
+
+            top: -70px;
+
+            right: -60px;
+
+        }
+
+
+        .motto::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 30px;
+
+            background:
+                rgba(255,89,178,0.08);
+
+            transform:
+                rotate(-25deg);
+
+            bottom: 30px;
+
+            left: -70px;
+
+            border-radius: 50%;
+
+        }
+
+
+        .motto.show {
+
+            opacity: 1;
+
+            transform:
+
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        .motto h2 {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 42px;
+
+            color:
+                #ffd8ed;
+
+            margin-top: 0;
+
+        }
+
+
+        .motto p {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 28px;
+
+            line-height: 1.7;
+
+            font-style: italic;
+
+            margin: 0;
+
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #180110,
+                    #570632,
+                    #180110
+                );
+
+            color:
+                #ffffff;
+
+            text-align: center;
+
+            padding: 20px;
+
+            border-top:
+                1px solid
+                rgba(255,90,180,0.2);
+
+        }
+
+
+        footer p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+
+            .navbar a,
+            .dropdown summary {
+
+                padding:
+                    10px 12px;
+
+                font-size: 14px;
+
+            }
+
+
+            .member-list {
+
+                position: absolute;
+
+                min-width: 210px;
+
+            }
+
+
+            .member-hero {
+
+                min-height: 90vh;
+
+                padding:
+                    60px 20px;
+
+            }
+
+
+            .hero-ring {
+
+                width: 360px;
+
+                height: 360px;
+
+            }
+
+
+            .member-photo-wrapper {
+
+                width: 240px;
+
+                height: 240px;
+
+            }
+
+
+            .member-name {
+
+                font-size: 36px;
+
+            }
+
+
+            .member-subtitle {
+
+                font-size: 17px;
+
+            }
+
+
+            .info-container {
+
+                padding:
+                    80px 20px
+                    130px;
+
+            }
+
+
+            .info-row {
+
+                min-height: 350px;
+
+                margin-bottom: -55px;
+
+            }
+
+
+            .info-row:nth-child(even) {
+
+                transform:
+                    translateY(15px);
+
+            }
+
+
+            .info-bubble {
+
+                width: 92%;
+
+                min-height: 240px;
+
+                padding: 30px;
+
+            }
+
+
+            .info-bubble h2 {
+
+                font-size: 30px;
+
+            }
+
+
+            .info-bubble p {
+
+                font-size: 19px;
+
+            }
+
+
+            .info-row.left .info-bubble,
+            .info-row.right .info-bubble {
+
+                margin:
+                    0 auto;
+
+                transform:
+
+                    translateY(70px)
+                    scale(0.94);
+
+            }
+
+
+            .info-row.left .info-bubble.show,
+            .info-row.right .info-bubble.show {
+
+                transform:
+
+                    translateY(0)
+                    scale(1);
+
+            }
+
+
+            
+
+
+            .info-bubble::before {
+
+                display: none;
+
+            }
+
+
+            .motto-row {
+
+                min-height: 400px;
+
+                justify-content: center;
+
+                margin-top: 20px;
+
+            }
+
+
+            .motto {
+
+                width: 92%;
+
+                padding:
+                    40px 30px;
+
+            }
+
+
+            .motto h2 {
+
+                font-size: 32px;
+
+            }
+
+
+            .motto p {
+
+                font-size: 21px;
+
+            }
+
+
+            .pink-ribbon,
+            .pink-ribbon-two {
+
+                opacity: 0.4;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         ABSTRACT DECORATIONS
+         ================================================== -->
+
+    <div class="dot-pattern dots-left"></div>
+
+    <div class="dot-pattern dots-right"></div>
+
+
+    <div class="abstract-circle circle-one"></div>
+
+    <div class="abstract-circle circle-two"></div>
+
+    <div class="abstract-circle circle-three"></div>
+
+
+    <div class="pink-ribbon"></div>
+
+    <div class="pink-ribbon-two"></div>
+
+
+    <div class="spark spark-one"></div>
+
+    <div class="spark spark-two"></div>
+
+
+    <!-- ==================================================
+         NAVIGATION
+         ================================================== -->
+
+    <nav class="navbar">
+
+        <ul>
+
+
+            <li>
+
+                <a href="Overview.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="About.html">
+
+                    About
+
+                </a>
+
+            </li>
+
+
+            <li class="dropdown">
+
+                <details>
+
+                    <summary>
+
+                        Mga Miyembro
+
+                    </summary>
+
+
+                    <div class="member-list">
+
+
+                        <a href="JercarlBongoyan.html">
+
+                            Jercarl Bongoyan
+
+                        </a>
+
+
+                        <a href="AlyssaGelaDelMundo.html">
+
+                            Alyssa Gela Del Mundo
+
+                        </a>
+
+
+                        <a href="MishaKyleeDifuntorum.html">
+
+                            Misha Kylee Difuntorum
+
+                        </a>
+
+
+                        <a href="ZeusVincentEgino.html">
+
+                            Zeus Vincent Egino
+
+                        </a>
+
+
+                        <a href="KeanZacharyGarcia.html">
+
+                            Kean Zachary Garcia
+
+                        </a>
+
+
+                        <a href="ArabellaChaceMonroy.html">
+
+                            Arabella Chace Monroy
+
+                        </a>
+
+
+                    </div>
+
+                </details>
+
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ==================================================
+         HERO
+         ================================================== -->
+
+    <section class="member-hero">
+
+
+        <div class="hero-ring"></div>
+
+
+        <div class="member-label">
+
+            Group Member
+
+        </div>
+
+
+        <div class="member-photo-wrapper">
+
+            <img
+
+                src="Misha.jfif"
+
+                alt="Misha Kylee Difuntorum"
+
+                class="member-photo"
+
+            >
+
+        </div>
+
+
+        <h1 class="member-name">
+
+            Misha Kylee Difuntorum
+
+        </h1>
+
+
+        <div class="member-subtitle">
+
+            Literary Assistant
+
+        </div>
+
+
+        <div class="scroll-indicator">
+
+            Scroll Down
+
+            <span class="scroll-arrow">
+
+                ↓
+
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ==================================================
+         INFORMATION
+         ================================================== -->
+
+    <section class="info-container">
+
+
+        <!-- 1. HOBBIES -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎨 Hobbies
+
+                </h2>
+
+                <p>
+
+                    Kumanta <br>
+                    Gumuhit <br>
+                    Sumayaw
+
+                </p>
+
+            </div>
+
+
+           
+
+        </div>
+
+
+        <!-- 2. FOOD -->
+
+        <div class="info-row right">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🍽️ Favorite Filipino Food
+
+                </h2>
+
+                <p>
+
+                    Adobo
+
+                </p>
+
+            </div>
+
+
+            
+
+        </div>
+
+
+        <!-- 3. OPM -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎵 Favorite OPM Song
+
+                </h2>
+
+                <p>
+
+                    Apo Hiking Society - Pag-ibig
+
+                </p>
+
+            </div>
+
+
+          
+
+        </div>
+
+
+        <!-- 4. MOVIE -->
+
+        <div class="info-row right">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎬 Favorite Pinoy Movie
+
+                </h2>
+
+                <p>
+
+                    Dalaw
+
+                </p>
+
+            </div>
+
+
+            
+
+        </div>
+
+
+        <!-- 5. DESTINATION -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🌴 Dream Local Destination
+
+                </h2>
+
+                <p>
+
+                    Palawan
+
+                </p>
+
+            </div>
+
+
+            
+
+        </div>
+
+
+        <!-- 6. MOTTO -->
+
+        <div class="motto-row">
+
+            <div class="motto">
+
+                <h2>
+
+                    ✨ Motto
+
+                </h2>
+
+
+                <p>
+
+                    "Wag matakot sumubok,
+                    kung 'di mo susubukan,
+                    hindi mo malalaman."
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <p>
+
+            Grade 9 Property
+
+        </p>
+
+    </footer>
+
+
+    <!-- ==================================================
+         SCROLL ANIMATION
+         ================================================== -->
+
+    <script>
+
+
+        const animatedElements =
+            document.querySelectorAll(
+                ".info-bubble, .motto"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                function(entries) {
+
+                    entries.forEach(
+
+                        function(entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "show"
+                                );
+
+                            }
+
+                            else {
+
+                                entry.target.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+                },
+
+                {
+
+                    threshold: 0.20
+
+                }
+
+            );
+
+
+        animatedElements.forEach(
+
+            function(element) {
+
+                observer.observe(element);
+
+            }
+
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

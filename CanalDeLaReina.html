@@ -1,0 +1,2479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Canal de la Reina | Online Book Review</title>
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #EEF4F3;
+            color: #202D30;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           HIDDEN INTRO CHECKBOX
+           ================================================== */
+
+        #intro-toggle {
+            display: none;
+        }
+
+
+        /* ==================================================
+           WATER / CANAL INTRO
+           ================================================== */
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 42%,
+                    rgba(74, 157, 163, 0.25),
+                    transparent 40%
+                ),
+                linear-gradient(
+                    to bottom,
+                    #071B24,
+                    #0B3039 48%,
+                    #08252D
+                );
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            z-index: 5000;
+
+            transition:
+                opacity 1.3s ease,
+                visibility 1.3s ease;
+        }
+
+
+        /* ==================================================
+           WATER GLOW
+           ================================================== */
+
+        .water-glow {
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(190, 171, 104, 0.10),
+                    transparent 65%
+                );
+
+            animation:
+                waterGlow 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes waterGlow {
+
+            0% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+        }
+
+
+        /* ==================================================
+           WAVES
+           ================================================== */
+
+        .waves {
+            position: absolute;
+
+            bottom: -5px;
+            left: 0;
+
+            width: 100%;
+            height: 230px;
+
+            overflow: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .wave {
+            position: absolute;
+
+            left: -10%;
+
+            width: 120%;
+            height: 160px;
+
+            border-radius: 50% 50% 0 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(48, 126, 135, 0.42),
+                    rgba(8, 42, 51, 0.85)
+                );
+
+            transform-origin: center bottom;
+        }
+
+
+        .wave-one {
+            bottom: -80px;
+
+            animation:
+                waveMoveOne 7s ease-in-out infinite;
+        }
+
+
+        .wave-two {
+            bottom: -110px;
+
+            opacity: 0.75;
+
+            animation:
+                waveMoveTwo 9s ease-in-out infinite;
+        }
+
+
+        .wave-three {
+            bottom: -135px;
+
+            opacity: 0.55;
+
+            animation:
+                waveMoveThree 11s ease-in-out infinite;
+        }
+
+
+        @keyframes waveMoveOne {
+
+            0%,
+            100% {
+                transform:
+                    translateX(-3%)
+                    rotate(1deg);
+            }
+
+            50% {
+                transform:
+                    translateX(3%)
+                    rotate(-1deg);
+            }
+
+        }
+
+
+        @keyframes waveMoveTwo {
+
+            0%,
+            100% {
+                transform:
+                    translateX(3%)
+                    rotate(-1deg);
+            }
+
+            50% {
+                transform:
+                    translateX(-3%)
+                    rotate(1deg);
+            }
+
+        }
+
+
+        @keyframes waveMoveThree {
+
+            0%,
+            100% {
+                transform:
+                    translateX(-2%)
+                    scaleX(1);
+            }
+
+            50% {
+                transform:
+                    translateX(2%)
+                    scaleX(1.04);
+            }
+
+        }
+
+
+        /* ==================================================
+           GOLDEN WATER REFLECTIONS
+           ================================================== */
+
+        .reflection {
+            position: absolute;
+
+            width: 8px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(202, 181, 112, 0.65),
+                    transparent
+                );
+
+            opacity: 0.45;
+
+            animation:
+                reflectionMove 4s ease-in-out infinite;
+        }
+
+
+        .reflection.one {
+            left: 20%;
+            bottom: 70px;
+            animation-delay: 0s;
+        }
+
+
+        .reflection.two {
+            left: 35%;
+            bottom: 100px;
+            height: 90px;
+            animation-delay: 1s;
+        }
+
+
+        .reflection.three {
+            left: 52%;
+            bottom: 55px;
+            height: 140px;
+            animation-delay: 0.5s;
+        }
+
+
+        .reflection.four {
+            left: 70%;
+            bottom: 85px;
+            height: 100px;
+            animation-delay: 1.5s;
+        }
+
+
+        .reflection.five {
+            left: 82%;
+            bottom: 60px;
+            height: 120px;
+            animation-delay: 2s;
+        }
+
+
+        @keyframes reflectionMove {
+
+            0%,
+            100% {
+                transform:
+                    scaleY(0.7)
+                    translateX(0);
+
+                opacity: 0.2;
+            }
+
+            50% {
+                transform:
+                    scaleY(1.15)
+                    translateX(12px);
+
+                opacity: 0.6;
+            }
+
+        }
+
+
+        /* ==================================================
+           INTRO CONTENT
+           ================================================== */
+
+        .intro-content {
+            position: relative;
+
+            z-index: 10;
+
+            margin-bottom: 100px;
+
+            animation:
+                introAppear 1.8s ease forwards;
+        }
+
+
+        @keyframes introAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .intro-small {
+            color: #B9D2D0;
+
+            font-size: 16px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .intro-title {
+            color: #F3F1E7;
+
+            font-family: Georgia, serif;
+
+            font-size: 58px;
+
+            letter-spacing: 2px;
+
+            margin: 0;
+
+            text-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.45);
+        }
+
+
+        .intro-author {
+            color: #C7B777;
+
+            font-family: Georgia, serif;
+
+            font-size: 23px;
+
+            margin-top: 10px;
+        }
+
+
+        .intro-enter {
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 12px 28px;
+
+            border: 1px solid #BDAF76;
+
+            border-radius: 30px;
+
+            color: #F3F1E7;
+
+            font-size: 16px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                0.4s ease;
+
+            background:
+                rgba(8, 37, 45, 0.45);
+        }
+
+
+        .intro-enter:hover {
+            background-color: #BDAF76;
+
+            color: #09232B;
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 8px 25px rgba(189, 175, 118, 0.3);
+        }
+
+
+        /* ==================================================
+           INTRO EXIT
+           ================================================== */
+
+        #intro-toggle:checked ~ .intro-screen {
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        /* ==================================================
+           HEADER
+           ================================================== */
+
+        header {
+            background-color: #09252D;
+
+            color: #F4F1E7;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        header h1 {
+            font-family: "Times New Roman", Times, serif;
+
+            font-size: 45px;
+
+            margin: 0;
+        }
+
+
+        /* ==================================================
+           NAVIGATION BAR
+           ================================================== */
+
+        .navbar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .navbar ul {
+            list-style-type: none;
+
+            background-color: #123B43;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: flex-start;
+        }
+
+
+        .navbar li {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .navbar a {
+            color: #F3F1E7;
+
+            text-decoration: none;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .navbar a:hover {
+            background-color: #DDEBE8;
+
+            color: #27656C;
+        }
+
+
+       /* ==================================================
+   GROUP MEMBERS DROPDOWN
+   ================================================== */
+
+.dropdown {
+    position: relative;
+}
+
+/* Make Group Members look exactly like the other navbar links */
+
+.dropdown details {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown summary {
+    list-style: none;
+
+    color: #F5F3EF;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* Remove the default arrow */
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::marker {
+    display: none;
+}
+
+/* Hover effect matches Homepage and About */
+
+.dropdown summary:hover {
+    background-color: #FFE9D1;
+
+    color: #B89B5E;
+}
+
+
+/* ==================================================
+   MEMBER LIST
+   ================================================== */
+
+.member-list {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background-color: #302B27;
+
+    min-width: 280px;
+
+    padding: 8px 0;
+
+    margin: 0;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown when clicked */
+
+.dropdown details[open] .member-list {
+    display: block;
+}
+
+
+/* ==================================================
+   MEMBER NAMES
+   ================================================== */
+
+.member-list a {
+    display: block;
+
+    color: #F5F3EF;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+/* Member hover */
+
+.member-list a:hover {
+    background-color: #FFE9D1;
+
+    color: #8A6F35;
+}
+
+
+        /* ==================================================
+           VIDEO BANNER
+           ================================================== */
+
+        .canal-picture {
+            position: relative;
+
+            width: 100%;
+
+            height: 420px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+        }
+
+
+        .canal-picture video {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+        }
+
+
+        .video-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(5, 29, 36, 0.30),
+                    rgba(5, 29, 36, 0.72)
+                );
+
+            z-index: 1;
+        }
+
+
+        .video-glow {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(198, 180, 112, 0.20),
+                    transparent 65%
+                );
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        .banner-text {
+            position: relative;
+
+            z-index: 3;
+
+            padding: 30px;
+        }
+
+
+        .canal-picture h1 {
+            font-family: Georgia, serif;
+
+            font-size: 55px;
+
+            margin: 0;
+
+            text-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .canal-picture p {
+            font-size: 21px;
+
+            margin-top: 5px;
+
+            text-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+
+        /* ==================================================
+           MAIN CONTENT
+           ================================================== */
+
+        main {
+            width: 85%;
+
+            max-width: 1000px;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           INTRODUCTION
+           ================================================== */
+
+        .intro {
+            background-color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid #CBDAD8;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.05);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .intro:hover {
+            box-shadow:
+                0 8px 22px rgba(0, 255, 34, 0.54);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .intro h2 {
+            font-family: Cambria, Georgia, serif;
+
+            color: #174A52;
+        }
+
+
+        /* ==================================================
+           CONTENT SLIDER
+           ================================================== */
+
+        .content-slider {
+            position: relative;
+
+            width: 100%;
+
+            margin: 30px auto;
+        }
+
+
+        .content-card {
+            display: none;
+
+            background-color: #FFFFFF;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border-left:
+                5px solid #4C8990;
+
+            box-shadow:
+                0 5px 14px rgba(15, 52, 59, 0.10);
+
+            min-height: 500px;
+
+            animation:
+                cardSlide 0.6s ease;
+        }
+
+
+        /* ==================================================
+           CARD ANIMATION
+           ================================================== */
+
+        @keyframes cardSlide {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+       /* ==================================================
+   CARD TARGET SYSTEM
+   ================================================== */
+
+/* Hide all cards by default */
+.content-card {
+    display: none;
+}
+
+
+/* Show the selected card */
+.content-card:target {
+    display: block;
+}
+
+
+/* Show Panimula when there is NO selected card */
+.content-slider:not(:has(.content-card:target)) #panimula {
+    display: block;
+}
+
+        /* ==================================================
+           CARD HEADINGS
+           ================================================== */
+
+        .content-card h2 {
+            color: #174A52;
+
+            font-family: Georgia, serif;
+
+            text-align: center;
+
+            border-bottom:
+                2px solid #BDAF76;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+        }
+
+
+        .content-card h3 {
+            color: #315A60;
+
+            font-family: Georgia, serif;
+        }
+
+
+        .content-card p {
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           BOOK INFORMATION
+           ================================================== */
+
+        .book-info {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #CBDAD8;
+
+            text-align: center;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .book-info:hover {
+            box-shadow:
+                0 8px 22px #007bff8a;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .book-info h3 {
+            margin-bottom: 5px;
+
+            color: #174A52;
+        }
+
+
+        /* ==================================================
+           CHARACTERS
+           ================================================== */
+
+        .characters {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .character {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            border-top:
+                4px solid #4C8990;
+
+            border-left:
+                1px solid #CBDAD8;
+
+            border-right:
+                1px solid #CBDAD8;
+
+            border-bottom:
+                1px solid #CBDAD8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .character:hover {
+            box-shadow:
+                0 8px 22px #007bff8a;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .character h3 {
+            margin-top: 0;
+
+            color: #174A52;
+        }
+
+
+        /* ==================================================
+           BANGHAY
+           ================================================== */
+
+        .banghay {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin: 15px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #4C8990;
+
+            border-top:
+                1px solid #CBDAD8;
+
+            border-right:
+                1px solid #CBDAD8;
+
+            border-bottom:
+                1px solid #CBDAD8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .banghay:hover {
+            box-shadow:
+                0 8px 22px #007bff8a;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .banghay h3 {
+            margin-top: 0;
+
+            color: #174A52;
+        }
+
+
+        /* ==================================================
+           REFERENCES
+           ================================================== */
+
+        .source-list {
+            background-color: #FFFFFF;
+
+            padding: 22px 28px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #CBDAD8;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .source-list:hover {
+            box-shadow:
+                0 8px 22px #007bff8a;
+        }
+
+
+        .source-list p {
+            text-align: left;
+
+            margin-bottom: 20px;
+        }
+
+
+        .source-list p:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .source-list a {
+            color: #39757C;
+
+            word-break: break-word;
+        }
+
+
+        .source-list a:hover {
+            color: #A18E55;
+        }
+
+
+        /* ==================================================
+           CONCLUSION
+           ================================================== */
+
+        .conclusion {
+            background-color: #F7F5EA;
+
+            color: #4A4A3B;
+
+            border-left-color: #BDAF76;
+        }
+
+
+        .conclusion h2,
+        .conclusion h3 {
+            color: #786B3D;
+
+            border-color: #BDAF76;
+        }
+
+
+        /* ==================================================
+           CARD NAVIGATION
+           ================================================== */
+
+        .card-navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #CBDAD8;
+        }
+
+
+        .card-navigation a {
+            background-color: #123B43;
+
+            color: #F3F1E7;
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+
+            text-align: center;
+        }
+
+
+        .card-navigation a:hover {
+            background-color: #BDAF76;
+
+            color: #FFFFFF;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .card-number {
+            color: #58777A;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+            background-color: #09252D;
+
+            color: #F3F1E7;
+
+            text-align: center;
+
+            padding: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        footer h6 {
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: normal;
+        }
+
+
+        /* ==================================================
+           BACK TO TOP
+           ================================================== */
+
+        .back-to-top {
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #39757C;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                0.4s ease;
+
+            animation:
+                showBackToTop linear;
+
+            animation-timeline:
+                scroll();
+        }
+
+
+        @keyframes showBackToTop {
+
+            0% {
+                opacity: 0;
+
+                visibility: hidden;
+            }
+
+            50% {
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+        }
+
+
+        .back-to-top:hover {
+            transform:
+                translateY(-5px);
+
+            background: #BDAF76;
+        }
+
+
+        /* ==================================================
+           GOLDEN PIXIE DUST
+           ================================================== */
+
+        .pixie-dust {
+            position: fixed;
+
+            width: 7px;
+
+            height: 7px;
+
+            background: #BDAF76;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            box-shadow:
+                0 0 5px #BDAF76,
+                0 0 10px #D6C982;
+
+            animation:
+                pixieFade 0.9s ease-out forwards;
+        }
+
+
+        @keyframes pixieFade {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translate(0, 0);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    translate(
+                        var(--random-x),
+                        var(--random-y)
+                    );
+            }
+
+        }
+
+
+        /* ==================================================
+           RESPONSIVE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+                font-size: 17px;
+            }
+
+
+            .intro-title {
+                font-size: 40px;
+            }
+
+
+            .intro-small {
+                font-size: 12px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .canal-picture {
+                height: 320px;
+            }
+
+
+            .canal-picture h1 {
+                font-size: 38px;
+            }
+
+
+            .canal-picture p {
+                font-size: 17px;
+            }
+
+
+            .characters {
+                grid-template-columns: 1fr;
+            }
+
+
+            .navbar ul {
+                flex-wrap: wrap;
+            }
+
+
+            .navbar a {
+                padding: 10px 12px;
+
+                font-size: 15px;
+            }
+
+
+            main {
+                width: 92%;
+            }
+
+
+            .content-card {
+                padding: 20px;
+            }
+
+
+            .card-navigation a {
+                padding: 8px 12px;
+
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HIDDEN CHECKBOX
+         ================================================== -->
+
+    <input
+        type="checkbox"
+        id="intro-toggle"
+    >
+
+
+    <!-- ==================================================
+         CANAL / WATER INTRO
+         ================================================== -->
+
+    <div class="intro-screen">
+
+        <div class="water-glow"></div>
+
+
+        <div class="intro-content">
+
+            <div class="intro-small">
+                Isang Nobela ni Liwayway Arceo
+            </div>
+
+
+            <h1 class="intro-title">
+                Canal de la Reina
+            </h1>
+
+
+            <div class="intro-author">
+                Online Book Review
+            </div>
+
+
+            <label
+                for="intro-toggle"
+                class="intro-enter"
+            >
+                Click to Enter
+            </label>
+
+        </div>
+
+
+        <!-- GOLD REFLECTIONS -->
+
+        <div class="reflection one"></div>
+        <div class="reflection two"></div>
+        <div class="reflection three"></div>
+        <div class="reflection four"></div>
+        <div class="reflection five"></div>
+
+
+        <!-- ANIMATED WATER -->
+
+        <div class="waves">
+
+            <div class="wave wave-one"></div>
+
+            <div class="wave wave-two"></div>
+
+            <div class="wave wave-three"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOP
+         ================================================== -->
+
+    <a id="top"></a>
+
+
+    <a
+        href="#top"
+        class="back-to-top"
+    >
+        ↑
+    </a>
+
+
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+
+    <header>
+
+        <h1>
+            Online Book Review
+        </h1>
+
+    </header>
+
+
+    <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+   <nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+    <!-- ==================================================
+         CANAL VIDEO BANNER
+         ================================================== -->
+
+    <div class="canal-picture">
+
+
+        <!--
+            IMPORTANT:
+            Keep tubig.mp4 in the SAME folder
+            as this HTML file.
+        -->
+
+        <video
+            autoplay
+            muted
+            loop
+            playsinline>
+
+            <source
+                src="tubig.mp4"
+                type="video/mp4">
+
+            
+
+        </video>
+
+
+        <div class="video-overlay"></div>
+
+        <div class="video-glow"></div>
+
+
+        <div class="banner-text">
+
+            <h1>
+                Canal de la Reina
+            </h1>
+
+
+            <p>
+                Isang Pangkalahatang-ideya ng Nobela
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             INTRODUCTION
+             ================================================== -->
+
+        <div class="intro">
+
+            <h2>
+                Ito ay isang pangkalahatang-ideya ng Canal de la Reina.
+            </h2>
+
+
+            <p>
+                Enjoy reading!
+            </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             CONTENT SLIDER
+             ================================================== -->
+
+        <div class="content-slider">
+
+
+            <!-- ==================================================
+                 1. PANIMULA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="panimula"
+            >
+
+                <h2>
+                    Panimula / Pagkilala sa Akda
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Pamagat ng Nobela
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            CANAL DE LA REINA
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        May Akda
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Liwayway Ablaza Arceo - si Liwayway Ablaza Arceo ay multi awarded Tagalog writer, naging isang radio script writer, kwentista, tagasalin, at manunulat sa wikang Tagalog. Isinilang siya noong 30 Enero 1920 sa Tondo, at siya ay naging isa sa mga mahalagang pigura sa pagsusulat at nakagawa siya ng halos 50 nobela, kabilang ang Canal de la Reina.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Uri ng Akdang Pampanitikan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Isang nobela na nagpapakita ng sakit ng lipunan.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Bansang Pinagmulan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Ang nobela na ito ay nanggaling sa bansang Pinas. Kung saan ito ginawa noong 1972. Ito ay ipinangalan sa gawang-taong daluyan ng tubig na dumadaan sa gitna ng Tondo. At ang Pilipinas noong dekada 1970, nang isinusulat at inilathala ang nobela, ay nakakaranas ng mabilis na paglaki ng populasyon.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <span></span>
+
+
+                    <span class="card-number">
+                        1 / 8
+                    </span>
+
+
+                    <a href="#tauhan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 2. TAUHAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tauhan"
+            >
+
+                <h2>
+                    Tauhan
+                </h2>
+
+
+                <div class="characters">
+
+
+                    <div class="character">
+
+                        <h3>
+                            Caridad Reynante de los Angeles
+                        </h3>
+
+                        <p>
+                            Mapagmahal, malakas at asawa ni Salvador. Siya ang lehitimong tagapagmana ng isang maliit na bahagi ng lupain malapit sa Canal de Reina.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Salvador de los Angeles
+                        </h3>
+
+                        <p>
+                            Ang asawa ni Caridad.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Leni de los Angeles
+                        </h3>
+
+                        <p>
+                            Maganda at ang pinakamatanda sa magkakapatid. Naging intern na doktor.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Salvador de los Angeles Jr. o "Junior"
+                        </h3>
+
+                        <p>
+                            Ang pinakabata sa magkakapatid at masunurin sa kanyang mga magulang.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Vicenta Marcial o "Nyora Tentay"
+                        </h3>
+
+                        <p>
+                            "Queen of Canal de la Reina". Ang mayaman at matandang masungit na babae na bumili ng pirasong lupa kay Osyong na hawak ng mga Caridad. Siya din ang matriarka ng pamilyang Marcial.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Victor Marcial
+                        </h3>
+
+                        <p>
+                            Ang maamong anak ni Nyora Tentay. Meron din siyang anak na pangalan "Gerry".
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Gracia Montes Marcial
+                        </h3>
+
+                        <p>
+                            Ang asawa ni Victor Marcial. Siya ay napapagod na sa kasamaan ni Nyora Tentay.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Geronimo Marcial o "Gerry"
+                        </h3>
+
+                        <p>
+                            Ang anak ni Victor na naging doktor. Siya ay magiging asawa ni Leni.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Precioso Santos o "Osyong"
+                        </h3>
+
+                        <p>
+                            Ang taong nagbebenta ng isang pirasong lupa mula sa pamilya ni Caridad kay Nyora dahil sa kanyang utang habang hindi sinasabi sa may-ari ang pamilyang Caridad.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Ingga
+                        </h3>
+
+                        <p>
+                            Ang tagapagkatulong ni Nyora Tentay.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#panimula">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        2 / 8
+                    </span>
+
+
+                    <a href="#tagpuan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 3. TAGPUAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tagpuan"
+            >
+
+                <h2>
+                    Tagpuan
+                </h2>
+
+
+                <p style="text-align:center; margin-top:70px;">
+
+                    Ang nobela ay nangyari sa lungsod ng Canal de la Reina, Manila, Pilipinas sa panahon ng 1970s kung saan nagkaroon ng mabilis na paglaki ng populasyon.
+
+                </p>
+
+
+                <p style="text-align:center;">
+
+                    Ang lugar nila bilang isang marumi, mabaho, at pinamumugaran ng mga iskwater kung saan namumuno si Nyora Tentay.
+
+                </p>
+
+
+                <p style="text-align:center;">
+
+                    Nakuha din ang pangalan nito mula sa titular na Estero de la Reina, isang gawa ng taong estero, na hinukay sa mga palaisdaan ng Binondo noong panahon ng Kastila upang mapadali ang pagdaan ng mga ipinadalang kalakal.
+
+                </p>
+
+
+                <p style="text-align:center;">
+
+                    Ipinapakita nito ang hirap ng tao at binibigyan ng pundasyon ang mga mangyayari sa nobela.
+
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tauhan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        3 / 8
+                    </span>
+
+
+                    <a href="#banghay">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 4. BANGHAY
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="banghay"
+            >
+
+                <h2>
+                    Banghay ng Pangyayari
+                </h2>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Panimula
+                    </h3>
+
+                    <p>
+                        Nagsimula ang kuwento noong bumisita ang pamilyang De los Angeles sa Canal de la Reina para sa pirasong lupa na pag-aari ng kanyang pamilya. Nagulat siya sa malaking pagbabago ng lugar, mula sa isang magandang matahimik na komunidad na naging sira-sira, marumi, at siksikan.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Saglit na Kasiglahan
+                    </h3>
+
+                    <p>
+                        Hinahanap niya si Osyong, ang kaibigan ng kanyang ama na nag-aalaga sa lupa. Sa huli, nalaman niya na mayroon nang bagong kumuha ng lupa at si Nyora Tentay ay binabayaran ang mga pulis upang hulihin siya. At naglaban sila sa hukuman.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Kasukdulan
+                    </h3>
+
+                    <p>
+                        Biglang may dumaan na malakas na bagyo sa Pilipinas. Nagbaha sa Canal de la Reina at nasiraan ang mga gusali at iba't iba pa. Kahit ang malaking bahay ni Nyora Tentay ay nadamay. Matigas niyang hinawakan ang mga kayamanan, pera, at dokumento tungkol sa mga lupa, hanggang nawalan siya ng malay.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Kakalasan
+                    </h3>
+
+                    <p>
+                        Ang mga residente ay na-evacuate. At nang nagkaroon na si Nyora Tentay ng malay, nalaman niya na nawawala ang kanyang mga alahas at mga pera, kaya siya ay nabaliw. Si Junior naman ay nakita si Ingga sa rescue center at dinala siya sa bahay. Ipinakita ni Ingga ang bag na kinuha niya kay Nyora Tentay. Gusto ni Caridad na ibalik kay Nyora Tentay ang mga dokumento kaysa gamitin niya ito laban sa kanya. Binigay naman ni Junior kay Victor at ngayon si Nyora ay nasa ospital at gumagaling.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Wakas
+                    </h3>
+
+                    <p>
+                        Si Gerry at ang kanyang ama Victor ay nagkaroon ng oras na mag-usap at sinubukan ni Victor na sabihin sa kanyang Nanay na si Nyora na matatalo siya sa hukuman. At ang resulta ng hukuman ay kay Caridad. Si Caridad at Salvador ay inimbitahan ang Marcial family. Sina Gerry Marcial at Leni de los Angeles ay nagplano na magpakasal at pagkatapos ay gumawa ng isang pampublikong ospital para sa Canal de la Reina. Si Gracia din ay nagkasundo sa kanyang asawa na si Victor. Nagsisimbolo ito lahat ng pagbabago ng komunidad at lugar ng Canal de la Reina.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tagpuan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        4 / 8
+                    </span>
+
+
+                    <a href="#buod">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 5. BUOD
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="buod"
+            >
+
+                <h2>
+                    Buod ng Nobela
+                </h2>
+
+
+                <p>
+                    Nagsimula siya dahil kay Nyora Tentay sa pagbibigay ng mga utang na may mataas na interes. Nadamay dito si Osyong, ang tagapag-alaga ng lupa na nasa pangalan ng pamilyang De los Angeles. Ito'y naman binenta niya kay Nyora at hindi sinabi sa De los Angeles.
+                </p>
+
+
+                <p>
+                    Kaya noong bumisita ang De los Angeles ay nalaman nila na mayroon nang bagong kumuha ng lupa na si Nyora Tentay. At si Nyora ay nagpapadala ng mga pulis para hulihin si Caridad. At dahil doon naglaban sila sa hukuman.
+                </p>
+
+
+                <p>
+                    Biglang may dumating na bagyo at sinira ang mga gusali at nadamay si Nyora at nahimatay. Sa huli nakuha ni Ingga ang dokumento kay Nyora at ibinalik ni Caridad ito sa kanya.
+                </p>
+
+
+                <p>
+                    Sa wakas ay natalo si Nyora kay Caridad sa hukuman pero binigyan sila ng pagkakataong magtulungan at ayusin ang Canal de la Reina.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#banghay">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        5 / 8
+                    </span>
+
+
+                    <a href="#paksa">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 6. PUNA / TEMA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="paksa"
+            >
+
+                <h2>
+                    Puna: Paksa / Tema
+                </h2>
+
+
+                <p>
+                    Ang nobela na ito ay ipinapakita ang mga kapangyarihan at ang kaya ng mga mayaman at ang korapsyon na nangyayari sa mga iba't-ibang lugar.
+                </p>
+
+
+                <p>
+                    Pinapakita nito ang mga hirap ng mga tao na nasa ibaba. Ang sitwasyon din sa nobela ay nagpapakita kung paano ang korapsyon ay kayang sirain kahit ang paraiso na sa isang magandang komunidad na naging sira-sira na.
+                </p>
+
+
+                <p>
+                    Pinapakita ang mga nadadaanan ng mga tao noong 1970 kung saan maraming populasyon, korupsiyon, at ang pagtaas ng populasyon.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#buod">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        6 / 8
+                    </span>
+
+
+                    <a href="#sanggunian">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 7. SANGGUNIAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="sanggunian"
+            >
+
+                <h2>
+                    Sanggunian
+                </h2>
+
+
+                <div
+                    class="source-list"
+                    style="
+                        margin-top:70px;
+                        text-align:center;
+                    "
+                >
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            Arceo, Liwayway A.
+                        </strong>
+
+                        <br>
+
+                        <em>
+                            Canal de la Reina.
+                        </em>
+
+                        1972.
+
+                    </p>
+
+
+                    <p style="text-align:center;">
+
+                        <em>
+                            Canal de la Reina — Grokipedia
+                        </em>
+
+                    </p>
+
+
+                    <p style="text-align:center;">
+
+                        <em>
+                            Canal de la Reina explained
+                        </em>
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#paksa">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        7 / 8
+                    </span>
+
+
+                    <a href="#konklusyon">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 8. KONKLUSYON
+                 ================================================== -->
+
+            <section
+                class="content-card conclusion"
+                id="konklusyon"
+            >
+
+                <h2>
+                    Konklusyon
+                </h2>
+
+
+                <h3>
+                    Mensahe
+                </h3>
+
+
+                <p>
+                    Ang konklusyon ko ay dapat hindi tayo matakot sa korupsiyon at maghintay lang sa gilid habang maraming nadadamay at mga komunidad na nasisira.
+                </p>
+
+
+                <p>
+                    Nakita naman sa nobela na ang magandang gusali ay nasira nung dumaan ang bagyo dahil sa pag-iisip lang ng mga mayaman sa sarili nila.
+                </p>
+
+
+                <p>
+                    Ito'y aral din na hindi sumuko. Kahit kalaban ni Caridad ang isang malakas at mayamang tao, siya ay hindi nayanig. Ipinaglaban niya pa rin ang katotohanan kahit mukhang talo na siya.
+                </p>
+
+
+                <p>
+                    Lagi dapat tayong may pag-asa kahit kung mahirap. Lagi din tayo dapat mapagbantay at ligtas sa mga bagyo, masama, at sa kahit ano pa.
+                </p>
+
+
+                <p>
+                    Dapat tumatayo tayo at ipaglaban ang totoo.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#sanggunian">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        8 / 8
+                    </span>
+
+
+                    <a href="#panimula">
+                        Back to Start ↻
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <h6>
+            Grade 9 Property
+        </h6>
+
+    </footer>
+
+
+    <!-- ==================================================
+         PIXIE DUST SCRIPT
+         ================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const sparkle =
+                    document.createElement("div");
+
+
+                sparkle.classList.add(
+                    "pixie-dust"
+                );
+
+
+                sparkle.style.left =
+                    event.clientX + "px";
+
+
+                sparkle.style.top =
+                    event.clientY + "px";
+
+
+                const randomX =
+                    (Math.random() - 0.5) * 50;
+
+
+                const randomY =
+                    (Math.random() - 0.5) * 50;
+
+
+                sparkle.style.setProperty(
+                    "--random-x",
+                    randomX + "px"
+                );
+
+
+                sparkle.style.setProperty(
+                    "--random-y",
+                    randomY + "px"
+                );
+
+
+                document.body.appendChild(
+                    sparkle
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        sparkle.remove();
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

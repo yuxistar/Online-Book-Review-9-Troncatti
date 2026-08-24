@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Noli Me Tangere | Online Book Review</title>
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #F5F2EA;
+            color: #292929;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           INTRO SCREEN
+           ================================================== */
+
+        #intro-toggle {
+            display: none;
+        }
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(184, 155, 94, 0.12),
+                    transparent 45%
+                ),
+                #252525;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            z-index: 5000;
+
+            transition:
+                opacity 1s ease,
+                visibility 1s ease;
+        }
+
+
+        /* ==================================================
+           PAPER + QUILL
+           ================================================== */
+
+        .intro-icon {
+            cursor: pointer;
+            display: block;
+
+            animation: floatingQuill 3s ease-in-out infinite;
+
+            transition:
+                transform 0.4s ease,
+                filter 0.4s ease;
+        }
+
+        .intro-icon:hover {
+            transform: scale(1.08);
+
+            filter:
+                drop-shadow(
+                    0 0 12px
+                    rgba(184, 155, 94, 0.7)
+                );
+        }
+
+        .intro-icon img {
+            width: 400px;
+            height: auto;
+            display: block;
+        }
+
+
+        /* ==================================================
+           FLOATING QUILL ANIMATION
+           ================================================== */
+
+        @keyframes floatingQuill {
+
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* ==================================================
+           INTRO TEXT
+           ================================================== */
+
+        .intro-text {
+            color: #F5F3EF;
+
+            font-family: Georgia, serif;
+
+            font-size: 25px;
+
+            margin-top: 20px;
+        }
+
+        .intro-click {
+            color: #B89B5E;
+
+            font-size: 17px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ==================================================
+           INTRO EXIT
+           ================================================== */
+
+        #intro-toggle:checked ~ .intro-screen {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+
+        /* ==================================================
+           HEADER
+           ================================================== */
+
+        header {
+            background-color: #252525;
+
+            color: #F5F3EF;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+        header h1 {
+            font-family: "Times New Roman", Times, serif;
+
+            font-size: 45px;
+
+            margin: 0;
+        }
+
+        header p {
+            font-size: 18px;
+
+            margin: 5px 0 0;
+        }
+
+
+        /* ==================================================
+           NAVIGATION BAR
+           ================================================== */
+
+        .navbar {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+
+            background-color: #302B27;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: flex-start;
+        }
+
+        .navbar li {
+            margin: 0;
+
+            padding: 0;
+        }
+
+        .navbar a {
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #FFE9D1;
+
+            color: #B89B5E;
+        }
+
+
+        /* ==================================================
+   GROUP MEMBERS DROPDOWN
+   ================================================== */
+
+.dropdown {
+    position: relative;
+}
+
+/* Make Group Members look exactly like the other navbar links */
+
+.dropdown details {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown summary {
+    list-style: none;
+
+    color: #F5F3EF;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* Remove the default arrow */
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::marker {
+    display: none;
+}
+
+/* Hover effect matches Homepage and About */
+
+.dropdown summary:hover {
+    background-color: #FFE9D1;
+
+    color: #B89B5E;
+}
+
+
+/* ==================================================
+   MEMBER LIST
+   ================================================== */
+
+.member-list {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background-color: #302B27;
+
+    min-width: 280px;
+
+    padding: 8px 0;
+
+    margin: 0;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown when clicked */
+
+.dropdown details[open] .member-list {
+    display: block;
+}
+
+
+/* ==================================================
+   MEMBER NAMES
+   ================================================== */
+
+.member-list a {
+    display: block;
+
+    color: #F5F3EF;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+/* Member hover */
+
+.member-list a:hover {
+    background-color: #FFE9D1;
+
+    color: #8A6F35;
+}
+
+
+        /* ==================================================
+           NOLI BANNER
+           ================================================== */
+
+        .noli-picture {
+            min-height: 430px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    rgba(37, 37, 37, 0.58),
+                    rgba(37, 37, 37, 0.58)
+                ),
+                url("nolimetangere.jfif");
+
+            background-size: cover;
+
+            background-position: center;
+
+            color: #FFFFFF;
+        }
+
+        .noli-picture h1 {
+            font-family: Georgia, serif;
+
+            font-size: 50px;
+
+            margin: 0;
+        }
+
+        .noli-picture p {
+            font-size: 20px;
+
+            margin-top: 5px;
+        }
+
+
+        /* ==================================================
+           MAIN CONTENT
+           ================================================== */
+
+        main {
+            width: 85%;
+
+            max-width: 1000px;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           INTRODUCTION
+           ================================================== */
+
+        .intro {
+            background-color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid #DDD7CC;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.05);
+        }
+
+        .intro h2 {
+            font-family: Cambria, Georgia, serif;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           CONTENT SLIDER
+           ================================================== */
+
+        .content-slider {
+            position: relative;
+
+            width: 100%;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           CONTENT CARDS
+           ================================================== */
+
+        .content-card {
+            display: none;
+
+            background-color: #FFFFFF;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border-left:
+                5px solid #B89B5E;
+
+            border-top:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            box-shadow:
+                0 5px 14px
+                rgba(37, 37, 37, 0.08);
+
+            min-height: 500px;
+
+            animation:
+                cardSlide 0.6s ease;
+        }
+
+
+        /* ==================================================
+           CARD ANIMATION
+           ================================================== */
+
+        @keyframes cardSlide {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        /* ==================================================
+           SHOW SELECTED CARD
+           ================================================== */
+
+        .content-card:target {
+            display: block;
+        }
+
+
+        /* ==================================================
+           SHOW PANIMULA BY DEFAULT
+           ================================================== */
+
+        .content-slider:not(:has(.content-card:target))
+        #panimula {
+            display: block;
+        }
+
+
+        /* ==================================================
+           HIDE PANIMULA ONLY WHEN
+           ANOTHER CARD IS SELECTED
+           ================================================== */
+
+        .content-slider:has(
+            .content-card:target:not(#panimula)
+        ) #panimula {
+            display: none;
+        }
+
+
+        /* ==================================================
+           CARD HEADINGS
+           ================================================== */
+
+        .content-card h2 {
+            color: #302B27;
+
+            font-family: Georgia, serif;
+
+            text-align: center;
+
+            border-bottom:
+                2px solid #B89B5E;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+        }
+
+        .content-card h3 {
+            color: #4A443E;
+
+            font-family: Georgia, serif;
+        }
+
+        .content-card p {
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           BOOK INFORMATION
+           ================================================== */
+
+        .book-info {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 8px;
+
+            border: 1px solid #DDD7CC;
+
+            text-align: center;
+
+            transition: 0.3s ease;
+        }
+
+        .book-info h3 {
+            margin-bottom: 5px;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           CHARACTERS
+           ================================================== */
+
+        .characters {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+        .character {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            border-top:
+                4px solid #B89B5E;
+
+            border-left:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            transition: 0.3s ease;
+        }
+
+        .character h3 {
+            margin-top: 0;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           BANGHAY
+           ================================================== */
+
+        .banghay {
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin: 15px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #B89B5E;
+
+            border-top:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            transition: 0.3s ease;
+        }
+
+        .banghay h3 {
+            margin-top: 0;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           REFERENCES
+           ================================================== */
+
+        .source-list {
+            background-color: #FFFFFF;
+
+            padding: 22px 28px;
+
+            border-radius: 8px;
+
+            border: 1px solid #DDD7CC;
+        }
+
+        .source-list p {
+            text-align: left;
+
+            margin-bottom: 20px;
+        }
+
+        .source-list p:last-child {
+            margin-bottom: 0;
+        }
+
+        .source-list a {
+            color: #8A6F35;
+
+            word-break: break-word;
+        }
+
+        .source-list a:hover {
+            color: #B89B5E;
+        }
+
+
+        /* ==================================================
+           CONCLUSION
+           ================================================== */
+
+        .conclusion {
+            background-color: #FFFFFF;
+
+            color: #292929;
+        }
+
+        .conclusion h2 {
+            color: #302B27;
+
+            border-color: #B89B5E;
+        }
+
+        .conclusion h3 {
+            color: #4A443E;
+        }
+
+
+        /* ==================================================
+           HOVER EFFECTS
+           ALL WHITE CONTENT BOXES
+           ================================================== */
+
+        .character:hover,
+        .book-info:hover,
+        .banghay:hover,
+        .source-list:hover,
+        .intro:hover {
+
+            background-color: #FFFFFF;
+
+            box-shadow:
+                0 8px 20px
+                rgba(255, 162, 0, 0.5);
+
+            filter:
+                brightness(1.02);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        /* ==================================================
+           NEXT / PREVIOUS BUTTONS
+           ================================================== */
+
+        .card-navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #D6CFC3;
+        }
+
+        .card-navigation a {
+
+            background-color: #302B27;
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition: 0.3s ease;
+
+            text-align: center;
+        }
+
+        .card-navigation a:hover {
+
+            background-color: #B89B5E;
+
+            color: #FFFFFF;
+
+            transform:
+                translateY(-2px);
+        }
+
+        .card-number {
+
+            color: #8A6F35;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background-color: #252525;
+
+            color: #F5F3EF;
+
+            text-align: center;
+
+            padding: 15px;
+
+            margin-top: 30px;
+        }
+
+        footer h6 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: normal;
+        }
+
+
+        /* ==================================================
+           BACK TO TOP BUTTON
+           ================================================== */
+
+        .back-to-top {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #8B0000;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.4s ease;
+
+            animation:
+                showBackToTop linear;
+
+            animation-timeline:
+                scroll();
+        }
+
+
+        @keyframes showBackToTop {
+
+            0% {
+                opacity: 0;
+
+                visibility: hidden;
+            }
+
+            50% {
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+        }
+
+
+        .back-to-top:hover {
+
+            transform:
+                translateY(-5px);
+
+            background: #B22222;
+        }
+
+
+        /* ==================================================
+           GOLDEN PIXIE DUST
+           ================================================== */
+
+        .pixie-dust {
+
+            position: fixed;
+
+            width: 7px;
+
+            height: 7px;
+
+            background: #B89B5E;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            box-shadow:
+                0 0 5px #B89B5E,
+                0 0 10px #D6B86A;
+
+            animation:
+                pixieFade 0.9s ease-out forwards;
+        }
+
+
+        @keyframes pixieFade {
+
+            0% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translate(0, 0);
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    translate(
+                        var(--random-x),
+                        var(--random-y)
+                    );
+            }
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+                font-size: 17px;
+            }
+
+            .intro-icon img {
+                width: 280px;
+            }
+
+            .intro-text {
+                font-size: 22px;
+            }
+
+            header h1 {
+                font-size: 35px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+            }
+
+            .navbar a {
+                padding: 12px 14px;
+            }
+
+            .noli-picture {
+                min-height: 350px;
+            }
+
+            .noli-picture h1 {
+                font-size: 38px;
+            }
+
+            main {
+                width: 92%;
+            }
+
+            .content-card {
+                padding: 20px;
+            }
+
+            .characters {
+                grid-template-columns: 1fr;
+            }
+
+            .card-navigation a {
+                padding: 8px 12px;
+                font-size: 15px;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+
+                right: 18px;
+                bottom: 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HIDDEN CHECKBOX
+         ================================================== -->
+
+    <input
+        type="checkbox"
+        id="intro-toggle"
+    >
+
+
+    <!-- ==================================================
+         PAPER + QUILL INTRO
+         ================================================== -->
+
+    <div class="intro-screen">
+
+        <label
+            for="intro-toggle"
+            class="intro-icon"
+        >
+
+            <img
+                src="QUILLNGANI.png"
+                alt="Paper and quill"
+            >
+
+        </label>
+
+        <div class="intro-text">
+            Noli Me Tangere
+        </div>
+
+        <div class="intro-click">
+            Click the quill to begin
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOP
+         ================================================== -->
+
+    <a id="top"></a>
+
+    <a
+        href="#top"
+        class="back-to-top"
+    >
+        ↑
+    </a>
+
+
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+
+    <header>
+
+        <h1>
+            Online Book Review
+        </h1>
+
+    </header>
+
+
+    <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+<nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+
+    <!-- ==================================================
+         NOLI BANNER
+         ================================================== -->
+
+    <div class="noli-picture">
+
+        <div>
+
+            <h1>
+                Noli Me Tangere
+            </h1>
+
+            <p>
+                Isang Pangkalahatang-ideya ng Nobela
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             INTRO
+             ================================================== -->
+
+        <div class="intro">
+
+            <h2>
+                Ito ay isang pangkalahatang-ideya ng Noli Me Tangere.
+            </h2>
+
+            <p>
+                Enjoy reading!
+            </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             CONTENT SLIDER
+             ================================================== -->
+
+        <div class="content-slider">
+
+
+            <!-- ==================================================
+                 1. PANIMULA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="panimula"
+            >
+
+                <h2>
+                    Panimula o Pagkilala sa Akda
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Pamagat ng Nobela
+                    </h3>
+
+                    <p style="text-align: center;">
+
+                        <strong>
+                            NOLI ME TANGERE
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        May-akda
+                    </h3>
+
+                    <p style="text-align: center;">
+
+                        Ang Noli Me Tangere ay isinulat ni Dr. José Protacio Rizal, isang Pilipinong doktor, manunulat, makata, dalubwika, at iskolar. Ipinanganak siya noong Hunyo 19, 1861 sa Calamba, Laguna.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Uri ng Akdang Pampanitikan
+                    </h3>
+
+                    <p style="text-align: center;">
+
+                        Ang Noli Me Tangere ay isang nobela, partikular na isang nobelang panlipunan at pampolitika.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Bansang Pinagmulan
+                    </h3>
+
+                    <p style="text-align: center;">
+
+                        Ang Noli Me Tangere ay isang akdang Pilipino na tumatalakay sa lipunan at karanasan ng mga Pilipino noong panahon ng pananakop ng Espanya.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <span></span>
+
+                    <span class="card-number">
+                        1 / 8
+                    </span>
+
+                    <a href="#tauhan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 2. TAUHAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tauhan"
+            >
+
+                <h2>
+                    Tauhan
+                </h2>
+
+
+                <div class="characters">
+
+
+                    <div class="character">
+
+                        <h3>
+                            Crisostomo Ibarra
+                        </h3>
+
+                        <p>
+                            Siya ang pangunahing tauhan ng nobela. Isa siyang edukadong binata na nagbalik sa Pilipinas matapos mag-aral sa Europa.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Maria Clara
+                        </h3>
+
+                        <p>
+                            Siya ang kasintahan ni Ibarra at ang anak ni Kapitan Tiago. Siya ay karaniwang inilalarawan bilang mahinhin, mapagmahal, at relihiyoso.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Elias
+                        </h3>
+
+                        <p>
+                            Isang taong tumulong at naging kaibigan ni Ibarra. Mas malalim ang kaniyang pag-unawa sa paghihirap ng karaniwang Pilipino.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Padre Damaso
+                        </h3>
+
+                        <p>
+                            Isang prayle na makapangyarihan, mapagmataas, at mapang-abuso.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Kapitan Tiago
+                        </h3>
+
+                        <p>
+                            Ama ni Maria Clara at isang mayamang Pilipino.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Pilosopo Tasyo
+                        </h3>
+
+                        <p>
+                            Isang matalino at mapanuring tauhan na itinuturing ng ilan na baliw dahil sa kaniyang mga ideya.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Sisa
+                        </h3>
+
+                        <p>
+                            Ina nina Basilio at Crispin. Isa siyang mapagmahal na ina na naging biktima ng isang sistemang hindi nagbibigay ng sapat na proteksiyon sa mahihina.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Crispin
+                        </h3>
+
+                        <p>
+                            Nakababatang anak ni Sisa. Siya ay napagbintangang magnanakaw sa kumbento.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Basilio
+                        </h3>
+
+                        <p>
+                            Nakatatandang anak ni Sisa. Siya ay nakaligtas sa trahedya ng kanilang pamilya.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Don Tiburcio at Doña Victorina
+                        </h3>
+
+                        <p>
+                            Mag-asawang nagpapakita ng labis na pagpapahalaga sa pagiging Espanyol at mataas na katayuan.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Padre Salvi
+                        </h3>
+
+                        <p>
+                            Isang prayle na may lihim na interes kay Maria Clara.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Don Rafael Ibarra
+                        </h3>
+
+                        <p>
+                            Ama ni Ibarra na namatay matapos makaranas ng pag-uusig at maling paratang.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#panimula">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        2 / 8
+                    </span>
+
+                    <a href="#tagpuan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 3. TAGPUAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tagpuan"
+            >
+
+                <h2>
+                    Tagpuan
+                </h2>
+
+                <p
+                    style="
+                        text-align: center;
+                        margin-top: 70px;
+                    "
+                >
+                    Ang pangunahing tagpuan ng nobela ay ang San Diego, isang kathang-isip na bayan sa Pilipinas.
+                </p>
+
+                <p style="text-align: center;">
+
+                    Ang kuwento ay nagaganap noong panahon ng kolonyalismong Espanyol sa Pilipinas.
+
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tauhan">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        3 / 8
+                    </span>
+
+                    <a href="#banghay">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 4. BANGHAY
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="banghay"
+            >
+
+                <h2>
+                    Banghay ng Pangyayari
+                </h2>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Panimula
+                    </h3>
+
+                    <p>
+                        Nagsimula ang nobela sa pagbabalik ni Crisostomo Ibarra sa Pilipinas matapos ang kaniyang pag-aaral sa Europa.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Saglit na Kasiglahan
+                    </h3>
+
+                    <p>
+                        Sa kabila ng mga nangyari sa kaniyang ama, pinili ni Ibarra na ipagpatuloy ang kaniyang magandang layunin.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Kasukdulan
+                    </h3>
+
+                    <p>
+                        Lalong tumindi ang tunggalian nang ang mga plano ni Ibarra ay salungatin ng mga taong may kapangyarihan.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Kakalasan
+                    </h3>
+
+                    <p>
+                        Tinulungan ni Elias si Ibarra na makatakas.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        Wakas
+                    </h3>
+
+                    <p>
+                        Sa huling bahagi ng nobela, namatay si Elias matapos tulungan si Ibarra.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tagpuan">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        4 / 8
+                    </span>
+
+                    <a href="#buod">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 5. BUOD
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="buod"
+            >
+
+                <h2>
+                    Buod ng Nobela
+                </h2>
+
+
+                <p>
+
+                    Ang Noli Me Tangere ay umiikot sa buhay ni Crisostomo Ibarra, isang edukadong Pilipinong nagbalik sa kanyang bayan matapos ang ilang taong pag-aaral sa Europa. Umaasa siyang makatutulong siya sa kanyang mga kababayan at maisasakatuparan ang kanyang pangarap na makapagpatayo ng paaralan. Pagbalik niya, muli niyang nakita si Maria Clara, ang kanyang kasintahan.
+
+                </p>
+
+
+                <p>
+
+                    Sa kabilang banda, ipinakita rin sa nobela ang paghihirap ng pamilya ni Sisa. Ang kanyang mga anak na si Crispin at Basilio ay naging biktima ng maling paratang at kalupitan. Dahil dito, tuluyang nasira ang kanilang pamilya.
+
+                </p>
+
+
+                <p>
+
+                    Habang nagpapatuloy ang kuwento, sinusubukan ni Ibarra na ipagpatuloy ang kanyang plano para sa edukasyon. Ngunit dahil sa mga paninirang-puri at pag-uusig laban sa kanya, napagbintangan siyang sangkot sa isang pag-aalsa. Kailangan niyang tumakas at tinulungan siya ni Elias.
+
+                </p>
+
+
+                <p>
+
+                    Sa huli, namatay si Elias matapos tulungan si Ibarra. Samantala, si Maria Clara ay pumasok sa kumbento matapos mawala ang posibilidad na makasama niya si Ibarra. Nagtapos ang nobela nang hindi nalulutas ang mga pangunahing suliranin ng lipunan.
+
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#banghay">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        5 / 8
+                    </span>
+
+                    <a href="#paksa">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 6. PAKSA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="paksa"
+            >
+
+                <h2>
+                    Puna: Paksa / Tema
+                </h2>
+
+
+                <p>
+
+                    Para sa akin, ang pinakamahalagang tema ng Noli Me Tangere ay ang epekto ng pang-aabuso sa kapangyarihan at kawalan ng katarungan sa buhay ng isang tao at ng buong lipunan.
+
+                </p>
+
+
+                <p>
+
+                    Makikita ito sa maraming tauhan. Si Ibarra ay may mabuting hangarin para sa kanyang bayan, ngunit hinahadlangan siya dahil hindi patas ang sistema ng kanyang kinabibilangan. Si Sisa naman ay isang simpleng ina na hindi naghahangad ng kapangyarihan o kayamanan, ngunit siya at ang kanyang mga anak ay labis na nagdusa dahil wala silang sapat na kakayahang ipagtanggol ang kanilang sarili.
+
+                </p>
+
+
+                <p>
+
+                    Dito ko makikita ang isang mahalagang punto ng nobela: hindi pantay ang epekto ng kapangyarihan. Ang isang makapangyarihang tao ay maaaring gumawa ng desisyon na para sa kanya ay maliit lamang, ngunit para sa isang ordinaryong tao ay maaaring maging dahilan ng pagkasira ng buong buhay.
+
+                </p>
+
+
+                <p>
+
+                    Mahalaga rin ang edukasyon bilang tema. Ang hangarin ni Ibarra na magtayo ng paaralan ay nagpapakita ng paniniwala na maaaring magsimula ang pagbabago sa pamamagitan ng kaalaman.
+
+                </p>
+
+
+                <p>
+
+                    Isa pang mahalagang tema ay ang kolonyal na mentalidad. Sa pamamagitan ni Doña Victorina at ng iba pang tauhan, ipinakita kung paano maaaring baguhin ng kolonyalismo ang pagtingin ng isang tao sa kanyang sariling pagkakakilanlan.
+
+                </p>
+
+
+                <p>
+
+                    Sa kabuuan, hindi ko nakikita ang Noli Me Tangere bilang isang simpleng nobela tungkol sa mga Espanyol at Pilipino. Mas malalim ang ipinapakita nito. Kapag ang kapangyarihan ay napupunta sa mga taong walang pananagutan, ang buong lipunan ay maaaring maging biktima.
+
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#buod">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        6 / 8
+                    </span>
+
+                    <a href="#sanggunian">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 7. SANGGUNIAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="sanggunian"
+            >
+
+                <h2>
+                    Sanggunian
+                </h2>
+
+
+                <div class="source-list">
+
+                    <p>
+
+                        Rizal, J. (2024).
+                        <em>Noli Me Tángere</em>
+                        (Bagong ed., pinaikli ni R. P. Nem Singh).
+                        ISA-JECHO Publishing, Inc.
+
+                    </p>
+
+
+                    <p>
+
+                        Pinoy Collection. (2017, Nobyembre 30).
+                        <em>Noli Me Tangere: Buod.</em>
+
+                        <br>
+
+                        <a
+                            href="https://pinoycollection.com/noli-me-tangere-buod/"
+                            target="_blank"
+                        >
+                            https://pinoycollection.com/noli-me-tangere-buod/
+                        </a>
+
+                    </p>
+
+
+                    <p>
+
+                        KapitBisig. (n.d.).
+                        <em>
+                            Noli Me Tangere ni Dr. Jose Rizal:
+                            Book notes summary in Tagalog—
+                            Ang buod ng Noli Me Tangere.
+                        </em>
+
+                        <br>
+
+                        <a
+                            href="https://www.kapitbisig.com/philippines/noli-me-tangere-ni-dr-jose-rizal-book-notes-summary-in-tagalog-ang-buod-ng-noli-me-tangere_135.html"
+                            target="_blank"
+                        >
+                            https://www.kapitbisig.com/philippines/noli-me-tangere-ni-dr-jose-rizal-book-notes-summary-in-tagalog-ang-buod-ng-noli-me-tangere_135.html
+                        </a>
+
+                    </p>
+
+
+                    <p>
+
+                        Noypi.com.ph. (2025, Mayo 20).
+                        <em>
+                            Noli Me Tangere: Buod.
+                        </em>
+
+                        <br>
+
+                        <a
+                            href="https://noypi.com.ph/noli-me-tangere-buod/"
+                            target="_blank"
+                        >
+                            https://noypi.com.ph/noli-me-tangere-buod/
+                        </a>
+
+                    </p>
+
+
+                    <p>
+
+                        MC Hukbalahap. (n.d.).
+                        <em>
+                            Mga kabanata.
+                        </em>
+
+                        <br>
+
+                        <a
+                            href="https://mcshukbalahap.jigsy.com/mga-kabanata"
+                            target="_blank"
+                        >
+                            https://mcshukbalahap.jigsy.com/mga-kabanata
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#paksa">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        7 / 8
+                    </span>
+
+                    <a href="#konklusyon">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 8. KONKLUSYON
+                 ================================================== -->
+
+            <section
+                class="content-card conclusion"
+                id="konklusyon"
+            >
+
+                <h2>
+                    Konklusyon
+                </h2>
+
+
+                <h3>
+                    Mensahe
+                </h3>
+
+
+                <p>
+
+                    Para sa akin, ang pinakamahalagang tema ng Noli Me Tangere ay ang epekto ng pang-aabuso sa kapangyarihan at kawalan ng katarungan sa buhay ng isang tao at ng buong lipunan.
+
+                </p>
+
+
+                <p>
+
+                    Makikita ito sa maraming tauhan. Si Ibarra ay may mabuting hangarin para sa kanyang bayan, ngunit hinahadlangan siya dahil hindi patas ang sistema ng kanyang kinabibilangan. Si Sisa naman ay isang simpleng ina na hindi naghahangad ng kapangyarihan o kayamanan, ngunit siya at ang kanyang mga anak ay labis na nagdusa dahil wala silang sapat na kakayahang ipagtanggol ang kanilang sarili.
+
+                </p>
+
+
+                <p>
+
+                    Dito ko makikita ang isang mahalagang punto ng nobela: hindi pantay ang epekto ng kapangyarihan. Ang isang makapangyarihang tao ay maaaring gumawa ng desisyon na para sa kanya ay maliit lamang, ngunit para sa isang ordinaryong tao ay maaaring maging dahilan ng pagkasira ng buong buhay.
+
+                </p>
+
+
+                <p>
+
+                    Mahalaga rin ang edukasyon bilang tema. Ang hangarin ni Ibarra na magtayo ng paaralan ay nagpapakita ng paniniwala na maaaring magsimula ang pagbabago sa pamamagitan ng kaalaman.
+
+                </p>
+
+
+                <p>
+
+                    Isa pang mahalagang tema ay ang kolonyal na mentalidad. Sa pamamagitan ni Doña Victorina at ng iba pang tauhan, ipinakita kung paano maaaring baguhin ng kolonyalismo ang pagtingin ng isang tao sa kanyang sariling pagkakakilanlan.
+
+                </p>
+
+
+                <p>
+
+                    Sa kabuuan, hindi ko nakikita ang Noli Me Tangere bilang isang simpleng nobela tungkol sa mga Espanyol at Pilipino. Mas malalim ang ipinapakita nito. Kapag ang kapangyarihan ay napupunta sa mga taong walang pananagutan, ang buong lipunan ay maaaring maging biktima.
+
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#sanggunian">
+                        ← Previous
+                    </a>
+
+                    <span class="card-number">
+                        8 / 8
+                    </span>
+
+                    <a href="#panimula">
+                        Back to Start ↻
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <h6>
+            Grade 9 Property
+        </h6>
+
+    </footer>
+
+
+    <!-- ==================================================
+         PIXIE DUST SCRIPT
+         ================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const sparkle =
+                    document.createElement("div");
+
+                sparkle.classList.add(
+                    "pixie-dust"
+                );
+
+                sparkle.style.left =
+                    event.clientX + "px";
+
+                sparkle.style.top =
+                    event.clientY + "px";
+
+                const randomX =
+                    (Math.random() - 0.5) * 50;
+
+                const randomY =
+                    (Math.random() - 0.5) * 50;
+
+                sparkle.style.setProperty(
+                    "--random-x",
+                    randomX + "px"
+                );
+
+                sparkle.style.setProperty(
+                    "--random-y",
+                    randomY + "px"
+                );
+
+                document.body.appendChild(
+                    sparkle
+                );
+
+                setTimeout(
+                    function() {
+
+                        sparkle.remove();
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

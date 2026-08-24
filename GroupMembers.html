@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Navigation Bar</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+
+        /* ================================
+           HEADER
+           ================================ */
+
+        h2 {
+            background-color: rgb(46, 145, 67);
+            color: aliceblue;
+            margin: 0;
+            padding: 10px;
+        }
+
+
+        /* ================================
+           NAVIGATION BAR
+           ================================ */
+
+        .navbar ul {
+            list-style-type: none;
+            background-color: rgb(90, 173, 122);
+
+            margin: 0;
+            padding: 0;
+
+            overflow: visible;
+        }
+
+
+        .navbar li {
+            float: left;
+        }
+
+
+        .navbar a {
+            color: rgb(250, 250, 249);
+
+            text-decoration: none;
+
+            padding: 15px;
+
+            display: block;
+        }
+
+
+        .navbar a:hover {
+            background-color: rgb(55, 112, 32);
+        }
+
+
+        /* ================================
+           GROUP MEMBERS BUTTON
+           ================================ */
+
+        .dropdown {
+            position: relative;
+        }
+
+
+        .dropdown summary {
+
+            color: rgb(250, 250, 249);
+
+            padding: 15px;
+
+            cursor: pointer;
+
+            list-style: none;
+
+            user-select: none;
+        }
+
+
+        /* Remove default arrow */
+
+        .dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+
+        /* Hover ONLY changes button color */
+
+        .dropdown summary:hover {
+            background-color: rgb(55, 112, 32);
+        }
+
+
+        /* ================================
+           MEMBER DROPDOWN
+           ================================ */
+
+        .member-list {
+
+            display: none !important;
+
+            position: absolute;
+
+            top: 100%;
+            left: 0;
+
+            min-width: 200px;
+
+            background-color: #302B27;
+
+            box-shadow:
+                0 5px 10px rgba(0, 0, 0, 0.3);
+
+            z-index: 2000;
+        }
+
+
+        /* ONLY APPEARS AFTER CLICKING */
+
+        .dropdown details[open] .member-list {
+
+            display: block !important;
+        }
+
+
+        /* ================================
+           MEMBER LINKS
+           ================================ */
+
+        .member-list a {
+
+            display: block;
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 10px 15px;
+
+            font-size: 17px;
+
+            background-color: #302B27;
+        }
+
+
+        .member-list a:hover {
+
+            background-color: #ffe9d1;
+
+            color: #8A6F35;
+        }
+
+
+        /* ================================
+           CLEAR FLOAT
+           ================================ */
+
+        .navbar::after {
+
+            content: "";
+
+            display: table;
+
+            clear: both;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         HEADER
+         ================================ -->
+
+    <header>
+
+        <h2>
+            Online Book Review
+        </h2>
+
+    </header>
+
+
+
+    <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+ <nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+
+</body>
+
+</html>

@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mga Ibong Mandaragit | Online Book Review</title>
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #E8E0CC;
+            color: #292B24;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           HIDDEN INTRO CHECKBOX
+           ================================================== */
+
+        #intro-toggle {
+            display: none;
+        }
+
+
+        /* ==================================================
+           BIRD INTRO
+           ================================================== */
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% 35%,
+                    rgba(198, 161, 91, 0.18),
+                    transparent 38%
+                ),
+                linear-gradient(
+                    to bottom,
+                    #090F17,
+                    #18222A 50%,
+                    #0A1015
+                );
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            z-index: 5000;
+
+            transition:
+                opacity 1.3s ease,
+                visibility 1.3s ease;
+        }
+
+
+        /* ==================================================
+           INTRO GLOW
+           ================================================== */
+
+        .intro-glow {
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(198, 161, 91, 0.16),
+                    transparent 65%
+                );
+
+            animation:
+                glowPulse 5s ease-in-out infinite;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                transform: scale(0.9);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* ==================================================
+           FLYING BIRDS GIF
+           ================================================== */
+
+        .birds {
+
+            position: absolute;
+
+            width: 1000px;
+
+            max-width: 45vw;
+
+            right: -350px;
+
+            top: 25%;
+
+            z-index: 5;
+
+            pointer-events: none;
+
+            animation:
+                birdsFly 9s linear infinite;
+
+            filter:
+                drop-shadow(
+                    0 8px 10px rgba(0, 0, 0, 0.45)
+                );
+        }
+
+
+        /* Birds fly completely across the intro */
+
+        @keyframes birdsFly {
+
+            0% {
+
+                right: -350px;
+
+                transform:
+                    translateY(20px)
+                    scale(1);
+            }
+
+            25% {
+
+                right: 20%;
+
+                transform:
+                    translateY(-15px)
+                    scale(1.02);
+            }
+
+            45% {
+
+                right: 42%;
+
+                transform:
+                    translateY(-25px)
+                    scale(1);
+            }
+
+            55% {
+
+                right: 48%;
+
+                transform:
+                    translateY(10px)
+                    scale(1);
+            }
+
+            75% {
+
+                right: 75%;
+
+                transform:
+                    translateY(-15px)
+                    scale(1.02);
+            }
+
+            100% {
+
+                right: 110%;
+
+                transform:
+                    translateY(-20px)
+                    scale(1);
+            }
+
+        }
+
+
+        /* ==================================================
+           SKY PARTICLES
+           ================================================== */
+
+        .star {
+
+            position: absolute;
+
+            width: 4px;
+            height: 4px;
+
+            background-color: #C6A15B;
+
+            border-radius: 50%;
+
+            opacity: 0.6;
+
+            animation:
+                twinkle 3s ease-in-out infinite;
+        }
+
+
+        .star.one {
+
+            top: 18%;
+            left: 18%;
+        }
+
+
+        .star.two {
+
+            top: 30%;
+            left: 75%;
+
+            animation-delay: 1s;
+        }
+
+
+        .star.three {
+
+            top: 15%;
+            left: 62%;
+
+            animation-delay: 2s;
+        }
+
+
+        .star.four {
+
+            top: 40%;
+            left: 28%;
+
+            animation-delay: 1.5s;
+        }
+
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+
+                opacity: 0.2;
+
+                transform:
+                    scale(0.8);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.4);
+            }
+
+        }
+
+
+        /* ==================================================
+           INTRO CONTENT
+           ================================================== */
+
+        .intro-content {
+
+            position: relative;
+
+            z-index: 10;
+
+            margin-top: 100px;
+
+            animation:
+                introAppear 1.8s ease forwards;
+        }
+
+
+        @keyframes introAppear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        .intro-small {
+
+            color: #B9B29E;
+
+            font-size: 16px;
+
+            letter-spacing: 5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 15px;
+        }
+
+
+        .intro-title {
+
+            color: #F1E9D5;
+
+            font-family: Georgia, serif;
+
+            font-size: 58px;
+
+            letter-spacing: 2px;
+
+            margin: 0;
+
+            text-shadow:
+                0 4px 18px rgba(0, 0, 0, 0.7);
+        }
+
+
+        .intro-author {
+
+            color: #C6A15B;
+
+            font-family: Georgia, serif;
+
+            font-size: 23px;
+
+            margin-top: 10px;
+        }
+
+
+        .intro-enter {
+
+            display: inline-block;
+
+            margin-top: 30px;
+
+            padding: 12px 30px;
+
+            border:
+                1px solid #C6A15B;
+
+            border-radius: 30px;
+
+            color: #F1E9D5;
+
+            font-size: 16px;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition:
+                0.4s ease;
+
+            background:
+                rgba(20, 28, 34, 0.7);
+        }
+
+
+        .intro-enter:hover {
+
+            background-color: #C6A15B;
+
+            color: #101820;
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 8px 25px rgba(198, 161, 91, 0.3);
+        }
+
+
+        /* ==================================================
+           INTRO EXIT
+           ================================================== */
+
+        #intro-toggle:checked ~ .intro-screen {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        /* ==================================================
+           HEADER
+           ================================================== */
+
+        header {
+
+            background-color: #17232B;
+
+            color: #F1E9D5;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        header h1 {
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 45px;
+
+            margin: 0;
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .navbar ul {
+
+            list-style-type: none;
+
+            background-color: #3B2A20;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: flex-start;
+        }
+
+
+        .navbar li {
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        .navbar a {
+
+            color: #F1E9D5;
+
+            text-decoration: none;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .navbar a:hover {
+
+            background-color: #D5C6A1;
+
+            color: #3B2A20;
+        }
+
+
+        /* ==================================================
+           GROUP MEMBERS DROPDOWN
+           ================================================== */
+
+        .dropdown {
+
+            position: relative;
+        }
+
+
+        .dropdown details {
+
+            margin: 0;
+
+            padding: 0;
+        }
+
+
+        .dropdown summary {
+
+            list-style: none;
+
+            color: #F5F3EF;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .dropdown summary::-webkit-details-marker {
+
+            display: none;
+        }
+
+
+        .dropdown summary::marker {
+
+            display: none;
+        }
+
+
+        .dropdown summary:hover {
+
+            background-color: #FFE9D1;
+
+            color: #B89B5E;
+        }
+
+
+        /* ==================================================
+           MEMBER LIST
+           ================================================== */
+
+        .member-list {
+
+            display: none;
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            background-color: #302B27;
+
+            min-width: 280px;
+
+            padding: 8px 0;
+
+            margin: 0;
+
+            box-shadow:
+                0 5px 10px
+                rgba(0, 0, 0, 0.3);
+
+            z-index: 2000;
+        }
+
+
+        .dropdown details[open] .member-list {
+
+            display: block;
+        }
+
+
+        .member-list a {
+
+            display: block;
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            margin: 0;
+
+            font-size: 17px;
+
+            line-height: 1.4;
+
+            font-weight: normal;
+
+            white-space: nowrap;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .member-list a:hover {
+
+            background-color: #FFE9D1;
+
+            color: #8A6F35;
+        }
+
+
+        /* ==================================================
+           VIDEO BANNER
+           ================================================== */
+
+        .ibong-picture {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 420px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            background-color: #101820;
+        }
+
+
+        /* REAL VIDEO */
+
+        .ibong-picture video {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+
+            display: block;
+        }
+
+
+        .video-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(10, 16, 21, 0.28),
+                    rgba(10, 16, 21, 0.78)
+                );
+
+            z-index: 1;
+
+            pointer-events: none;
+        }
+
+
+        .video-glow {
+
+            position: absolute;
+
+            width: 600px;
+
+            height: 600px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(198, 161, 91, 0.18),
+                    transparent 65%
+                );
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        .banner-text {
+
+            position: relative;
+
+            z-index: 3;
+
+            padding: 30px;
+        }
+
+
+        .ibong-picture h1 {
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 55px;
+
+            margin: 0;
+
+            text-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .ibong-picture p {
+
+            font-size: 21px;
+
+            margin-top: 5px;
+
+            text-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+
+        /* ==================================================
+           MAIN
+           ================================================== */
+
+        main {
+
+            width: 85%;
+
+            max-width: 1000px;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           INTRODUCTION
+           ================================================== */
+
+        .intro {
+
+            background-color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid #D1C7AF;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.05);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .intro:hover {
+
+            box-shadow:
+                0 8px 22px rgba(59, 42, 32, 0.20);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .intro h2 {
+
+            font-family:
+                Cambria,
+                Georgia,
+                serif;
+
+            color: #4A3729;
+        }
+
+
+        /* ==================================================
+           CONTENT SLIDER
+           ================================================== */
+
+        .content-slider {
+
+            position: relative;
+
+            width: 100%;
+
+            margin: 30px auto;
+        }
+
+
+        .content-card {
+
+            display: none;
+
+            background-color: #FFFFFF;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border-left:
+                5px solid #8C6B43;
+
+            box-shadow:
+                0 5px 14px rgba(59, 42, 32, 0.10);
+
+            min-height: 500px;
+
+            animation:
+                cardSlide 0.6s ease;
+        }
+
+
+        @keyframes cardSlide {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(40px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+
+        }
+
+
+        /* ==================================================
+           CARD TARGET SYSTEM
+           ================================================== */
+
+        .content-card:target {
+
+            display: block;
+        }
+
+
+        .content-slider:not(:has(.content-card:target))
+        #panimula {
+
+            display: block;
+        }
+
+
+        /* ==================================================
+           CARD HEADINGS
+           ================================================== */
+
+        .content-card h2 {
+
+            color: #4A3729;
+
+            font-family:
+                Georgia,
+                serif;
+
+            text-align: center;
+
+            border-bottom:
+                2px solid #C6A15B;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+        }
+
+
+        .content-card h3 {
+
+            color: #5A4635;
+
+            font-family:
+                Georgia,
+                serif;
+        }
+
+
+        .content-card p {
+
+            text-align: justify;
+        }
+
+
+        /* ==================================================
+           BOOK INFO
+           ================================================== */
+
+        .book-info {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #D1C7AF;
+
+            text-align: center;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .book-info:hover {
+
+            box-shadow:
+                0 8px 22px rgba(140, 107, 67, 0.25);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .book-info h3 {
+
+            margin-bottom: 5px;
+
+            color: #4A3729;
+        }
+
+
+        /* ==================================================
+           CHARACTERS
+           ================================================== */
+
+        .characters {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .character {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            border-top:
+                4px solid #8C6B43;
+
+            border-left:
+                1px solid #D1C7AF;
+
+            border-right:
+                1px solid #D1C7AF;
+
+            border-bottom:
+                1px solid #D1C7AF;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .character:hover {
+
+            box-shadow:
+                0 8px 22px rgba(140, 107, 67, 0.25);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .character h3 {
+
+            margin-top: 0;
+
+            color: #4A3729;
+        }
+
+
+        /* ==================================================
+           BANGHAY
+           ================================================== */
+
+        .banghay {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin: 15px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #8C6B43;
+
+            border-top:
+                1px solid #D1C7AF;
+
+            border-right:
+                1px solid #D1C7AF;
+
+            border-bottom:
+                1px solid #D1C7AF;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .banghay:hover {
+
+            box-shadow:
+                0 8px 22px rgba(140, 107, 67, 0.25);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .banghay h3 {
+
+            margin-top: 0;
+
+            color: #4A3729;
+        }
+
+
+        /* ==================================================
+           REFERENCES
+           ================================================== */
+
+        .source-list {
+
+            background-color: #FFFFFF;
+
+            padding: 22px 28px;
+
+            border-radius: 8px;
+
+            border:
+                1px solid #D1C7AF;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .source-list:hover {
+
+            box-shadow:
+                0 8px 22px rgba(59, 42, 32, 0.18);
+        }
+
+
+        .source-list p {
+
+            text-align: left;
+
+            margin-bottom: 20px;
+        }
+
+
+        .source-list p:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        .source-list a {
+
+            color: #755A3D;
+
+            word-break: break-word;
+        }
+
+
+        .source-list a:hover {
+
+            color: #A27D3F;
+        }
+
+
+        /* ==================================================
+           CONCLUSION
+           ================================================== */
+
+        .conclusion {
+
+            background-color: #F2EBD9;
+
+            color: #4B463B;
+
+            border-left-color:
+                #C6A15B;
+        }
+
+
+        .conclusion h2,
+        .conclusion h3 {
+
+            color: #6A5736;
+
+            border-color:
+                #C6A15B;
+        }
+
+
+        /* ==================================================
+           CARD NAVIGATION
+           ================================================== */
+
+        .card-navigation {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #D1C7AF;
+        }
+
+
+        .card-navigation a {
+
+            background-color: #3B2A20;
+
+            color: #F1E9D5;
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition:
+                0.3s ease;
+
+            text-align: center;
+        }
+
+
+        .card-navigation a:hover {
+
+            background-color: #C6A15B;
+
+            color: #FFFFFF;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .card-number {
+
+            color: #6E6252;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           BACK TO TOP
+           ================================================== */
+
+        .back-to-top {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background:
+                #5A4635;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                0.4s ease;
+
+            animation:
+                showBackToTop linear;
+
+            animation-timeline:
+                scroll();
+        }
+
+
+        @keyframes showBackToTop {
+
+            0% {
+
+                opacity: 0;
+
+                visibility: hidden;
+            }
+
+            50% {
+
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+            100% {
+
+                opacity: 1;
+
+                visibility: visible;
+            }
+
+        }
+
+
+        .back-to-top:hover {
+
+            transform:
+                translateY(-5px);
+
+            background:
+                #C6A15B;
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background-color: #17232B;
+
+            color: #F1E9D5;
+
+            text-align: center;
+
+            padding: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        footer h6 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: normal;
+        }
+
+
+        /* ==================================================
+           RESPONSIVE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                font-size: 17px;
+            }
+
+
+            .intro-title {
+
+                font-size: 40px;
+            }
+
+
+            .intro-small {
+
+                font-size: 12px;
+
+                letter-spacing: 3px;
+            }
+
+
+            .ibong-picture {
+
+                height: 320px;
+            }
+
+
+            .ibong-picture h1 {
+
+                font-size: 38px;
+            }
+
+
+            .ibong-picture p {
+
+                font-size: 17px;
+            }
+
+
+            .characters {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .navbar ul {
+
+                flex-wrap: wrap;
+            }
+
+
+            .navbar a {
+
+                padding: 10px 12px;
+
+                font-size: 15px;
+            }
+
+
+            main {
+
+                width: 92%;
+            }
+
+
+            .content-card {
+
+                padding: 20px;
+            }
+
+
+            .card-navigation a {
+
+                padding: 8px 12px;
+
+                font-size: 14px;
+            }
+
+
+            .birds {
+
+                width: 500px;
+
+                max-width: none;
+
+                right: -250px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HIDDEN INTRO CHECKBOX
+         ================================================== -->
+
+    <input
+        type="checkbox"
+        id="intro-toggle"
+    >
+
+
+    <!-- ==================================================
+         BIRD INTRO
+         ================================================== -->
+
+    <div class="intro-screen">
+
+        <div class="intro-glow"></div>
+
+
+        <div class="star one"></div>
+        <div class="star two"></div>
+        <div class="star three"></div>
+        <div class="star four"></div>
+
+
+        <!-- ==================================================
+             FLYING BIRDS GIF
+
+             KEEP birds.gif IN THE SAME FOLDER
+             AS THIS HTML FILE.
+             ================================================== -->
+
+        <img
+            src="ibown.gif"
+            alt="Flying birds"
+            class="birds"
+        >
+
+
+        <div class="intro-content">
+
+            <div class="intro-small">
+                Isang Nobela ni Amado V. Hernandez
+            </div>
+
+
+            <h1 class="intro-title">
+                Mga Ibong Mandaragit
+            </h1>
+
+
+            <div class="intro-author">
+                Online Book Review
+            </div>
+
+
+            <label
+                for="intro-toggle"
+                class="intro-enter"
+            >
+                Click to Enter
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         TOP
+         ================================================== -->
+
+    <a id="top"></a>
+
+
+    <a
+        href="#top"
+        class="back-to-top"
+    >
+        ↑
+    </a>
+
+
+    <!-- ==================================================
+         HEADER
+         ================================================== -->
+
+    <header>
+
+        <h1>
+            Online Book Review
+        </h1>
+
+    </header>
+
+
+    <!-- ==================================================
+         NAVIGATION BAR
+         ================================================== -->
+
+    <nav class="navbar">
+
+        <ul>
+
+            <li>
+                <a href="Overview.html">
+                    Home
+                </a>
+            </li>
+
+
+            <li>
+                <a href="About.html">
+                    About
+                </a>
+            </li>
+
+
+            <li class="dropdown">
+
+                <details>
+
+                    <summary>
+                        Mga Miyembro
+                    </summary>
+
+                    <div class="member-list">
+
+                        <a href="JercarlBongoyan.html">
+                            Jercarl Bongoyan
+                        </a>
+
+                        <a href="AlyssaGelaDelMundo.html">
+                            Alyssa Gela Del Mundo
+                        </a>
+
+                        <a href="MishaKyleeDifuntorum.html">
+                            Misha Kylee Difuntorum
+                        </a>
+
+                        <a href="ZeusVincentEgino.html">
+                            Zeus Vincent Egino
+                        </a>
+
+                        <a href="KeanZacharyGarcia.html">
+                            Kean Zachary Garcia
+                        </a>
+
+                        <a href="ArabellaChaceMonroy.html">
+                            Arabella Chace Monroy
+                        </a>
+
+                    </div>
+
+                </details>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ==================================================
+         VIDEO BANNER
+         ================================================== -->
+
+    <div class="ibong-picture">
+
+        <!--
+            BANNER VIDEO
+
+            KEEP birdsgaling.mp4 IN THE SAME FOLDER
+            AS THIS HTML FILE.
+        -->
+
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+
+            <source
+                src="birdsgaling.mp4"
+                type="video/mp4">
+
+            Your browser does not support HTML5 video.
+
+        </video>
+
+
+        <div class="video-overlay"></div>
+
+        <div class="video-glow"></div>
+
+
+        <div class="banner-text">
+
+            <h1>
+                Mga Ibong Mandaragit
+            </h1>
+
+
+            <p>
+                Isang Pangkalahatang-ideya ng Nobela
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         MAIN
+         ================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             INTRODUCTION
+             ================================================== -->
+
+        <div class="intro">
+
+            <h2>
+                Ito ay isang pangkalahatang-ideya ng
+                Mga Ibong Mandaragit.
+            </h2>
+
+
+            <p>
+                Enjoy reading!
+            </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             CONTENT SLIDER
+             ================================================== -->
+
+        <div class="content-slider">
+
+
+            <!-- ==================================================
+                 1. PANIMULA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="panimula"
+            >
+
+                <h2>
+                    Panimula / Pagkilala sa Akda
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Pamagat ng Nobela
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            MGA IBONG MANDARAGIT
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        May Akda
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Ang Mga Ibong Mandaragit ay isinulat
+                        ni Amado V. Hernandez. Isa siyang
+                        kilalang makata at manunulat.
+                        Kilala siya sa pagsusulat tungkol sa
+                        mga problema ng lipunan tulad ng
+                        kahirapan, pang-aapi, at kawalan
+                        ng katarungan. Makikita ang mga
+                        paksang ito sa kanyang nobelang
+                        Mga Ibong Mandaragit.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Uri ng Akdang Pampanitikan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Ipinapakita nito ang kawalan ng
+                        katarungan, korapsyon, at ang
+                        patuloy na paghihirap ng mga
+                        mamamayan sa Pilipinas pagkatapos
+                        ng Ikalawang Digmaang Pandaigdig.
+
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Bansang Pinagmulan
+                    </h3>
+
+
+                    <p style="text-align:center;">
+
+                        Isinulat ito noong 1969 at ito ay
+                        isinulat sa wikang Filipino.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <span></span>
+
+                    <span class="card-number">
+                        1 / 8
+                    </span>
+
+                    <a href="#tauhan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 2. TAUHAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tauhan"
+            >
+
+                <h2>
+                    Tauhan
+                </h2>
+
+
+                <div class="characters">
+
+
+                    <div class="character">
+
+                        <h3>
+                            Mando Plaridel
+                        </h3>
+
+                        <p>
+                            Alejandro Paminuan. Pangunahing
+                            tauhan. Nakahanap sa kayamanan ni
+                            Simoun, na itinapon ni Padre
+                            Florentino sa karagatang Pasipiko,
+                            sa tulong ni Tata Matyas.
+                            Siya rin ang punong patnugot
+                            ng Kampilan.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Dolores Montero
+                        </h3>
+
+                        <p>
+                            “Dolly.” Bugtong na anak ng
+                            pamilya Montero. Naging karelasyon
+                            ni Koronel Moto noong Panahon ng
+                            Hapon at nabuntis ni Tiniyente
+                            Whitey sa Panahon ng Liberasyon.
+                            Naging karelasyon ni Mando sa Paris.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Don Segundo Montero
+                        </h3>
+
+                        <p>
+                            Isang negosyante at nagmamay-ari
+                            ng Hacienda Montero.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Donya Julia Montero
+                        </h3>
+
+                        <p>
+                            Asawa ni Don Segundo na
+                            nahuhumaling sa dati niyang
+                            karelasyon na si Gobernador Doblado.
+                        </p>
+
+                    </div>
+
+
+                    <div class="character">
+
+                        <h3>
+                            Tata Matyas
+                        </h3>
+
+                        <p>
+                            Ama-amahan ni Mando at isang
+                            rebolusyonaryo sa tatlong panahon
+                            ng pananakop mula sa Kastila,
+                            Amerikano hanggang sa Hapon.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#panimula">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        2 / 8
+                    </span>
+
+
+                    <a href="#tagpuan">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 3. TAGPUAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="tagpuan"
+            >
+
+                <h2>
+                    Tagpuan
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Mga Pangunahing Tagpuan
+                    </h3>
+
+
+                    <p>
+                        Ang mga pangunahing tagpuan ay ang
+                        Sierra Madre, Dagat Pasipiko,
+                        Maynila, Baguio, at iba pang lugar
+                        sa Pilipinas.
+                    </p>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Sierra Madre
+                    </h3>
+
+
+                    <p>
+                        Nagsimula ang kuwento noong panahon
+                        ng pananakop ng mga Hapones.
+                        Mahalaga ang Sierra Madre dahil dito
+                        nakatira si Tata Matyas at dito
+                        nagpunta sina Mando bilang mga gerilya.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tauhan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        3 / 8
+                    </span>
+
+
+                    <a href="#banghay">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 4. BANGHAY
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="banghay"
+            >
+
+                <h2>
+                    Banghay ng Pangyayari
+                </h2>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        1. Panimula
+                    </h3>
+
+                    <p>
+                        Nagsimula ang nobela nang dumating
+                        si Mando Plaridel kasama sina Karyo
+                        at Martin sa bahay ni Tata Matyas
+                        sa Sierra Madre. Tumakas sila mula
+                        sa isang labanan laban sa mga Hapones
+                        sa Sampitan. Nag-usap sina Mando at
+                        Tata Matyas tungkol sa kanilang mga
+                        problema, mga paniniwala, at tungkol
+                        sa mga gawang sulat ni Jose Rizal.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        2. Saglit na Kasiglahan
+                    </h3>
+
+                    <p>
+                        Pinag-usapan nila ang tungkol sa
+                        yaman ni Simoun mula sa
+                        <em>El Filibusterismo</em>. Ayon kay
+                        Tata Matyas, malaking tulong sana
+                        ang kayamanang iyon para sa mga
+                        gerilya. Binigyan niya si Mando ng
+                        mapa para mahanap ito. Sinundan ni
+                        Mando ang mapa hanggang sa makita
+                        niya ang kayamanan malapit sa Atimonan.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        3. Kasukdulan
+                    </h3>
+
+                    <p>
+                        Naging masama ang nangyari pagkatapos
+                        nilang mahanap ang kayamanan. Inatake
+                        ng pating si Karyo at namatay siya.
+                        Si Martin naman ay gustong mapasakanya
+                        ang kayamanan kaya nagkaroon sila ng
+                        away ni Mando at namatay rin siya.
+                        Kahit nakuha ni Mando ang kayamanan,
+                        nawala naman ang dalawa niyang kasama.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        4. Kakalasan
+                    </h3>
+
+                    <p>
+                        Pagkatapos ng digmaan, bumalik ang
+                        kapayapaan sa Pilipinas. Pero napansin
+                        na hindi pa rin nagbabago ang mga
+                        problema ng mga magsasaka at
+                        manggagawa dahil bumalik din ang
+                        dating kapangyarihan ng mga mayayaman
+                        at panginoong maylupa. Bago umalis
+                        si Mando, nagtatag siya ng pahayagang
+                        Kampilan at ng Freedom University.
+                    </p>
+
+                </div>
+
+
+                <div class="banghay">
+
+                    <h3>
+                        5. Wakas
+                    </h3>
+
+                    <p>
+                        Sa wakas, umalis si Mando papuntang
+                        ibang bansa para ibenta ang kanyang
+                        kayamanan. Ipinagkatiwala niya kay
+                        Magat at sa iba pa niyang kasama ang
+                        pagpapatakbo ng Kampilan at Freedom
+                        University. Kahit umalis siya, naiwan
+                        naman ang kanyang mga sinimulan para
+                        makatulong sa bayan at sa mga kabataan.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#tagpuan">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        4 / 8
+                    </span>
+
+
+                    <a href="#buod">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 5. BUOD
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="buod"
+            >
+
+                <h2>
+                    Buod ng Nobela
+                </h2>
+
+
+                <div class="book-info">
+
+                    <h3>
+                        Maikling Lagom ng Buong Nobela
+                    </h3>
+
+
+                    <p>
+                        Sa <em>Mga Ibong Mandaragit</em>,
+                        may tatlong tao: Karyo, Mando, at
+                        Martin. Pinag-usapan nila ang yaman
+                        ni Simoun, isang karakter sa
+                        <em>El Filibusterismo</em>, matapos
+                        itong itapon ni Padre Florentino.
+                    </p>
+
+
+                    <p>
+                        Ayon sa kanilang paniniwala, maaaring
+                        makatulong ang kayamanan sa digmaan
+                        at sa paglaban sa korapsyon sa
+                        Pilipinas. Ngunit habang hinahanap
+                        nila ito, namatay ang dalawang
+                        kaibigan ni Mando.
+                    </p>
+
+
+                    <p>
+                        Si Karyo ay namatay matapos atakihin
+                        ng pating, habang si Martin ay namatay
+                        matapos ang kanilang alitan tungkol
+                        sa kayamanan.
+                    </p>
+
+
+                    <p>
+                        Pagkatapos ng digmaan, nagkaroon ng
+                        kapayapaan ngunit hindi pa rin
+                        nagbago ang korapsyon at mga suliranin
+                        sa Pilipinas. Sa huli, pumunta si
+                        Mando sa ibang bansa upang ibenta
+                        ang kayamanan ni Simoun.
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#banghay">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        5 / 8
+                    </span>
+
+
+                    <a href="#puna">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 6. PUNA
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="puna"
+            >
+
+                <h2>
+                    Puna: Paksa / Tema
+                </h2>
+
+
+                <p>
+                    Ang aklat ni Amado V. Hernandez ay
+                    tungkol sa kasamaan ng tao. Ipinapakita
+                    nito ang mga masasamang gawain ng tao
+                    at kung paano sila maaaring humantong
+                    sa pagpatay at kawalan ng malasakit.
+                </p>
+
+
+                <p>
+                    Ipinapakita rin sa nobela ang patuloy
+                    na pagkakaroon ng korapsyon at ang
+                    epekto nito sa lipunan.
+                </p>
+
+
+                <p>
+                    Sa pamamagitan ng mga pangyayari sa
+                    kuwento, makikita kung paano nakaaapekto
+                    ang kasakiman at kapangyarihan sa mga
+                    desisyon at buhay ng mga tao.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#buod">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        6 / 8
+                    </span>
+
+
+                    <a href="#sanggunian">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 7. SANGGUNIAN
+                 ================================================== -->
+
+            <section
+                class="content-card"
+                id="sanggunian"
+            >
+
+                <h2>
+                    Sanggunian
+                </h2>
+
+
+                <div
+                    class="source-list"
+                    style="
+                        margin-top:70px;
+                        text-align:center;
+                    "
+                >
+
+                    <p style="text-align:center;">
+
+                        <strong>
+                            Hernandez, Amado V.
+                        </strong>
+
+                        <br>
+
+                        <em>
+                            Mga Ibong Mandaragit:
+                            Nobelang Sosyo-Politiko.
+                        </em>
+
+                        <br>
+
+                        International Graphic Service,
+                        1969.
+
+                    </p>
+
+                </div>
+
+
+                <div class="card-navigation">
+
+                    <a href="#puna">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        7 / 8
+                    </span>
+
+
+                    <a href="#konklusyon">
+                        Next →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 8. KONKLUSYON
+                 ================================================== -->
+
+            <section
+                class="content-card conclusion"
+                id="konklusyon"
+            >
+
+                <h2>
+                    Konklusyon
+                </h2>
+
+
+                <h3>
+                    Mensahe
+                </h3>
+
+
+                <p>
+                    Sa konklusyon ng aking pagsusuri,
+                    ang <em>Mga Ibong Mandaragit</em> ay
+                    nagpapakita kung ano ang kayang gawin
+                    ng isang tao dahil sa kanilang kasakiman.
+                </p>
+
+
+                <p>
+                    Itinuturo nito na ang kasamaan ay
+                    maaaring humantong sa pang-aabuso at
+                    kawalan ng malasakit, kaya mahalagang
+                    piliin ang kabutihan, katarungan,
+                    at pagmamahal sa bayan.
+                </p>
+
+
+                <div class="card-navigation">
+
+                    <a href="#sanggunian">
+                        ← Previous
+                    </a>
+
+
+                    <span class="card-number">
+                        8 / 8
+                    </span>
+
+
+                    <a href="#panimula">
+                        Back to Start ↻
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <h6>
+            Grade 9 Property
+        </h6>
+
+    </footer>
+
+
+</body>
+
+</html>

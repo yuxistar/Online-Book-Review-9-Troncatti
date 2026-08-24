@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | Online Book Review</title>
+
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                "Trebuchet MS",
+                Arial,
+                sans-serif;
+
+            color: #3f3328;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #f8f3e8,
+                    #e8dccb,
+                    #f5eee3,
+                    #d9c7b2
+                );
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* ==================================================
+           BACKGROUND DECORATION
+           ================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 420px;
+
+            height: 420px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.35);
+
+            top: -150px;
+
+            right: -100px;
+
+            filter:
+                blur(10px);
+
+            pointer-events: none;
+
+            z-index: -2;
+
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+
+            height: 350px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(137,108,76,0.12);
+
+            bottom: -130px;
+
+            left: -100px;
+
+            filter:
+                blur(8px);
+
+            pointer-events: none;
+
+            z-index: -2;
+
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #4c3828,
+                    #70553d,
+                    #4c3828
+                );
+
+            box-shadow:
+
+                0 5px 20px
+                rgba(60,42,25,0.25);
+
+        }
+
+
+        .navbar ul {
+
+            list-style: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .navbar li {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        .navbar a,
+        .dropdown summary {
+
+            display: block;
+
+            padding: 15px 20px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .navbar a:hover,
+        .dropdown summary:hover {
+
+            background:
+                rgba(255,255,255,0.15);
+
+        }
+
+
+        /* ==================================================
+           DROPDOWN
+           ================================================== */
+
+        .dropdown {
+
+            position: relative;
+
+        }
+
+
+        .dropdown summary {
+
+            list-style: none;
+
+        }
+
+
+        .dropdown summary::-webkit-details-marker {
+
+            display: none;
+
+        }
+
+
+        .dropdown summary::after {
+
+            content: " ▾";
+
+            font-size: 12px;
+
+        }
+
+
+        .member-list {
+
+            display: none;
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            min-width: 250px;
+
+            background:
+                rgba(54,39,27,0.98);
+
+            box-shadow:
+
+                0 12px 30px
+                rgba(45,30,18,0.3);
+
+            border-radius:
+                0 0 14px 14px;
+
+            overflow: hidden;
+
+        }
+
+
+        .dropdown details[open] .member-list {
+
+            display: block;
+
+        }
+
+
+        .member-list a {
+
+            display: block;
+
+            padding: 12px 18px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .member-list a:hover {
+
+            background:
+                #d6b98c;
+
+            color:
+                #3e2d20;
+
+            padding-left: 24px;
+
+        }
+
+
+        /* ==================================================
+           MAIN ABOUT AREA
+           ================================================== */
+
+        .about-section {
+
+            min-height:
+                calc(100vh - 54px);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                90px 25px;
+
+        }
+
+
+        /* ==================================================
+           FLOATING CARD
+           ================================================== */
+
+        .about-card {
+
+            width: 90%;
+
+            max-width: 950px;
+
+            padding:
+                65px 75px;
+
+            background:
+
+                rgba(255,255,255,0.82);
+
+            backdrop-filter:
+                blur(15px);
+
+            -webkit-backdrop-filter:
+                blur(15px);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.85);
+
+            border-radius:
+                30px;
+
+            box-shadow:
+
+                0 25px 60px
+                rgba(74,52,34,0.20),
+
+                0 8px 20px
+                rgba(74,52,34,0.08);
+
+            text-align: center;
+
+            position: relative;
+
+            animation:
+                floatingCard 5s ease-in-out infinite;
+
+        }
+
+
+        @keyframes floatingCard {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-10px);
+
+            }
+
+        }
+
+
+        /* ==================================================
+           CARD DECORATION
+           ================================================== */
+
+        .book-icon {
+
+            font-size: 55px;
+
+            margin-bottom: 15px;
+
+            display: block;
+
+        }
+
+
+        .about-card h1 {
+
+            margin:
+                0 0 12px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 48px;
+
+            color:
+                #59412e;
+
+        }
+
+
+        .about-card h1::after {
+
+            content: "";
+
+            display: block;
+
+            width: 75px;
+
+            height: 4px;
+
+            margin:
+                18px auto 30px;
+
+            border-radius: 10px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #8b6848,
+                    #c7a77d
+                );
+
+        }
+
+
+        /* ==================================================
+           CONTENT TEXT
+           ================================================== */
+
+        .about-card p {
+
+            font-size: 20px;
+
+            line-height: 1.9;
+
+            text-align: justify;
+
+            margin:
+                0 0 20px;
+
+            color:
+                #4d4035;
+
+        }
+
+
+        .about-card p:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* ==================================================
+           CLOSING QUOTE
+           ================================================== */
+
+        .closing {
+
+            margin-top: 35px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid
+                rgba(112,84,56,0.20);
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 22px;
+
+            font-style: italic;
+
+            color:
+                #72563c;
+
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #3b2b1f,
+                    #5d4531,
+                    #3b2b1f
+                );
+
+            color:
+                #ffffff;
+
+            text-align: center;
+
+            padding:
+                18px;
+
+        }
+
+
+        footer p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+
+            .navbar a,
+            .dropdown summary {
+
+                padding:
+                    11px 12px;
+
+                font-size: 14px;
+
+            }
+
+
+            .member-list {
+
+                min-width: 220px;
+
+            }
+
+
+            .about-section {
+
+                min-height:
+                    calc(100vh - 50px);
+
+                padding:
+                    60px 15px;
+
+            }
+
+
+            .about-card {
+
+                width: 94%;
+
+                padding:
+                    40px 28px;
+
+                border-radius:
+                    24px;
+
+            }
+
+
+            .book-icon {
+
+                font-size: 45px;
+
+            }
+
+
+            .about-card h1 {
+
+                font-size: 36px;
+
+            }
+
+
+            .about-card p {
+
+                font-size: 17px;
+
+                line-height: 1.8;
+
+                text-align: left;
+
+            }
+
+
+            .closing {
+
+                font-size: 19px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         NAVIGATION
+         ================================================== -->
+
+    <nav class="navbar">
+
+        <ul>
+
+
+            <!-- HOMEPAGE -->
+
+            <li>
+
+                <a href="Overview.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+
+            <!-- ABOUT -->
+
+            <li>
+
+                <a href="about.html">
+
+                    About
+
+                </a>
+
+            </li>
+
+
+            <!-- GROUP MEMBERS -->
+
+            <li class="dropdown">
+
+                <details>
+
+                    <summary>
+
+                        Mga Miyembro
+
+                    </summary>
+
+
+                    <div class="member-list">
+
+
+                        <a href="JercarlBongoyan.html">
+
+                            Jercarl Bongoyan
+
+                        </a>
+
+
+                        <a href="AlyssaGelaDelMundo.html">
+
+                            Alyssa Gela Del Mundo
+
+                        </a>
+
+
+                        <a href="MishaKyleeDifuntorum.html">
+
+                            Misha Kylee Difuntorum
+
+                        </a>
+
+
+                        <a href="ZeusVincentEgino.html">
+
+                            Zeus Vincent Egino
+
+                        </a>
+
+
+                        <a href="KeanZacharyGarcia.html">
+
+                            Kean Zachary Garcia
+
+                        </a>
+
+
+                        <a href="ArabellaChaceMonroy.html">
+
+                            Arabella Chace Monroy
+
+                        </a>
+
+
+                    </div>
+
+                </details>
+
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- ==================================================
+         ABOUT SECTION
+         ================================================== -->
+
+    <main class="about-section">
+
+
+        <div class="about-card">
+
+
+            <span class="book-icon">
+
+                📚
+
+            </span>
+
+
+            <h1>
+
+                About Our Website
+
+            </h1>
+
+
+            <p>
+
+                Maligayang pagdating sa aming online na tahanan
+                para sa mga mahilig magbasa! Ang aming website
+                ay nilikha upang magbahagi ng mga pagsusuri,
+                buod, aral, at mahahalagang kaisipan mula sa
+                iba't ibang aklat. Naniniwala kami na ang bawat
+                aklat ay may kuwentong maaaring magbigay ng bagong
+                kaalaman, inspirasyon, at pananaw sa buhay.
+
+            </p>
+
+
+            <p>
+
+                Layunin naming gawing mas madali, malinaw, at
+                kawili-wili ang pagtuklas ng mga aklat para sa
+                mga mambabasa. Sa pamamagitan ng aming mga
+                pagsusuri at rekomendasyon, nais naming makatulong
+                sa pagpili ng aklat na maaaring angkop sa iyong
+                interes at pangangailangan. Nais din naming
+                hikayatin ang mga mambabasa na magbahagi ng
+                kanilang sariling saloobin at pananaw tungkol
+                sa mga aklat na kanilang nabasa.
+
+            </p>
+
+
+            <p>
+
+                Higit sa lahat, nais naming ipakita na ang
+                pagbabasa ay hindi lamang tungkol sa pag-unawa
+                sa mga salita at kuwento, kundi tungkol din sa
+                pagkatuto, pagninilay, at pagbuo ng sariling
+                pananaw. Sa bawat pahina, may bagong kaalamang
+                matutuklasan at aral na maaaring baunin sa buhay.
+
+            </p>
+
+
+            <div class="closing">
+
+                Bawat aklat ay isang bagong mundo,
+                at bawat pagbasa ay isang bagong paglalakbay. 📚✨
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <p>
+
+            Grade 9 Property
+
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

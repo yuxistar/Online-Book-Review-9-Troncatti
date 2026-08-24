@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Alyssa Gela Del Mundo | Group Member</title>
+
+
+    <style>
+
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            color: #32164f;
+
+            font-family:
+                "Trebuchet MS",
+                sans-serif;
+
+            overflow-x: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f7edff 0%,
+                    #ead7ff 30%,
+                    #fdf8ff 60%,
+                    #d8b9ff 100%
+                );
+
+            position: relative;
+
+        }
+
+
+        /* ==================================================
+           ABSTRACT BACKGROUND
+           ================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: -20;
+
+            background:
+
+                radial-gradient(
+                    circle at 12% 15%,
+                    rgba(255,255,255,0.95) 0 45px,
+                    transparent 46px
+                ),
+
+                radial-gradient(
+                    circle at 88% 18%,
+                    rgba(158,82,235,0.22) 0 100px,
+                    transparent 101px
+                ),
+
+                radial-gradient(
+                    circle at 75% 75%,
+                    rgba(255,255,255,0.8) 0 75px,
+                    transparent 76px
+                ),
+
+                radial-gradient(
+                    circle at 18% 85%,
+                    rgba(137,64,215,0.18) 0 120px,
+                    transparent 121px
+                );
+
+        }
+
+
+        /* ==================================================
+           ABSTRACT DOT PATTERN
+           ================================================== */
+
+        .dot-pattern {
+
+            position: fixed;
+
+            width: 240px;
+
+            height: 240px;
+
+            pointer-events: none;
+
+            z-index: -10;
+
+            opacity: 0.35;
+
+            background-image:
+
+                radial-gradient(
+                    #8e45d3 2px,
+                    transparent 2px
+                );
+
+            background-size: 18px 18px;
+
+        }
+
+
+        .dots-left {
+
+            top: 18%;
+
+            left: -40px;
+
+            transform:
+                rotate(-12deg);
+
+        }
+
+
+        .dots-right {
+
+            bottom: 8%;
+
+            right: -50px;
+
+            transform:
+                rotate(18deg);
+
+        }
+
+
+        /* ==================================================
+           ABSTRACT CIRCLES
+           ================================================== */
+
+        .abstract-circle {
+
+            position: fixed;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -8;
+
+        }
+
+
+        .circle-one {
+
+            width: 190px;
+
+            height: 190px;
+
+            top: 10%;
+
+            right: -70px;
+
+            border:
+                18px solid
+                rgba(124,55,193,0.22);
+
+        }
+
+
+        .circle-two {
+
+            width: 130px;
+
+            height: 130px;
+
+            top: 45%;
+
+            left: -50px;
+
+            border:
+                12px solid
+                rgba(170,101,240,0.25);
+
+        }
+
+
+        .circle-three {
+
+            width: 250px;
+
+            height: 250px;
+
+            bottom: 10%;
+
+            right: -120px;
+
+            border:
+                3px solid
+                rgba(101,42,168,0.18);
+
+        }
+
+
+        /* ==================================================
+           ABSTRACT RIBBONS
+           ================================================== */
+
+        .purple-ribbon {
+
+            position: fixed;
+
+            width: 900px;
+
+            height: 55px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(117,48,191,0.35),
+                    rgba(176,96,245,0.55),
+                    transparent
+                );
+
+            transform:
+                rotate(-23deg);
+
+            top: 25%;
+
+            left: -220px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -9;
+
+        }
+
+
+        .purple-ribbon-two {
+
+            position: fixed;
+
+            width: 1000px;
+
+            height: 25px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(102,41,171,0.3),
+                    rgba(187,111,255,0.5),
+                    transparent
+                );
+
+            transform:
+                rotate(22deg);
+
+            bottom: 22%;
+
+            right: -300px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: -9;
+
+        }
+
+
+        /* ==================================================
+           STAR DECORATIONS
+           ================================================== */
+
+        .star {
+
+            position: fixed;
+
+            width: 70px;
+
+            height: 70px;
+
+            pointer-events: none;
+
+            z-index: -7;
+
+            opacity: 0.35;
+
+        }
+
+
+        .star::before,
+        .star::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 70px;
+
+            height: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #8a3dcc,
+                    transparent
+                );
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+        }
+
+
+        .star::after {
+
+            transform:
+                translate(-50%, -50%)
+                rotate(90deg);
+
+        }
+
+
+        .star-one {
+
+            top: 20%;
+
+            right: 14%;
+
+            transform:
+                rotate(20deg);
+
+        }
+
+
+        .star-two {
+
+            bottom: 20%;
+
+            left: 12%;
+
+            transform:
+                scale(0.65)
+                rotate(15deg);
+
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4c167d,
+                    #7b2cbf,
+                    #5a208f,
+                    #7b2cbf,
+                    #4c167d
+                );
+
+            box-shadow:
+                0 5px 20px
+                rgba(63,20,94,0.3);
+
+            border-bottom:
+                2px solid
+                rgba(255,255,255,0.35);
+
+        }
+
+
+        .navbar ul {
+
+            list-style: none;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .navbar li {
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        .navbar a,
+        .dropdown summary {
+
+            display: block;
+
+            padding: 15px 20px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .navbar a:hover,
+        .dropdown summary:hover {
+
+            background:
+                rgba(255,255,255,0.18);
+
+            color:
+                #ffffff;
+
+        }
+
+
+        /* ==================================================
+           GROUP MEMBERS DROPDOWN
+           ================================================== */
+
+        .dropdown {
+
+            position: relative;
+
+        }
+
+
+        .dropdown summary {
+
+            list-style: none;
+
+        }
+
+
+        .dropdown summary::-webkit-details-marker {
+
+            display: none;
+
+        }
+
+
+        .dropdown summary::after {
+
+            content: " ▾";
+
+            font-size: 12px;
+
+        }
+
+
+        .member-list {
+
+            display: none;
+
+            position: absolute;
+
+            top: 100%;
+
+            left: 0;
+
+            min-width: 250px;
+
+            background:
+                rgba(55,20,83,0.97);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(45,15,70,0.35);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            border-radius:
+                0 0 15px 15px;
+
+            overflow: hidden;
+
+        }
+
+
+        .dropdown details[open] .member-list {
+
+            display: block;
+
+        }
+
+
+        .member-list a {
+
+            display: block;
+
+            padding: 12px 18px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+            background:
+                transparent;
+
+            transition:
+                0.25s ease;
+
+        }
+
+
+        .member-list a:hover {
+
+            background:
+                #b77bea;
+
+            color:
+                #32164f;
+
+            padding-left: 25px;
+
+        }
+
+
+        /* ==================================================
+           HERO
+           ================================================== */
+
+        .member-hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding:
+                90px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        /* ==================================================
+           HERO HALO
+           ================================================== */
+
+        .member-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+
+            height: 600px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.95) 0%,
+                    rgba(214,177,255,0.55) 35%,
+                    rgba(150,76,222,0.15) 60%,
+                    transparent 72%
+                );
+
+            top: 0;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            pointer-events: none;
+
+        }
+
+
+        /* ==================================================
+           HERO RINGS
+           ================================================== */
+
+        .hero-ring {
+
+            position: absolute;
+
+            width: 520px;
+
+            height: 520px;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(119,53,177,0.2);
+
+            transform:
+                rotate(18deg);
+
+            pointer-events: none;
+
+        }
+
+
+        .hero-ring::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 25px;
+
+            border-radius: 50%;
+
+            border:
+                2px dashed
+                rgba(150,77,219,0.25);
+
+        }
+
+
+        .hero-ring::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 65px;
+
+            border-radius: 50%;
+
+            border:
+                8px solid
+                rgba(184,121,239,0.13);
+
+        }
+
+
+        /* ==================================================
+           LABEL
+           ================================================== */
+
+        .member-label {
+
+            position: relative;
+
+            z-index: 5;
+
+            color:
+                #7837ae;
+
+            font-size: 15px;
+
+            letter-spacing: 6px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 28px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ==================================================
+           PHOTO
+           ================================================== */
+
+        .member-photo-wrapper {
+
+            position: relative;
+
+            z-index: 5;
+
+            width: 330px;
+
+            height: 330px;
+
+            padding: 10px;
+
+            border-radius: 50%;
+
+            background:
+
+                conic-gradient(
+                    from 20deg,
+                    #6821a3,
+                    #b65bf0,
+                    #ead0ff,
+                    #7b2cbf,
+                    #d995ff,
+                    #6821a3
+                );
+
+            box-shadow:
+
+                0 25px 60px
+                rgba(79,29,119,0.3),
+
+                0 0 0 12px
+                rgba(255,255,255,0.35),
+
+                inset 0 0 20px
+                rgba(255,255,255,0.8);
+
+            animation:
+                photoFloat 4s ease-in-out infinite;
+
+        }
+
+
+        .member-photo {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border:
+                7px solid
+                rgba(255,255,255,0.95);
+
+            display: block;
+
+        }
+
+
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-12px)
+                    rotate(1deg);
+
+            }
+
+        }
+
+
+        /* ==================================================
+           NAME
+           ================================================== */
+
+        .member-name {
+
+            position: relative;
+
+            z-index: 5;
+
+            margin-top: 38px;
+
+            margin-bottom: 5px;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 50px;
+
+            color:
+                #4b176e;
+
+            text-shadow:
+                0 4px 12px
+                rgba(80,31,113,0.18);
+
+        }
+
+
+        .member-subtitle {
+
+            position: relative;
+
+            z-index: 5;
+
+            color:
+                #8544b7;
+
+            font-size: 19px;
+
+            font-style: italic;
+
+        }
+
+
+        /* ==================================================
+           SCROLL INDICATOR
+           ================================================== */
+
+        .scroll-indicator {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            color:
+                #7133a2;
+
+            font-size: 14px;
+
+            letter-spacing: 2px;
+
+            animation:
+                bounce 2s infinite;
+
+            z-index: 5;
+
+        }
+
+
+        .scroll-arrow {
+
+            display: block;
+
+            font-size: 25px;
+
+            margin-top: 5px;
+
+        }
+
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+
+                transform:
+                    translateX(-50%)
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateX(-50%)
+                    translateY(8px);
+
+            }
+
+        }
+
+
+        /* ==================================================
+           INFORMATION AREA
+           ================================================== */
+
+        .info-container {
+
+            width: 100%;
+
+            max-width: 1150px;
+
+            margin:
+                0 auto;
+
+            padding:
+                100px 30px
+                170px;
+
+        }
+
+
+        /* ==================================================
+           INFO ROW
+           SAME OVERLAP AS REFERENCE
+           ================================================== */
+
+        .info-row {
+
+            width: 100%;
+
+            min-height: 390px;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            /*
+             * INTENTIONAL OVERLAP
+             */
+
+            margin-bottom: -110px;
+
+        }
+
+
+        /* ==================================================
+           INFO CARD
+           SAME SIZE + TRANSITION AS REFERENCE
+           ================================================== */
+
+        .info-bubble {
+
+            width: 68%;
+
+            min-height: 270px;
+
+            position: relative;
+
+            z-index: 3;
+
+            background:
+                rgba(255,255,255,0.88);
+
+            backdrop-filter:
+                blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            padding: 50px;
+
+            border-radius:
+                32px 20px 32px 20px;
+
+            border:
+                2px solid
+                rgba(255,255,255,0.95);
+
+            box-shadow:
+
+                0 25px 55px
+                rgba(74,27,110,0.18),
+
+                inset 0 1px 0
+                rgba(255,255,255,0.95);
+
+            opacity: 0;
+
+            /*
+             * SAME TRANSITION AS JERCARL
+             */
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+
+        }
+
+
+        /* ==================================================
+           LEFT CARD
+           SLIDES FROM LEFT
+           ================================================== */
+
+        .info-row.left .info-bubble {
+
+            margin-right: auto;
+
+            transform:
+                translateX(-100px)
+                scale(0.94);
+
+        }
+
+
+        .info-row.left .info-bubble.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        /* ==================================================
+           RIGHT CARD
+           SLIDES FROM RIGHT
+           ================================================== */
+
+        .info-row.right .info-bubble {
+
+            margin-left: auto;
+
+            transform:
+                translateX(100px)
+                scale(0.94);
+
+        }
+
+
+        .info-row.right .info-bubble.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        /* ==================================================
+           BUBBLE DECORATION
+           ================================================== */
+
+        .info-bubble::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+
+            height: 20px;
+
+            background:
+                rgba(255,255,255,0.88);
+
+            transform:
+                rotate(45deg);
+
+            border:
+                2px solid
+                rgba(255,255,255,0.95);
+
+        }
+
+
+        .info-row.left .info-bubble::before {
+
+            right: -12px;
+
+            top: 50%;
+
+            border-left: none;
+
+            border-bottom: none;
+
+        }
+
+
+        .info-row.right .info-bubble::before {
+
+            left: -12px;
+
+            top: 50%;
+
+            border-right: none;
+
+            border-top: none;
+
+        }
+
+
+        /* ==================================================
+           INFO TITLE
+           ================================================== */
+
+        .info-bubble h2 {
+
+            margin-top: 0;
+
+            color:
+                #64269a;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 38px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .info-bubble h2::after {
+
+            content: "";
+
+            display: block;
+
+            width: 70px;
+
+            height: 4px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #6821a3,
+                    #c17af0
+                );
+
+            margin-top: 12px;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ==================================================
+           INFO TEXT
+           ================================================== */
+
+        .info-bubble p {
+
+            font-size: 22px;
+
+            line-height: 1.8;
+
+            margin: 0;
+
+            color:
+                #4d3760;
+
+        }
+
+
+       
+        
+
+
+        /* ==================================================
+           MOTTO
+           
+           ================================================== */
+
+        .motto-row {
+
+            min-height: 470px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            position: relative;
+
+            margin-top: 20px;
+
+        }
+
+
+        .motto {
+
+            width: 68%;
+
+            padding: 65px;
+
+            text-align: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #4a1472,
+                    #7525a8,
+                    #a94bdd
+                );
+
+            color:
+                #ffffff;
+
+            border-radius:
+                40px 20px 40px 20px;
+
+            box-shadow:
+
+                0 30px 65px
+                rgba(69,22,104,0.32);
+
+            border:
+                2px solid
+                rgba(255,255,255,0.35);
+
+            opacity: 0;
+
+            transform:
+                translateX(100px)
+                scale(0.94);
+
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+
+        }
+
+
+        .motto.show {
+
+            opacity: 1;
+
+            transform:
+                translateX(0)
+                scale(1);
+
+        }
+
+
+        /* ==================================================
+           MOTTO DECORATION
+           ================================================== */
+
+        .motto::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+
+            height: 180px;
+
+            border-radius: 50%;
+
+            border:
+                20px solid
+                rgba(255,255,255,0.12);
+
+            top: -70px;
+
+            right: -60px;
+
+        }
+
+
+        .motto::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+
+            height: 30px;
+
+            background:
+                rgba(255,255,255,0.1);
+
+            transform:
+                rotate(-25deg);
+
+            bottom: 30px;
+
+            left: -70px;
+
+            border-radius: 50%;
+
+        }
+
+
+        .motto h2 {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 42px;
+
+            color:
+                #f1d9ff;
+
+            margin-top: 0;
+
+        }
+
+
+        .motto p {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-family:
+                Georgia,
+                serif;
+
+            font-size: 28px;
+
+            line-height: 1.7;
+
+            font-style: italic;
+
+            margin: 0;
+
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    #421266,
+                    #7025a1,
+                    #421266
+                );
+
+            color:
+                #ffffff;
+
+            text-align: center;
+
+            padding: 20px;
+
+        }
+
+
+        footer p {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ==================================================
+           MOBILE
+           SAME TRANSITION + OVERLAP AS REFERENCE
+           ================================================== */
+
+        @media (max-width: 700px) {
+
+
+            .navbar a,
+            .dropdown summary {
+
+                padding:
+                    10px 12px;
+
+                font-size: 14px;
+
+            }
+
+
+            .member-list {
+
+                position: absolute;
+
+                min-width: 210px;
+
+            }
+
+
+            .member-hero {
+
+                min-height: 90vh;
+
+                padding:
+                    60px 20px;
+
+            }
+
+
+            .hero-ring {
+
+                width: 360px;
+
+                height: 360px;
+
+            }
+
+
+            .member-photo-wrapper {
+
+                width: 240px;
+
+                height: 240px;
+
+            }
+
+
+            .member-name {
+
+                font-size: 36px;
+
+            }
+
+
+            .member-subtitle {
+
+                font-size: 17px;
+
+            }
+
+
+            .info-container {
+
+                padding:
+                    80px 20px
+                    130px;
+
+            }
+
+
+            /* SAME MOBILE ROW SIZE AS REFERENCE */
+
+            .info-row {
+
+                min-height: 350px;
+
+                margin-bottom: -55px;
+
+            }
+
+
+            /* SAME MOBILE CARD SIZE AS REFERENCE */
+
+            .info-bubble {
+
+                width: 92%;
+
+                min-height: 240px;
+
+                padding: 30px;
+
+            }
+
+
+            .info-bubble h2 {
+
+                font-size: 30px;
+
+            }
+
+
+            .info-bubble p {
+
+                font-size: 19px;
+
+            }
+
+
+            /* SAME MOBILE TRANSITION AS REFERENCE */
+
+            .info-row.left .info-bubble,
+            .info-row.right .info-bubble {
+
+                margin:
+                    0 auto;
+
+                transform:
+                    translateY(70px)
+                    scale(0.94);
+
+            }
+
+
+            .info-row.left .info-bubble.show,
+            .info-row.right .info-bubble.show {
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+
+          
+            
+
+
+            .info-bubble::before {
+
+                display: none;
+
+            }
+
+
+            .motto-row {
+
+                min-height: 400px;
+
+                justify-content: center;
+
+                margin-top: 20px;
+
+            }
+
+
+            .motto {
+
+                width: 92%;
+
+                padding:
+                    40px 30px;
+
+            }
+
+
+            .motto h2 {
+
+                font-size: 32px;
+
+            }
+
+
+            .motto p {
+
+                font-size: 21px;
+
+            }
+
+
+            .purple-ribbon,
+            .purple-ribbon-two {
+
+                opacity: 0.4;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         ABSTRACT DECORATIONS
+         ================================================== -->
+
+    <div class="dot-pattern dots-left"></div>
+
+    <div class="dot-pattern dots-right"></div>
+
+
+    <div class="abstract-circle circle-one"></div>
+
+    <div class="abstract-circle circle-two"></div>
+
+    <div class="abstract-circle circle-three"></div>
+
+
+    <div class="purple-ribbon"></div>
+
+    <div class="purple-ribbon-two"></div>
+
+
+    <div class="star star-one"></div>
+
+    <div class="star star-two"></div>
+
+
+    <!-- ==================================================
+         NAVIGATION
+         ================================================== -->
+
+    <nav class="navbar">
+
+        <ul>
+
+            <li>
+
+                <a href="Overview.html">
+
+                    Home
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="About.html">
+
+                    About
+
+                </a>
+
+            </li>
+
+
+            <li class="dropdown">
+
+                <details>
+
+                    <summary>
+
+                        Mga Miyembro
+
+                    </summary>
+
+
+                    <div class="member-list">
+
+                        <a href="JercarlBongoyan.html">
+
+                            Jercarl Bongoyan
+
+                        </a>
+
+
+                        <a href="AlyssaGelaDelMundo.html">
+
+                            Alyssa Gela Del Mundo
+
+                        </a>
+
+
+                        <a href="MishaKyleeDifuntorum.html">
+
+                            Misha Kylee Difuntorum
+
+                        </a>
+
+
+                        <a href="ZeusVincentEgino.html">
+
+                            Zeus Vincent Egino
+
+                        </a>
+
+
+                        <a href="KeanZacharyGarcia.html">
+
+                            Kean Zachary Garcia
+
+                        </a>
+
+
+                        <a href="ArabellaChaceMonroy.html">
+
+                            Arabella Chace Monroy
+
+                        </a>
+
+                    </div>
+
+                </details>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- ==================================================
+         HERO
+         ================================================== -->
+
+    <section class="member-hero">
+
+        <div class="hero-ring"></div>
+
+
+        <div class="member-label">
+
+            Group Member
+
+        </div>
+
+
+        <div class="member-photo-wrapper">
+
+            <img
+                src="Alyssa.jfif"
+                alt="Alyssa Gela Del Mundo"
+                class="member-photo"
+            >
+
+        </div>
+
+
+        <h1 class="member-name">
+
+            Alyssa Gela Del Mundo
+
+        </h1>
+
+
+        <div class="member-subtitle">
+
+            Technical Lead
+
+        </div>
+
+
+        <div class="scroll-indicator">
+
+            Scroll Down
+
+            <span class="scroll-arrow">
+
+                ↓
+
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         INFORMATION
+         ================================================== -->
+
+    <section class="info-container">
+
+
+        <!-- 1. HOBBIES -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎨 Hobbies
+
+                </h2>
+
+                <p>
+
+                    Pagguhit <br>
+
+                    Drums <br>
+
+                    Paglalaro ng Minecraft at Roblox
+
+                </p>
+
+            </div>
+
+
+          
+            
+
+        </div>
+
+
+        <!-- 2. FAVORITE FOOD -->
+
+        <div class="info-row right">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🍽️ Favorite Filipino Food
+
+                </h2>
+
+                <p>
+
+                    Sinigang na Hipon <br>
+
+                    Lechon Kawali <br>
+
+                    Pritong Tilapia
+
+                </p>
+
+            </div>
+
+
+          
+            
+
+        </div>
+
+
+        <!-- 3. FAVORITE OPM -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎵 Favorite OPM Song
+
+                </h2>
+
+                <p>
+
+                    Kamikazee - Narda
+
+                </p>
+
+            </div>
+
+
+          
+            
+
+        </div>
+
+
+        <!-- 4. FAVORITE MOVIE -->
+
+        <div class="info-row right">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🎬 Favorite Filipino Movie
+
+                </h2>
+
+                <p>
+
+                    Shake, Rattle and Roll: Evil Origins,
+
+                    It Takes a Man and a Woman
+
+                </p>
+
+            </div>
+
+
+         
+            
+
+        </div>
+
+
+        <!-- 5. DREAM DESTINATIONS -->
+
+        <div class="info-row left">
+
+            <div class="info-bubble">
+
+                <h2>
+
+                    🌴 Dream Local Destinations
+
+                </h2>
+
+                <p>
+
+                    (Bibisitahin muli!) Cebu at Boracay
+
+                </p>
+
+            </div>
+
+
+          
+            
+
+        </div>
+
+
+        <!-- 6. MOTTO -->
+
+        <div class="motto-row">
+
+            <div class="motto">
+
+                <h2>
+
+                    ✨ Motto
+
+                </h2>
+
+
+                <p>
+
+                    "Daig ng maagap ang masipag."
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER
+         ================================================== -->
+
+    <footer>
+
+        <p>
+
+            Grade 9 Property
+
+        </p>
+
+    </footer>
+
+
+    <!-- ==================================================
+         SCROLL ANIMATION
+         ================================================== -->
+
+    <script>
+
+        const animatedElements =
+            document.querySelectorAll(
+                ".info-bubble, .motto"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                function(entries) {
+
+                    entries.forEach(
+
+                        function(entry) {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "show"
+                                );
+
+                            }
+
+                            else {
+
+                                entry.target.classList.remove(
+                                    "show"
+                                );
+
+                            }
+
+                        }
+
+                    );
+
+                },
+
+                {
+
+                    threshold: 0.20
+
+                }
+
+            );
+
+
+        animatedElements.forEach(
+
+            function(element) {
+
+                observer.observe(element);
+
+            }
+
+        );
+
+    </script>
+
+
+</body>
+
+</html>

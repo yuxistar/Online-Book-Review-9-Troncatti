@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Book Review</title>
+
+    <style>
+
+        /* ================================
+           GENERAL
+           ================================ */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #F1EFEA;
+            color: #252525;
+            animation: pageFadeIn 0.8s ease;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        /* ================================
+           HEADER
+           ================================ */
+
+        header {
+            text-align: center;
+        }
+
+        h2 {
+            background-color: #ffd79c;
+            color: #252525;
+            margin: 0;
+            padding: 22px 40px;
+            font-family: Georgia, serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #E2DED7;
+        }
+
+
+        /* ================================
+           NAVIGATION BAR
+           ================================ */
+
+        .navbar {
+            background-color: #fff36f;
+            border-bottom: 1px solid #E2DED7;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0 45px;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .navbar li {
+            position: relative;
+        }
+
+        .navbar a {
+            color: #555555;
+            text-decoration: none;
+
+            /* BIGGER NAVBAR */
+            padding: 20px 28px;
+
+            display: block;
+
+            font-size: 17px;
+
+            font-family:
+                'Gill Sans',
+                'Gill Sans MT',
+                Calibri,
+                'Trebuchet MS',
+                sans-serif;
+
+            transition:
+                color 0.3s ease,
+                background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #8B7355;
+            background-color: #F5F3EF;
+        }
+
+
+        /* ================================
+           GROUP MEMBERS DROPDOWN
+           ================================ */
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown summary {
+            color: #555555;
+            text-decoration: none;
+
+            /* MATCH BIGGER NAVBAR */
+            padding: 20px 28px;
+
+            display: block;
+
+            font-size: 17px;
+
+            font-family:
+                'Gill Sans',
+                'Gill Sans MT',
+                Calibri,
+                'Trebuchet MS',
+                sans-serif;
+
+            cursor: pointer;
+            list-style: none;
+
+            transition:
+                color 0.3s ease,
+                background-color 0.3s ease;
+        }
+
+        .dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .dropdown summary:hover {
+            color: #8B7355;
+            background-color: #F5F3EF;
+        }
+
+
+        /* ================================
+           MEMBER DROPDOWN
+           ================================ */
+
+        .member-list {
+            display: none;
+
+            position: absolute;
+
+            top: 100%;
+            left: 0;
+
+            background-color: #302B27;
+
+            min-width: 260px;
+
+            box-shadow:
+                0 5px 10px
+                rgba(0, 0, 0, 0.3);
+
+            z-index: 2000;
+        }
+
+        .dropdown details[open] .member-list {
+            display: block;
+        }
+
+
+        /* ================================
+           MEMBER LINKS
+           ================================ */
+
+        .member-list a {
+            display: block;
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 13px 17px;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+            white-space: nowrap;
+
+            background-color: #302B27;
+        }
+
+        .member-list a:hover {
+            background-color: #ffe9d1;
+            color: #8A6F35;
+        }
+
+
+        /* ================================
+           SLIDING BANNER
+           ================================ */
+
+        .book-banner {
+            width: 92%;
+            max-width: 1250px;
+
+            height: 670px;
+
+            margin: 45px auto 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 16px;
+
+            background-color: #DDD8CF;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.07);
+        }
+
+
+        /* ================================
+           SLIDING BACKGROUND CONTAINER
+           ================================ */
+
+        .banner-slides {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* ================================
+           EACH SLIDING IMAGE
+           ================================ */
+
+        .banner-slide {
+            position: absolute;
+
+            inset: 0;
+
+            background-size: cover;
+            background-position: center;
+
+            transform: translateX(100%);
+
+            animation:
+                slideBanner 16s infinite;
+        }
+
+
+        /* ================================
+           BANNER IMAGE 1
+           ================================ */
+
+        .banner1 {
+            background-image:
+                url("trythis.png");
+
+            animation-delay: 0s;
+        }
+
+
+        /* ================================
+           BANNER IMAGE 2
+           ================================ */
+
+        .banner2 {
+            background-image:
+                url("adarna.jpg");
+
+            animation-delay: 4s;
+        }
+
+
+        /* ================================
+           BANNER IMAGE 3
+           ================================ */
+
+        .banner3 {
+            background-image:
+                url("florante.jpg");
+
+            animation-delay: 8s;
+        }
+
+
+        /* ================================
+           BANNER IMAGE 4
+           ================================ */
+
+        .banner4 {
+            background-image:
+                url("navel.jpg");
+
+            animation-delay: 12s;
+        }
+
+
+        /* ================================
+           SLIDING ANIMATION
+           ================================ */
+
+        @keyframes slideBanner {
+
+            0% {
+                transform: translateX(100%);
+            }
+
+            5% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+
+        }
+
+
+        /* ================================
+           BANNER OVERLAY
+           ================================ */
+
+        .banner-overlay {
+            position: absolute;
+
+            z-index: 10;
+
+            left: 60px;
+            bottom: 50px;
+
+            width: 500px;
+
+            padding: 25px 30px;
+
+            background-color:
+                rgba(255, 255, 255, 0.78);
+
+            border-radius: 12px;
+
+            color: #252525;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.10);
+
+            backdrop-filter: blur(3px);
+        }
+
+
+        /* ================================
+           BANNER LABEL
+           ================================ */
+
+        .banner-label {
+            margin-bottom: 8px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            color: #8B7355;
+        }
+
+
+        /* ================================
+           BANNER TITLE
+           ================================ */
+
+        .banner-overlay h1 {
+            margin: 0 0 10px;
+
+            font-family: Georgia, serif;
+
+            font-size: 30px;
+
+            font-weight: normal;
+
+            color: #252525;
+        }
+
+
+        /* ================================
+           BANNER DESCRIPTION
+           ================================ */
+
+        .banner-overlay p {
+            margin: 0;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            color: #555555;
+        }
+
+
+        /* ================================
+           BOOK SECTION TITLE
+           ================================ */
+
+        .book-section-title {
+            width: 92%;
+            max-width: 1250px;
+
+            margin: 55px auto 25px;
+
+            text-align: center;
+
+            padding: 20px;
+
+            background-color: rgb(235, 226, 205);
+        }
+
+        .book-section-title h2 {
+            background: none;
+
+            padding: 0;
+
+            margin: 0;
+
+            border: none;
+
+            font-family: Georgia, serif;
+
+            font-size: 32px;
+
+            font-weight: normal;
+
+            letter-spacing: 0.5px;
+
+            color: #252525;
+        }
+
+        .book-section-title p {
+            margin: 10px 0 0;
+
+            color: #777777;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================================
+           SMALL DECORATIVE LINE
+           ================================ */
+
+        .title-line {
+            width: 70px;
+
+            height: 3px;
+
+            margin: 14px auto 0;
+
+            background-color: #8B7355;
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ================================
+           BOOK GRID
+           ================================ */
+
+        .button-container {
+            width: 92%;
+            max-width: 1250px;
+
+            margin: 35px auto 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+
+        /* ================================
+           BOOK CARD
+           ================================ */
+
+        .my-button {
+            display: flex;
+
+            flex-direction: row;
+
+            position: relative;
+
+            height: 300px;
+
+            background-color: #FFFFFF;
+
+            border: 1px solid #E2DED7;
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            color: #252525;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.05);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+
+        /* ================================
+           CARD HOVER
+           ================================ */
+
+        .my-button:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 12px 30px
+                rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* ================================
+           BOOK IMAGE AREA
+           ================================ */
+
+        .book-image {
+            width: 43%;
+
+            height: 100%;
+
+            position: relative;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+
+        /* ================================
+           BOOK COVER IMAGE
+           ================================ */
+
+        .book-image::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                var(--bg-image);
+
+            background-size: cover;
+
+            background-position: center;
+
+            transform: scale(1);
+
+            transition:
+                transform 1.5s ease;
+        }
+
+
+        /* ================================
+           SLOW ZOOM ON HOVER
+           ================================ */
+
+        .my-button:hover
+        .book-image::before {
+
+            transform:
+                scale(1.12);
+        }
+
+
+        /* ================================
+           IMAGE DARK OVERLAY
+           ================================ */
+
+        .book-image::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.05);
+
+            transition:
+                background 0.5s ease;
+        }
+
+        .my-button:hover
+        .book-image::after {
+
+            background:
+                rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* ================================
+           START READING BUTTON
+           ================================ */
+
+        .start-reading {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -35%);
+
+            background-color: #FFFFFF;
+
+            color: #252525;
+
+            padding: 10px 16px;
+
+            border-radius: 6px;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.4s ease,
+                transform 0.4s ease;
+
+            z-index: 3;
+
+            white-space: nowrap;
+        }
+
+
+        /* ================================
+           SHOW START READING
+           ================================ */
+
+        .my-button:hover
+        .start-reading {
+
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+
+        /* ================================
+           BOOK INFORMATION
+           ================================ */
+
+        .book-info {
+            width: 57%;
+
+            padding: 30px 25px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        /* ================================
+           BOOK TITLE
+           ================================ */
+
+        .book-info h1 {
+            margin: 0 0 8px;
+
+            font-family: Georgia, serif;
+
+            font-size: 24px;
+
+            line-height: 1.2;
+
+            font-weight: normal;
+
+            color: #252525;
+        }
+
+
+        /* ================================
+           AUTHOR
+           ================================ */
+
+        .author {
+            margin: 0 0 16px;
+
+            color: #8B7355;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            line-height: 1.4;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        /* ================================
+           DESCRIPTION
+           ================================ */
+
+        .description {
+            margin: 0;
+
+            color: #6D6D6D;
+
+            font-size: 13px;
+
+            line-height: 1.65;
+        }
+
+
+        /* ================================
+           BOOK COVER FILENAMES
+           ================================ */
+
+        .noli {
+            --bg-image:
+                url("nolibook.jfif");
+        }
+
+        .fili {
+            --bg-image:
+                url("elfilibook.jfif");
+        }
+
+        .banaag {
+            --bg-image:
+                url("banaagbook.jfif");
+        }
+
+        .canal {
+            --bg-image:
+                url("canalbook.jfif");
+        }
+
+        .ibong {
+            --bg-image:
+                url("ibonbook.jfif");
+        }
+
+        .luha {
+            --bg-image:
+                url("luhabook.jfif");
+        }
+
+
+        /* ================================
+           FOOTER
+           ================================ */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #888888;
+
+            font-size: 13px;
+        }
+
+
+        /* ================================
+           BACK TO TOP BUTTON
+           ================================ */
+
+        .back-to-top {
+            position: fixed;
+
+            bottom: 30px;
+            right: 30px;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #8b0000;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px
+                rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+                opacity 0.4s ease,
+                visibility 0.4s ease,
+                transform 0.3s ease;
+
+            animation:
+                showBackToTop linear;
+
+            animation-timeline: scroll();
+        }
+
+
+        /* ================================
+           BACK TO TOP SCROLL ANIMATION
+           ================================ */
+
+        @keyframes showBackToTop {
+
+            0% {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            10% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            100% {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        }
+
+
+        /* ================================
+           BACK TO TOP HOVER
+           ================================ */
+
+        .back-to-top:hover {
+
+            transform:
+                translateY(-5px);
+
+            background: #b22222;
+        }
+
+
+        /* ================================
+           RESPONSIVE DESIGN
+           ================================ */
+
+        @media (max-width: 900px) {
+
+            .button-container {
+                grid-template-columns: 1fr;
+            }
+
+            .book-banner {
+                height: 550px;
+            }
+
+            .banner-overlay {
+                left: 30px;
+
+                bottom: 30px;
+
+                width:
+                    calc(100% - 60px);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar ul {
+                padding: 0;
+            }
+
+            .navbar a {
+                padding: 15px 12px;
+
+                font-size: 13px;
+            }
+
+            .dropdown summary {
+                padding: 15px 12px;
+
+                font-size: 13px;
+            }
+
+            .member-list {
+                min-width: 220px;
+            }
+
+            .member-list a {
+                font-size: 14px;
+
+                padding: 10px 14px;
+            }
+
+            .book-banner {
+                height: 500px;
+
+                width: 94%;
+            }
+
+            .banner-overlay {
+                left: 20px;
+
+                bottom: 20px;
+
+                width:
+                    calc(100% - 40px);
+
+                padding: 20px;
+            }
+
+            .banner-overlay h1 {
+                font-size: 24px;
+            }
+
+            .banner-overlay p {
+                font-size: 12px;
+            }
+
+            .book-section-title {
+                margin-top: 40px;
+            }
+
+            .book-section-title h2 {
+                font-size: 25px;
+            }
+
+            .book-section-title p {
+                font-size: 12px;
+            }
+
+            .my-button {
+                height: auto;
+
+                min-height: 300px;
+            }
+
+            .book-info {
+                padding: 20px;
+            }
+
+            .book-info h1 {
+                font-size: 20px;
+            }
+
+            .description {
+                font-size: 12px;
+            }
+
+            .back-to-top {
+                width: 45px;
+
+                height: 45px;
+
+                right: 20px;
+
+                bottom: 20px;
+            }
+
+        }
+
+
+        /* ==================================================
+           ✨ GOLDEN PIXIE DUST CURSOR
+           ================================================== */
+
+        .pixie-dust {
+            position: fixed;
+
+            width: 7px;
+            height: 7px;
+
+            background: #ffebc0;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            box-shadow:
+                0 0 5px #e8ff78,
+                0 0 10px #ffeec4;
+
+            animation:
+                pixieFade 0.9s ease-out forwards;
+        }
+
+
+        @keyframes pixieFade {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translate(0, 0);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    translate(
+                        var(--random-x),
+                        var(--random-y)
+                    );
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         BACK TO TOP
+         ================================ -->
+
+    <a id="top"></a>
+
+    <a href="#top" class="back-to-top">
+        ↑
+    </a>
+
+
+
+    <!-- ================================
+         HEADER
+         ================================ -->
+
+    <header>
+
+        <h2>
+            Online Book Review
+        </h2>
+
+    </header>
+
+
+
+    <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+    <nav class="navbar">
+
+        <ul>
+
+            <!-- HOME -->
+
+            <li>
+
+                <a href="Overview.html">
+                    Home
+                </a>
+
+            </li>
+
+
+            <!-- ABOUT -->
+
+            <li>
+
+                <a href="About.html">
+                    About
+                </a>
+
+            </li>
+
+
+            <!-- GROUP MEMBERS -->
+
+            <li class="dropdown">
+
+                <details>
+
+                    <summary>
+                        Mga Miyembro
+                    </summary>
+
+                    <div class="member-list">
+
+                        <a href="JercarlBongoyan.html">
+                            Jercarl Bongoyan
+                        </a>
+
+                        <a href="AlyssaGelaDelMundo.html">
+                            Alyssa Gela Del Mundo
+                        </a>
+
+                        <a href="MishaKyleeDifuntorum.html">
+                            Misha Kylee Difuntorum
+                        </a>
+
+                        <a href="ZeusVincentEgino.html">
+                            Zeus Vincent Egino
+                        </a>
+
+                        <a href="KeanZacharyGarcia.html">
+                            Kean Zachary Garcia
+                        </a>
+
+                        <a href="ArabellaChaceMonroy.html">
+                            Arabella Chace Monroy
+                        </a>
+
+                    </div>
+
+                </details>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- ================================
+         SLIDING BANNER
+         ================================ -->
+
+    <section class="book-banner">
+
+        <div class="banner-slides">
+
+            <div class="banner-slide banner1"></div>
+
+            <div class="banner-slide banner2"></div>
+
+            <div class="banner-slide banner3"></div>
+
+            <div class="banner-slide banner4"></div>
+
+        </div>
+
+
+        <!-- FIXED WHITE BOX -->
+
+        <div class="banner-overlay">
+
+            <div class="banner-label">
+                PANITIKANG PILIPINO
+            </div>
+
+            <h1>
+                Tuklasin ang mga Kwento
+            </h1>
+
+            <p>
+                Ang Panitikang Pilipino ay higit pa sa mga salitang
+                nakasulat sa pahina, ito ay salamin ng ating buhay,
+                pakikibaka, kultura, at pangarap.
+                Basahin, unawain, at ipagmalaki ang mga kuwentong
+                nagbibigay-buhay sa ating pagka-Pilipino.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================
+         BOOK SECTION HEADER
+         ================================ -->
+
+    <section class="book-section-title">
+
+        <h2>
+            Piliin ang Iyong Gustong Aklat
+        </h2>
+
+        <div class="title-line"></div>
+
+        <p>
+            Tuklasin ang iba't ibang akda ng Panitikang Pilipino
+            at piliin ang kuwentong nais mong basahin.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================================
+         BOOK COLLECTION
+         ================================ -->
+
+    <main>
+
+        <div class="button-container">
+
+
+            <!-- ================================
+                 NOLI ME TANGERE
+                 ================================ -->
+
+            <a
+                href="NoliMeTangere.html"
+                class="my-button noli"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        Noli Me Tángere
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Alyssa Gela Del Mundo
+                    </p>
+
+                    <p class="description">
+                        Isang kuwentong naglalahad ng kapangyarihan,
+                        pananampalataya, at kawalang-katarungan sa
+                        lipunang Pilipino. Tuklasin ang mga lihim at
+                        suliraning nagmulat sa mga taong handang
+                        lumaban para sa pagbabago.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ================================
+                 EL FILIBUSTERISMO
+                 ================================ -->
+
+            <a
+                href="ElFilibusterismo.html"
+                class="my-button fili"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        El Filibusterismo
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Zeus Vincent Egino
+                    </p>
+
+                    <p class="description">
+                        Isang mas madilim na pagpapatuloy na puno ng
+                        paghihiganti, pang-aapi, at pagnanais ng pagbabago.
+                        Alamin kung paano maaaring baguhin ng
+                        kawalang-katarungan ang pag-asa tungo sa panganib.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ================================
+                 BANAAG AT SIKAT
+                 ================================ -->
+
+            <a
+                href="BanaagAtSikat.html"
+                class="my-button banaag"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        Banaag at Sikat
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Arabella Chace Monroy
+                    </p>
+
+                    <p class="description">
+                        Isang kuwento tungkol sa paggising ng kamalayan,
+                        hindi pagkakapantay-pantay, at paghahangad ng
+                        mas magandang kinabukasan. Sundan ang mga tauhang
+                        humaharap sa tunay na kalagayan ng lipunan.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ================================
+                 CANAL DE LA REINA
+                 ================================ -->
+
+            <a
+                href="CanalDeLaReina.html"
+                class="my-button canal"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        Canal de la Reina
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Jercarl Bongoyan
+                    </p>
+
+                    <p class="description">
+                        Isang kuwentong puno ng pagsubok, tunggalian,
+                        at katatagan ng isang komunidad. Tuklasin kung
+                        paano nagkakaisa ang mga tao upang ipaglaban
+                        ang kanilang tahanan at pag-asang magkaroon
+                        ng mas magandang buhay.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ================================
+                 MGA IBONG MANDARAGIT
+                 ================================ -->
+
+            <a
+                href="MgaIbongMandaragit.html"
+                class="my-button ibong"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        Mga Ibong Mandaragit
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Kean Zachary Garcia
+                    </p>
+
+                    <p class="description">
+                        Sa likod ng pangakong bagong simula ay nananatili
+                        ang kasakiman at katiwalian sa lipunan. Tuklasin
+                        ang isang kuwentong nagtatanong kung sino nga ba
+                        ang tunay na may kapangyarihan.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- ================================
+                 LUHA NG BUWAYA
+                 ================================ -->
+
+            <a
+                href="LuhaNgBuwaya.html"
+                class="my-button luha"
+            >
+
+                <div class="book-image">
+
+                    <span class="start-reading">
+                        START READING
+                    </span>
+
+                </div>
+
+
+                <div class="book-info">
+
+                    <h1>
+                        Luha ng Buwaya
+                    </h1>
+
+                    <p class="author">
+                        Analisis by Misha Kylee Difuntorum
+                    </p>
+
+                    <p class="description">
+                        Isang kuwento ng mga ordinaryong taong nagkakaisa
+                        laban sa kawalang-katarungan at hindi
+                        pagkakapantay-pantay. Tuklasin ang kanilang tapang,
+                        pagkakaisa, at pakikipaglaban para sa lupa at
+                        mas magandang kinabukasan.
+                    </p>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+
+    <footer>
+
+        <h6>
+            Grade 9 Property
+        </h6>
+
+    </footer>
+
+
+
+    <!-- ================================
+         PIXIE DUST JAVASCRIPT
+         ================================ -->
+
+    <script>
+
+        /* ==================================================
+           GOLDEN PIXIE DUST CURSOR
+           ================================================== */
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const sparkle =
+                    document.createElement("div");
+
+                sparkle.classList.add(
+                    "pixie-dust"
+                );
+
+                sparkle.style.left =
+                    event.clientX + "px";
+
+                sparkle.style.top =
+                    event.clientY + "px";
+
+
+                /* Random direction */
+
+                const randomX =
+                    (Math.random() - 0.5) * 50;
+
+                const randomY =
+                    (Math.random() - 0.5) * 50;
+
+
+                sparkle.style.setProperty(
+                    "--random-x",
+                    randomX + "px"
+                );
+
+                sparkle.style.setProperty(
+                    "--random-y",
+                    randomY + "px"
+                );
+
+
+                document.body.appendChild(
+                    sparkle
+                );
+
+
+                /* Remove sparkle */
+
+                setTimeout(
+                    function() {
+
+                        sparkle.remove();
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

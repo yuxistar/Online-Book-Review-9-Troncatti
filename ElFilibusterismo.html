@@ -1,0 +1,3398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>El Filibusterismo | Online Book Review</title>
+
+    <style>
+
+        /* ==================================================
+           GENERAL
+           ================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+        }
+
+        body {
+            margin: 0;
+            background-color: #F5F2EA;
+            color: #292929;
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: justify;
+            overflow-x: hidden;
+        }
+
+
+        /* ==================================================
+           LAMP INTRO
+           ================================================== */
+
+        #lamp-toggle {
+            display: none;
+        }
+
+        .lamp-intro {
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #29251f 0%,
+                    #151515 45%,
+                    #080808 100%
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 9999;
+
+            opacity: 1;
+            visibility: visible;
+
+            overflow: hidden;
+
+            transition:
+                opacity 1.4s ease,
+                visibility 0s linear 0s;
+        }
+
+
+        .lamp-container {
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* ==================================================
+           LAMP GLOW
+           ================================================== */
+
+        .lamp-glow {
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(214, 168, 79, 0.55) 0%,
+                    rgba(214, 168, 79, 0.25) 25%,
+                    rgba(214, 168, 79, 0.08) 55%,
+                    transparent 75%
+                );
+
+            filter: blur(12px);
+
+            animation:
+                lampGlow 2s ease-in-out infinite alternate;
+
+            pointer-events: none;
+        }
+
+
+        @keyframes lampGlow {
+
+            from {
+                transform: scale(0.9);
+                opacity: 0.65;
+            }
+
+            to {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+
+        }
+
+
+        /* ==================================================
+           LAMP IMAGE
+           ================================================== */
+
+        .lamp {
+            position: relative;
+
+            width: 400px;
+            max-width: 60vw;
+
+            cursor: pointer;
+
+            z-index: 2;
+
+            filter:
+                drop-shadow(0 0 12px rgba(214, 168, 79, 0.9))
+                drop-shadow(0 0 35px rgba(214, 168, 79, 0.6));
+
+            transition:
+                transform 0.3s ease,
+                filter 0.3s ease;
+        }
+
+
+        .lamp:hover {
+
+            transform: scale(1.06);
+
+            filter:
+                drop-shadow(0 0 18px rgba(214, 168, 79, 1))
+                drop-shadow(0 0 50px rgba(214, 168, 79, 0.8));
+        }
+
+
+        .lamp-text {
+
+            color: #F5F3EF;
+
+            margin-top: 25px;
+
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+
+            letter-spacing: 1px;
+
+            animation:
+                textPulse 2s ease-in-out infinite alternate;
+
+            z-index: 3;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
+
+        @keyframes textPulse {
+
+            from {
+                opacity: 0.55;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+
+        /* ==================================================
+           EXPLOSION
+           ================================================== */
+
+        .explosion {
+
+            position: absolute;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #ffffff 0%,
+                    #fff5c7 12%,
+                    #f8d77a 25%,
+                    #d69b35 45%,
+                    #8A6F35 60%,
+                    transparent 75%
+                );
+
+            opacity: 0;
+
+            transform: scale(0);
+
+            z-index: 10;
+
+            pointer-events: none;
+
+            box-shadow:
+                0 0 20px #F5D77A,
+                0 0 50px #D6A84F,
+                0 0 100px rgba(214, 168, 79, 0.8);
+        }
+
+
+        .explosion::before,
+        .explosion::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -100px;
+
+            border-radius: 50%;
+
+            border:
+                5px solid rgba(214, 168, 79, 0.85);
+
+            box-shadow:
+                0 0 20px rgba(214, 168, 79, 0.7),
+                inset 0 0 20px rgba(214, 168, 79, 0.5);
+
+            opacity: 0;
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .lamp {
+
+            animation:
+                lampShake 0.35s ease-in-out,
+                lampExplode 0.9s 0.25s ease-out forwards;
+
+            pointer-events: none;
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .lamp-text {
+
+            animation:
+                textDisappear 0.4s ease-out forwards;
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .lamp-glow {
+
+            animation:
+                glowExplosion 1s ease-out forwards;
+        }
+
+
+        @keyframes lampShake {
+
+            0% {
+                transform: translateX(0) rotate(0);
+            }
+
+            15% {
+                transform: translateX(-10px) rotate(-4deg);
+            }
+
+            30% {
+                transform: translateX(10px) rotate(4deg);
+            }
+
+            45% {
+                transform: translateX(-12px) rotate(-5deg);
+            }
+
+            60% {
+                transform: translateX(12px) rotate(5deg);
+            }
+
+            75% {
+                transform: translateX(-7px) rotate(-3deg);
+            }
+
+            90% {
+                transform: translateX(7px) rotate(3deg);
+            }
+
+            100% {
+                transform: translateX(0) rotate(0);
+            }
+
+        }
+
+
+        @keyframes lampExplode {
+
+            0% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+
+                filter:
+                    brightness(1)
+                    drop-shadow(0 0 15px #F5D77A);
+            }
+
+            35% {
+                opacity: 1;
+                transform: scale(1.18) rotate(2deg);
+
+                filter:
+                    brightness(2)
+                    drop-shadow(0 0 40px #F5D77A)
+                    drop-shadow(0 0 80px #D6A84F);
+            }
+
+            55% {
+                opacity: 1;
+                transform: scale(1.45) rotate(-2deg);
+
+                filter:
+                    brightness(3)
+                    drop-shadow(0 0 60px #F5D77A)
+                    drop-shadow(0 0 120px #D6A84F);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(3.5) rotate(8deg);
+
+                filter:
+                    brightness(5)
+                    drop-shadow(0 0 100px #FFFFFF);
+            }
+
+        }
+
+
+        @keyframes textDisappear {
+
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+        }
+
+
+        @keyframes glowExplosion {
+
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            35% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+
+            65% {
+                transform: scale(3);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(8);
+                opacity: 0;
+            }
+
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .explosion {
+
+            animation:
+                explosionEffect 1.1s 0.25s ease-out forwards;
+        }
+
+
+        @keyframes explosionEffect {
+
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            12% {
+                opacity: 1;
+                transform: scale(0.8);
+            }
+
+            30% {
+                opacity: 1;
+                transform: scale(3);
+            }
+
+            55% {
+                opacity: 0.9;
+                transform: scale(6);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(13);
+            }
+
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .explosion::before {
+
+            animation:
+                explosionRing 1s 0.25s ease-out forwards;
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .explosion::after {
+
+            animation:
+                explosionRing 1s 0.4s ease-out forwards;
+        }
+
+
+        @keyframes explosionRing {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.1);
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(5);
+            }
+
+        }
+
+
+        /* ==================================================
+           SCREEN FLASH
+           ================================================== */
+
+        .flash {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #ffffff 0%,
+                    #fffdf5 30%,
+                    rgba(255,255,255,0.8) 55%,
+                    transparent 100%
+                );
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            z-index: 20;
+        }
+
+
+        #lamp-toggle:checked ~ .lamp-intro .flash {
+
+            animation:
+                flashEffect 1.2s 0.35s ease-out forwards;
+        }
+
+
+        @keyframes flashEffect {
+
+            0% {
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.1;
+            }
+
+            25% {
+                opacity: 0.95;
+            }
+
+            35% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.15;
+            }
+
+            100% {
+                opacity: 0;
+            }
+
+        }
+
+
+        /* ==================================================
+           HIDE INTRO AFTER CLICK
+           ================================================== */
+
+        #lamp-toggle:checked ~ .lamp-intro {
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition:
+                opacity 1.4s ease 0.6s,
+                visibility 0s linear 2s;
+        }
+
+
+        /* ==================================================
+           MAIN PAGE REVEAL
+           ================================================== */
+
+        .page-wrapper {
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            animation:
+                pageReveal 1.3s 1.8s ease-out forwards;
+        }
+
+
+        @keyframes pageReveal {
+
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* ==================================================
+           HEADER
+           ================================================== */
+
+        header {
+
+            background-color: #252525;
+
+            color: #F5F3EF;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        header h1 {
+
+            font-family:
+                "Times New Roman",
+                Times,
+                serif;
+
+            font-size: 45px;
+
+            margin: 0;
+        }
+
+
+        header p {
+
+            font-size: 18px;
+
+            margin: 5px 0 0;
+        }
+
+
+        /* ==================================================
+           NAVIGATION
+           ================================================== */
+
+        .navbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .navbar ul {
+
+            list-style-type: none;
+
+            background-color: #302B27;
+
+            margin: 0;
+
+            padding: 0;
+
+            overflow: visible;
+        }
+
+
+        .navbar li {
+
+            float: left;
+        }
+
+
+        .navbar a {
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 15px 20px;
+
+            display: block;
+
+            font-weight: bold;
+
+            transition:
+                background-color 0.3s ease,
+                color 0.3s ease;
+        }
+
+
+        .navbar a:hover {
+
+            background-color: #ffe9d1;
+
+            color: #8A6F35;
+        }
+
+
+ /* ==================================================
+   GROUP MEMBERS DROPDOWN
+   ================================================== */
+
+.dropdown {
+    position: relative;
+}
+
+/* Make Group Members look exactly like the other navbar links */
+
+.dropdown details {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown summary {
+    list-style: none;
+
+    color: #F5F3EF;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* Remove the default arrow */
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::marker {
+    display: none;
+}
+
+/* Hover effect matches Homepage and About */
+
+.dropdown summary:hover {
+    background-color: #FFE9D1;
+
+    color: #B89B5E;
+}
+
+
+/* ==================================================
+   MEMBER LIST
+   ================================================== */
+
+.member-list {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background-color: #302B27;
+
+    min-width: 280px;
+
+    padding: 8px 0;
+
+    margin: 0;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown when clicked */
+
+.dropdown details[open] .member-list {
+    display: block;
+}
+
+
+/* ==================================================
+   MEMBER NAMES
+   ================================================== */
+
+.member-list a {
+    display: block;
+
+    color: #F5F3EF;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+/* Member hover */
+
+.member-list a:hover {
+    background-color: #FFE9D1;
+
+    color: #8A6F35;
+}
+
+
+        .navbar ul::after {
+
+            content: "";
+
+            display: table;
+
+            clear: both;
+        }
+
+
+        /* ==================================================
+           VIDEO BANNER
+           ================================================== */
+
+        .elfili-picture {
+
+            position: relative;
+
+            min-height: 500px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            color: #FFFFFF;
+
+            background-color: #252525;
+        }
+
+
+        .elfili-picture video {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: 0;
+        }
+
+
+        .video-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(37, 37, 37, 0.45),
+                    rgba(37, 37, 37, 0.72)
+                );
+
+            z-index: 1;
+        }
+
+
+        .video-glow {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    transparent 20%,
+                    rgba(0, 0, 0, 0.35) 75%,
+                    rgba(0, 0, 0, 0.65) 100%
+                );
+
+            z-index: 2;
+
+            pointer-events: none;
+        }
+
+
+        .banner-text {
+
+            position: relative;
+
+            z-index: 3;
+
+            padding: 30px;
+
+            animation:
+                bannerAppear 1.2s 2.2s ease-out both;
+        }
+
+
+        @keyframes bannerAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        .elfili-picture h1 {
+
+            font-family: Georgia, serif;
+
+            font-size: 60px;
+
+            margin: 0;
+
+            text-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .elfili-picture p {
+
+            font-size: 21px;
+
+            margin-top: 8px;
+
+            text-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+
+        /* ==================================================
+           MAIN
+           ================================================== */
+
+        main {
+
+            width: 85%;
+
+            max-width: 1000px;
+
+            margin: 30px auto;
+        }
+
+
+        /* ==================================================
+           INTRO
+           ================================================== */
+
+        .intro {
+
+            background-color: #FFFFFF;
+
+            text-align: center;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            border: 1px solid #DDD7CC;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+        }
+
+
+        .intro h2 {
+
+            font-family:
+                Cambria,
+                Cochin,
+                Georgia,
+                Times,
+                "Times New Roman",
+                serif;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           CONTENT SLIDER
+           ================================================== */
+
+        .content-slider {
+
+            position: relative;
+
+            width: 100%;
+
+            margin: 30px auto;
+        }
+
+
+        .content-card {
+
+            display: none;
+
+            background-color: #EFEBE3;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border-left: 5px solid #B89B5E;
+
+            box-shadow:
+                0 5px 14px rgba(37, 37, 37, 0.08);
+
+            min-height: 500px;
+
+            overflow: hidden;
+        }
+
+
+        .content-card:target {
+
+            display: block;
+
+            animation:
+                cardSlide 0.65s ease-out both;
+        }
+
+
+        @keyframes cardSlide {
+
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+        }
+
+
+        .content-slider:not(:has(.content-card:target))
+        #panimula {
+
+            display: block;
+
+            animation:
+                cardSlide 0.65s ease-out both;
+        }
+
+
+        .content-slider:has(.content-card:target)
+        #panimula {
+
+            display: none;
+        }
+
+
+        .content-slider:has(#panimula:target)
+        #panimula {
+
+            display: block;
+
+            animation:
+                cardSlide 0.65s ease-out both;
+        }
+
+
+        /* ==================================================
+           HEADINGS
+           ================================================== */
+
+        .content-card h2 {
+
+            color: #302B27;
+
+            font-family: Georgia, serif;
+
+            text-align: center;
+
+            border-bottom:
+                2px solid #B89B5E;
+
+            padding-bottom: 10px;
+
+            margin-top: 0;
+
+            margin-bottom: 25px;
+        }
+
+
+        .content-card h3 {
+
+            color: #4A443E;
+
+            font-family: Georgia, serif;
+        }
+
+
+        /* ==================================================
+           UNIVERSAL WHITE CONTENT CARD
+           ================================================== */
+
+        .content-box {
+
+            background-color: #FFFFFF;
+
+            padding: 22px 25px;
+
+            margin: 18px 0;
+
+            border-radius: 10px;
+
+            border: 1px solid #DDD7CC;
+
+            border-left:
+                4px solid #B89B5E;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        .content-box:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 155, 94, 0.20);
+
+            border-color:
+                #B89B5E;
+        }
+
+
+        .content-box h3 {
+
+            margin-top: 0;
+
+            color: #302B27;
+
+            font-family: Georgia, serif;
+        }
+
+
+        .content-box p {
+
+            margin-top: 8px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .content-box p:last-child {
+
+            margin-bottom: 0;
+        }
+
+
+        /* ==================================================
+           BOOK INFORMATION
+           ================================================== */
+
+        .book-info {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+            border-radius: 8px;
+
+            border: 1px solid #DDD7CC;
+
+            border-left:
+                4px solid #B89B5E;
+
+            text-align: center;
+
+            transition:
+                0.3s ease;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+        }
+
+
+        .book-info:hover {
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 155, 94, 0.20);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .book-info h3 {
+
+            margin-bottom: 5px;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           CHARACTERS
+           ================================================== */
+
+        .characters {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .character {
+
+            background-color: #FFFFFF;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            border-top:
+                4px solid #B89B5E;
+
+            border-left:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            transition:
+                0.3s ease;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+        }
+
+
+        .character:hover {
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 155, 94, 0.20);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .character h3 {
+
+            margin-top: 0;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           BANGHAY
+           ================================================== */
+
+        .banghay {
+
+            background-color: #FFFFFF;
+
+            padding: 22px 25px;
+
+            margin: 18px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #B89B5E;
+
+            border-top:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            transition:
+                0.3s ease;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+        }
+
+
+        .banghay:hover {
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 155, 94, 0.20);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .banghay h3 {
+
+            margin-top: 0;
+
+            color: #302B27;
+        }
+
+
+        /* ==================================================
+           REFERENCES
+           ================================================== */
+
+        .source-list {
+
+            background-color: transparent;
+
+            padding: 0;
+
+            border-radius: 0;
+
+            border: none;
+        }
+
+
+        .source-card {
+
+            background-color: #FFFFFF;
+
+            padding: 20px 25px;
+
+            margin: 18px 0;
+
+            border-radius: 8px;
+
+            border-left:
+                4px solid #B89B5E;
+
+            border-top:
+                1px solid #DDD7CC;
+
+            border-right:
+                1px solid #DDD7CC;
+
+            border-bottom:
+                1px solid #DDD7CC;
+
+            box-shadow:
+                0 4px 12px rgba(37, 37, 37, 0.06);
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .source-card:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(184, 155, 94, 0.20);
+        }
+
+
+        .source-card p {
+
+            text-align: left;
+
+            margin: 0;
+        }
+
+
+        .source-card a {
+
+            color: #8A6F35;
+
+            word-break: break-word;
+
+            transition:
+                0.3s ease;
+        }
+
+
+        .source-card a:hover {
+
+            color: #B89B5E;
+        }
+
+
+        /* ==================================================
+           CONCLUSION
+           ================================================== */
+
+        .conclusion {
+
+            background-color: #fdeadb;
+
+            color: #866e3e;
+        }
+
+
+        .conclusion h2 {
+
+            color: #866e3e;
+
+            border-color: #dac496;
+        }
+
+
+        .conclusion .content-box {
+
+            background-color: #FFFFFF;
+
+            color: #292929;
+
+            border-left:
+                4px solid #B89B5E;
+        }
+
+
+        .conclusion .content-box h3 {
+
+            color: #866E3E;
+        }
+
+
+        /* ==================================================
+           NAVIGATION BUTTONS
+           ================================================== */
+
+        .card-navigation {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 35px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #D6CFC3;
+        }
+
+
+        .card-navigation a {
+
+            background-color: #302B27;
+
+            color: #F5F3EF;
+
+            text-decoration: none;
+
+            padding: 10px 20px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            transition:
+                background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+
+            text-align: center;
+        }
+
+
+        .card-navigation a:hover {
+
+            background-color: #B89B5E;
+
+            color: #FFFFFF;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .card-number {
+
+            color: #8A6F35;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* ==================================================
+           FOOTER
+           ================================================== */
+
+        footer {
+
+            background-color: #252525;
+
+            color: #F5F3EF;
+
+            text-align: center;
+
+            padding: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        footer h6 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+            font-weight: normal;
+        }
+
+
+        /* ==================================================
+           BACK TO TOP
+           ================================================== */
+
+        .back-to-top {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #8b0000;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.3);
+
+            z-index: 999;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform: translateY(15px);
+
+            transition:
+                opacity 0.4s ease,
+                visibility 0.4s ease,
+                transform 0.3s ease,
+                background-color 0.3s ease;
+        }
+
+
+        /* JavaScript adds this when scrolling */
+
+        .back-to-top.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform: translateY(0);
+        }
+
+
+        .back-to-top:hover {
+
+            transform:
+                translateY(-5px);
+
+            background:
+                #b22222;
+        }
+
+
+        /* ==================================================
+           GOLDEN PIXIE DUST
+           ================================================== */
+
+        .pixie-dust {
+
+            position: fixed;
+
+            width: 7px;
+            height: 7px;
+
+            background: #B89B5E;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            box-shadow:
+                0 0 5px #B89B5E,
+                0 0 10px #D6B86A;
+
+            animation:
+                pixieFade 0.9s ease-out forwards;
+        }
+
+
+        @keyframes pixieFade {
+
+            0% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translate(0, 0);
+            }
+
+            100% {
+
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    translate(
+                        var(--random-x),
+                        var(--random-y)
+                    );
+            }
+
+        }
+
+
+        /* ==================================================
+           RESPONSIVE DESIGN
+           ================================================== */
+
+        @media (max-width: 768px) {
+
+            body {
+                font-size: 17px;
+            }
+
+
+            header {
+                padding: 22px 15px;
+            }
+
+
+            header h1 {
+                font-size: 34px;
+            }
+
+
+            .navbar a {
+                padding: 12px 14px;
+                font-size: 15px;
+            }
+
+
+            .elfili-picture {
+                min-height: 400px;
+            }
+
+
+            .elfili-picture h1 {
+                font-size: 42px;
+            }
+
+
+            .elfili-picture p {
+                font-size: 17px;
+            }
+
+
+            main {
+                width: 92%;
+            }
+
+
+            .content-card {
+                padding: 20px;
+            }
+
+
+            .characters {
+                grid-template-columns: 1fr;
+            }
+
+
+            .card-navigation {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+
+            .card-navigation a {
+                padding: 9px 15px;
+            }
+
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                right: 18px;
+                bottom: 18px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .lamp {
+                width: 300px;
+                max-width: 75vw;
+            }
+
+
+            .lamp-text {
+                font-size: 15px;
+            }
+
+
+            header h1 {
+                font-size: 28px;
+            }
+
+
+            .navbar li {
+                float: none;
+                width: 100%;
+            }
+
+
+            .navbar a {
+                text-align: center;
+            }
+
+
+            .member-list {
+                position: static;
+                width: 100%;
+            }
+
+
+            .elfili-picture {
+                min-height: 350px;
+            }
+
+
+            .elfili-picture h1 {
+                font-size: 34px;
+            }
+
+
+            .elfili-picture p {
+                font-size: 15px;
+            }
+
+
+            .content-card {
+                padding: 15px;
+            }
+
+
+            .content-card h2 {
+                font-size: 25px;
+            }
+
+
+            .content-box,
+            .book-info,
+            .banghay,
+            .source-card {
+                padding: 18px;
+            }
+
+
+            .card-navigation {
+                flex-direction: column;
+            }
+
+
+            .card-navigation a {
+                width: 100%;
+            }
+
+
+            .card-number {
+                order: -1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         TOP ANCHOR
+         ================================================== -->
+
+    <a id="top"></a>
+
+
+    <!-- ==================================================
+         BACK TO TOP
+         ================================================== -->
+
+    <a href="#top" class="back-to-top" id="backToTop">
+        ↑
+    </a>
+
+
+    <!-- ==================================================
+         LAMP INTRO
+         ================================================== -->
+
+    <input
+        type="checkbox"
+        id="lamp-toggle">
+
+
+    <div class="lamp-intro">
+
+        <div class="lamp-container">
+
+            <div class="lamp-glow"></div>
+
+
+            <label for="lamp-toggle">
+
+                <img
+                    src="sumabogsiya.png"
+                    alt="Simoun's lamp"
+                    class="lamp">
+
+            </label>
+
+
+            <p class="lamp-text">
+                Pindutin ang lampara para tumuloy.
+            </p>
+
+
+            <div class="explosion"></div>
+
+        </div>
+
+
+        <div class="flash"></div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ENTIRE WEBSITE
+         ================================================== -->
+
+    <div class="page-wrapper">
+
+
+        <!-- ==================================================
+             HEADER
+             ================================================== -->
+
+        <header>
+
+            <h1>
+                Online Book Review
+            </h1>
+
+        </header>
+
+
+
+       <!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+<nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+        <!-- ==================================================
+             VIDEO BANNER
+             ================================================== -->
+
+        <div class="elfili-picture">
+
+            <video
+                autoplay
+                muted
+                loop
+                playsinline>
+
+                <source
+                    src="lampara.mp4"
+                    type="video/mp4">
+
+            </video>
+
+
+            <div class="video-overlay"></div>
+
+            <div class="video-glow"></div>
+
+
+            <div class="banner-text">
+
+                <h1>
+                    El Filibusterismo
+                </h1>
+
+                <p>
+                    Isang Pangkalahatang-ideya
+                    ng Nobela
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             MAIN
+             ================================================== -->
+
+        <main>
+
+
+            <!-- ==================================================
+                 INTRO
+                 ================================================== -->
+
+            <div class="intro">
+
+                <h2>
+                    Ito ay isang pangkalahatang-ideya
+                    ng El Filibusterismo.
+                </h2>
+
+                <p>
+                    Enjoy reading!
+                </p>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 CONTENT SLIDER
+                 ================================================== -->
+
+            <div class="content-slider">
+
+
+                <!-- ==================================================
+                     1. PANIMULA
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="panimula">
+
+                    <h2>
+                        Panimula o Pagkilala sa Akda
+                    </h2>
+
+
+                    <div class="book-info">
+
+                        <h3>
+                            Pamagat ng Nobela
+                        </h3>
+
+                        <p style="text-align: center;">
+
+                            <strong>
+                                EL FILIBUSTERISMO
+                            </strong>
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="book-info">
+
+                        <h3>
+                            May-akda
+                        </h3>
+
+                        <p style="text-align: center;">
+
+                            Ang <em>El Filibusterismo</em>
+                            ay isinulat ni Dr. José Protacio
+                            Rizal, bayani ng Pilipinas at
+                            may-akda rin ng
+                            <em>Noli Me Tangere</em>.
+                            Ginamit niya ang panulat at papel
+                            upang ilantad ang mga pang-aabuso,
+                            katiwalian, at kawalang-katarungan
+                            noong panahon ng pananakop ng
+                            mga Espanyol. Sa pamamagitan ng
+                            kanyang mga akda, naging inspirasyon
+                            siya sa mga Pilipino na ipaglaban
+                            ang kanilang mga karapatan at kalayaan.
+                            Ipinakita rin niya na ang isang bayani
+                            ay hindi lamang gumagamit ng sandata;
+                            maaari ring gamitin ang kaalaman,
+                            panulat, at katotohanan sa pakikipaglaban.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="book-info">
+
+                        <h3>
+                            Bansang Pinagmulan
+                        </h3>
+
+                        <p style="text-align: center;">
+
+                            Ang akdang ito ay nagmula sa
+                            Pilipinas ngunit isinulat ni
+                            Dr. José Rizal sa Europa.
+                            Ang mga ideya at pangyayari sa
+                            nobela ay nakabatay sa karanasan
+                            ng mga Pilipino sa ilalim ng
+                            pang-aabuso at pagmamalabis ng
+                            mga Espanyol at iba pang dayuhan.
+
+                            <br><br>
+
+                            Tinalakay rin dito ang pagkamatay
+                            ng tatlong paring martir na sina
+                            Gomburza, na hinatulan ng kamatayan
+                            dahil sa mga kasalanang hindi naman
+                            nila ginawa at dahil sa mga maling
+                            paratang laban sa kanila. Mula sa
+                            mga pangyayaring ito, umusbong ang
+                            pagiging makabansa ng mga Pilipino
+                            at ang kanilang hangaring ipaglaban
+                            ang kanilang mga karapatang pantao.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <span></span>
+
+                        <span class="card-number">
+                            1 / 8
+                        </span>
+
+                        <a href="#tauhan">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     2. TAUHAN
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="tauhan">
+
+                    <h2>
+                        Tauhan
+                    </h2>
+
+
+                    <div class="characters">
+
+
+                        <div class="character">
+
+                            <h3>
+                                Crisostomo Ibarra / Simoun
+                            </h3>
+
+                            <p>
+
+                                Si Crisostomo Ibarra ay
+                                nagbalik bilang si Simoun
+                                upang maghiganti sa mga
+                                prayle at sa mga taong
+                                naging dahilan ng pagkasira
+                                ng kanyang mga pangarap
+                                at pag-ibig. Dahil sa mga
+                                naranasan niya, nagbago ang
+                                kanyang pananaw at pinili
+                                niyang isagawa ang kanyang
+                                paghihiganti.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Maria Clara
+                            </h3>
+
+                            <p>
+
+                                Siya ang dating minamahal
+                                ni Ibarra na naging sanhi
+                                rin ng kanyang matinding
+                                pagdurusa. Namatay si
+                                Maria Clara matapos ang
+                                mga karahasang dinanas niya
+                                sa ilalim ng kapangyarihan
+                                ng mga prayle.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Basilio
+                            </h3>
+
+                            <p>
+
+                                Siya ang anak nina Sisa at
+                                Pedro sa <em>Noli Me Tangere</em>.
+                                Sa simula, ayaw niyang sumama
+                                sa himagsikan ni Simoun.
+                                Ngunit matapos mamatay ang
+                                kanyang kasintahang si Juli,
+                                nagbago ang kanyang pananaw
+                                at sumama siya sa plano ni
+                                Simoun. Kalaunan, nakalaya
+                                siya dahil sa tulong ni Simoun,
+                                ngunit ipinagtapat niya kay
+                                Isagani ang plano ng
+                                paghihiganti ni Simoun.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Isagani
+                            </h3>
+
+                            <p>
+
+                                Siya ang dating kasintahan
+                                ni Paulita Gomez. Sa araw
+                                ng kasal nina Paulita at
+                                Juanito Pelaez, nalaman ni
+                                Isagani ang tungkol sa
+                                lamparang may bomba na
+                                inilagay ni Simoun. Itinapon
+                                niya ang lampara upang
+                                mapigilan ang pagsabog at
+                                nailigtas niya si Paulita
+                                at ang iba pang naroroon.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Juanito Pelaez
+                            </h3>
+
+                            <p>
+
+                                Siya ang kasintahan at
+                                kalaunan ay naging asawa
+                                ni Paulita Gomez. Siya ang
+                                nakatakdang pakasalan ni
+                                Paulita sa dating bahay
+                                ni Kapitan Tiago.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Juli
+                            </h3>
+
+                            <p>
+
+                                Si Juli ay kasintahan ni
+                                Basilio. Sinikap niyang
+                                makatulong sa pagpapalaya
+                                kay Basilio mula sa
+                                pagkakakulong. Sa kabila
+                                ng kanyang pagtatangka,
+                                naging biktima siya ng
+                                pang-aabuso na naging dahilan
+                                ng kanyang pagkamatay.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Padre Camorra
+                            </h3>
+
+                            <p>
+
+                                Isang prayle na hindi
+                                tumulong kay Juli sa
+                                maayos na paraan at
+                                sa halip ay sinamantala
+                                siya. Ang pangyayaring ito
+                                ay naging mahalagang dahilan
+                                sa trahedyang sinapit ni Juli.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Don Timoteo Pelaez
+                            </h3>
+
+                            <p>
+
+                                Siya ang ama ni Juanito
+                                Pelaez. Nakipag-ugnayan siya
+                                kay Simoun sa negosyo, na
+                                naging daan upang maisagawa
+                                ni Simoun ang ilan sa kanyang
+                                mga plano.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Kapitan Heneral
+                            </h3>
+
+                            <p>
+
+                                Siya ang pinakamataas na
+                                pinuno ng pamahalaan sa
+                                nobela. Naging ninong siya
+                                sa kasal nina Juanito at
+                                Paulita at nagkaroon ng
+                                kaugnayan kay Simoun dahil
+                                sa impluwensiya at kayamanan
+                                nito.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Paulita Gomez
+                            </h3>
+
+                            <p>
+
+                                Siya ang dating kasintahan
+                                ni Isagani at kalaunan ay
+                                naging kasintahan at asawa
+                                ni Juanito Pelaez. Sa araw
+                                ng kanilang kasal, nailigtas
+                                siya ni Isagani nang itapon
+                                nito ang lamparang may bomba
+                                na inilagay ni Simoun.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="character">
+
+                            <h3>
+                                Padre Florentino
+                            </h3>
+
+                            <p>
+
+                                Isang mabuti at kagalang-galang
+                                na paring Pilipino na
+                                pinagtapunan ni Simoun ng
+                                kanyang huling kumpisal.
+                                Sa kanyang tahanan nagtago
+                                si Simoun matapos mabigo
+                                ang kanyang plano. Matapos
+                                mamatay si Simoun, itinapon
+                                ni Padre Florentino sa dagat
+                                ang mga alahas at kayamanang
+                                naiwan nito.
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#panimula">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            2 / 8
+                        </span>
+
+                        <a href="#tagpuan">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     3. TAGPUAN
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="tagpuan">
+
+                    <h2>
+                        Tagpuan
+                    </h2>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Bapor
+                        </h3>
+
+                        <p>
+
+                            Ang paglalakbay ng bapor
+                            sa pagitan ng Maynila at Laguna
+                            ay nagsilbing mahalagang
+                            panimulang tagpuan ng nobela.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            San Diego
+                        </h3>
+
+                        <p>
+
+                            Isang mahalagang lugar
+                            na may kaugnayan sa nakaraan
+                            ni Basilio at sa mga pangyayari
+                            sa nobela.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Los Baños
+                        </h3>
+
+                        <p>
+
+                            Isa sa mga lugar kung saan
+                            naganap ang mga usapin tungkol
+                            sa pamahalaan at sa mga
+                            kahilingan ng mga mag-aaral.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Baybayin ng Karagatang Pasipiko
+                        </h3>
+
+                        <p>
+
+                            Dito nagtago si Simoun
+                            matapos mabigo ang kanyang
+                            plano.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#tauhan">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            3 / 8
+                        </span>
+
+                        <a href="#banghay">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     4. BANGHAY
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="banghay">
+
+                    <h2>
+                        Banghay ng Pangyayari
+                    </h2>
+
+
+                    <div class="banghay">
+
+                        <h3>
+                            Panimula
+                        </h3>
+
+                        <p>
+
+                            Nagsimula ang kuwento sa
+                            paglalakbay ng bapor sa
+                            pagitan ng Maynila at Laguna.
+                            Kabilang sa mga pasahero sina
+                            Simoun, Isagani, at Basilio.
+                            Labintatlong taon na ang
+                            lumipas mula nang mamatay
+                            sina Elias at Sisa. Nang
+                            makarating si Basilio sa
+                            San Diego, nakita niya si
+                            Simoun na dumalaw sa libingan
+                            ng kanyang ina na si Sisa
+                            sa libingan ng mga Ibarra.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="banghay">
+
+                        <h3>
+                            Saglit na Kasiglahan
+                        </h3>
+
+                        <p>
+
+                            Nang tangkain ni Simoun na
+                            patayin si Basilio upang
+                            mapanatili ang kanyang lihim,
+                            naisip niyang hikayatin ito na
+                            sumama sa kanyang plano para
+                            sa himagsikan. Tumanggi si
+                            Basilio dahil nais niyang
+                            makatapos ng pag-aaral.
+                            Dito rin niya nakilala ang
+                            tunay na pagkatao ni Simoun.
+
+                        </p>
+
+                        <p>
+
+                            Nakilala rin ang Kapitan
+                            Heneral at ang mga mag-aaral
+                            na humihingi ng tulong tungkol
+                            sa pagtatatag ng Akademya
+                            ng Wikang Kastila. Hindi
+                            napagbigyan ang kanilang
+                            kahilingan dahil sa malaking
+                            impluwensiya ng mga prayle.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="banghay">
+
+                        <h3>
+                            Kasukdulan
+                        </h3>
+
+                        <p>
+
+                            Muling hinikayat ni Simoun
+                            si Basilio na umanib sa
+                            kanyang masamang balak.
+                            Isa sa kanyang mga plano ay
+                            ang pagsagip kay Maria Clara
+                            mula sa kumbento ng Sta. Clara,
+                            ngunit hindi ito natuloy
+                            dahil namatay si Maria Clara.
+
+                        </p>
+
+                        <p>
+
+                            Ipinagpatuloy ni Simoun ang
+                            kanyang plano sa paghihiganti.
+                            Gumawa siya ng lampara na
+                            may dinamita at binalak itong
+                            gamitin upang pasabugin ang
+                            kasal nina Juanito at Paulita.
+
+                        </p>
+
+                        <p>
+
+                            Dahil sa pagkakaalam ni Basilio
+                            sa plano, sinabi niya ito kay
+                            Isagani. Nang malaman ni Isagani
+                            ang tungkol sa lampara, agad
+                            niya itong itinapon sa ilog
+                            upang iligtas si Paulita at
+                            ang mga taong naroroon.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="banghay">
+
+                        <h3>
+                            Kakalasan
+                        </h3>
+
+                        <p>
+
+                            Matapos mabigo ang kanyang
+                            plano, hinanap si Simoun ng
+                            mga awtoridad. Nagtago siya
+                            sa baybayin ng Karagatang
+                            Pasipiko. Nang malapit nang
+                            maabutan ng mga awtoridad,
+                            uminom siya ng lason upang
+                            hindi na matagpuang buhay.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="banghay">
+
+                        <h3>
+                            Wakas
+                        </h3>
+
+                        <p>
+
+                            Sa kanyang huling sandali,
+                            nangumpisal si Simoun kay
+                            Padre Florentino at ipinagtapat
+                            ang kanyang mga plano at
+                            paghihiganti. Matapos ang
+                            kumpisal, namatay si Simoun.
+
+                        </p>
+
+                        <p>
+
+                            Sa huli, itinapon ni Padre
+                            Florentino sa karagatan ang
+                            mga kayamanang naiwan ni
+                            Simoun sapagkat ginamit ang
+                            mga ito bilang kasangkapan
+                            sa kanyang maling gawain.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#tagpuan">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            4 / 8
+                        </span>
+
+                        <a href="#buod">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     5. BUOD
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="buod">
+
+                    <h2>
+                        Buod ng Nobela
+                    </h2>
+
+
+                    <div class="content-box">
+
+                        <p>
+
+                            Nagsimula ang kuwento sa
+                            pagbabalik ni Crisostomo Ibarra
+                            sa Pilipinas at sa kanyang
+                            pagtatangkang maghiganti sa mga
+                            prayle at sa mga taong sumira
+                            sa kanyang buhay at mga pangarap.
+                            Nagbalatkayo siya bilang si Simoun
+                            upang hindi siya makilala.
+                            Nakilala siya ni Basilio, anak ni
+                            Sisa, sa San Diego kung saan
+                            nakalibing ang kanyang ina.
+                            Sa halip na patayin si Basilio,
+                            naisip ni Simoun na isama siya
+                            sa kanyang plano ng paghihiganti.
+                            Gayunman, tumanggi si Basilio
+                            dahil nais niyang tapusin ang
+                            kanyang pag-aaral.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <p>
+
+                            Isa sa mga unang plano ni Simoun
+                            ay ang tangkaing agawin si Maria
+                            Clara mula sa kumbento ng Sta.
+                            Clara. Ngunit nabigo ang planong
+                            ito dahil namatay si Maria Clara
+                            nang araw na iyon.
+
+                        </p>
+
+                        <p>
+
+                            Samantala, matapos mamatay ang
+                            kanyang kasintahang si Juli,
+                            sumama si Basilio sa plano ni
+                            Simoun. Binalak nilang pasabugin
+                            ang kasal nina Juanito Pelaez at
+                            Paulita Gomez gamit ang isang
+                            lamparang may dinamita na ginawa
+                            ni Simoun.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <p>
+
+                            Subalit nabigo ang plano dahil
+                            sinabi ni Basilio kay Isagani,
+                            ang dating kasintahan ni Paulita,
+                            ang tungkol sa lampara.
+                            Nang malaman ito ni Isagani,
+                            agad niyang itinapon ang lampara
+                            sa ilog upang mailigtas si Paulita
+                            at ang iba pang mga taong naroroon.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <p>
+
+                            Matapos mabigo ang kanyang plano,
+                            hinanap si Simoun ng mga awtoridad.
+                            Nagtago siya sa baybayin ng
+                            Karagatang Pasipiko at uminom
+                            ng lason upang hindi na matagpuang
+                            buhay.
+
+                        </p>
+
+                        <p>
+
+                            Sa huli, nakapagkumpisal siya
+                            kay Padre Florentino at ipinagtapat
+                            ang kanyang mga plano at
+                            paghihiganti. Matapos ang kanyang
+                            pagkamatay, itinapon ni Padre
+                            Florentino sa karagatan ang mga
+                            kayamanang naiwan ni Simoun,
+                            sapagkat naging kasangkapan ang
+                            mga ito sa kanyang maling gawain.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#banghay">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            5 / 8
+                        </span>
+
+                        <a href="#paksa">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     6. PAKSA
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="paksa">
+
+                    <h2>
+                        Puna: Paksa / Tema
+                    </h2>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Galit at Paghihiganti
+                        </h3>
+
+                        <p>
+
+                            Ang nobelang
+                            <em>El Filibusterismo</em>
+                            ay puno ng mga tema tungkol
+                            sa galit, paghihiganti,
+                            pang-aabuso, kapangyarihan,
+                            at paghahangad ng kalayaan.
+                            Makikita ito sa katauhan ni
+                            Crisostomo Ibarra, na nagbalik
+                            bilang si Simoun upang maghiganti
+                            sa mga taong sumira sa kanyang
+                            buhay at mga pangarap.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Katiwalian at Pang-aabuso
+                        </h3>
+
+                        <p>
+
+                            Ipinakita rin sa nobela ang
+                            katiwalian at kasakiman sa
+                            pamahalaan at simbahan.
+                            Ipinakita kung paano maaaring
+                            gamitin ng mga taong may
+                            kapangyarihan ang kanilang
+                            posisyon upang mang-abuso
+                            at samantalahin ang mga
+                            ordinaryong Pilipino.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Kalayaan
+                        </h3>
+
+                        <p>
+
+                            Makikita rin na hindi sapat ang
+                            kayamanan at pansariling
+                            paghihiganti upang makamit ang
+                            tunay na kalayaan. Sa pagtatapos
+                            ng nobela, itinapon ni Padre
+                            Florentino ang mga kayamanang
+                            naiwan ni Simoun. Ipinahihiwatig
+                            nito na ang kayamanan at
+                            paghihiganti ay hindi maaaring
+                            maging tunay na susi sa
+                            makatarungang kalayaan.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Pansariling Puna
+                        </h3>
+
+                        <p>
+
+                            Para sa akin, ipinapakita ng
+                            nobela na ang tunay na pagbabago
+                            ay hindi lamang nakasalalay sa
+                            pansariling paghihiganti.
+                            Mahalaga ang pagmamahal sa bayan,
+                            pagkakaisa, at hangaring ipaglaban
+                            ang karapatan at kalayaan ng
+                            bawat Pilipino.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#buod">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            6 / 8
+                        </span>
+
+                        <a href="#sanggunian">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     7. SANGGUNIAN
+                     ================================================== -->
+
+                <section
+                    class="content-card"
+                    id="sanggunian">
+
+                    <h2>
+                        Sanggunian
+                    </h2>
+
+
+                    <div class="source-list">
+
+
+                        <div class="source-card">
+
+                            <p>
+
+                                Agoncillo, T. A., at mga kasama.
+                                <em>Pluma 10:
+                                El Filibusterismo.</em>
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="source-card">
+
+                            <p>
+
+                                Wikipedia.
+                                <em>El Filibusterismo.</em>
+
+                                <br><br>
+
+                                <a
+                                    href="https://tl.wikipedia.org/wiki/El_filibusterismo"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+
+                                    https://tl.wikipedia.org/wiki/El_filibusterismo
+
+                                </a>
+
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#paksa">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            7 / 8
+                        </span>
+
+                        <a href="#konklusyon">
+                            Next →
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     8. KONKLUSYON
+                     ================================================== -->
+
+                <section
+                    class="content-card conclusion"
+                    id="konklusyon">
+
+                    <h2>
+                        Konklusyon
+                    </h2>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Mensahe
+                        </h3>
+
+                        <p>
+
+                            Ang mensahe ng nobela ay
+                            ipinapakita na ang paghihiganti
+                            ay maaaring humantong sa
+                            pagkabigo at hindi makatarungang
+                            paggamit ng kapangyarihan.
+                            Ang kayamanan at pansariling
+                            kagustuhan ay hindi sapat upang
+                            makamit ang tunay na kalayaan.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Pag-ibig sa Bayan at Pagkakaisa
+                        </h3>
+
+                        <p>
+
+                            Sa halip, ipinapakita ng
+                            <em>El Filibusterismo</em> na
+                            mahalaga ang pag-ibig sa bayan,
+                            pagkakaisa, at hangaring ipaglaban
+                            ang kalayaan hindi lamang para
+                            sa sarili kundi para rin sa
+                            kapwa Pilipino.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Alaala ng Gomburza
+                        </h3>
+
+                        <p>
+
+                            Mahalaga rin sa nobela ang
+                            alaala ng tatlong paring martir
+                            na sina Gomburza. Ang kanilang
+                            sinapit ay nagpapakita ng
+                            kawalan ng katarungan at
+                            pang-aabuso ng mga makapangyarihan.
+                            Mula sa ganitong mga pangyayari,
+                            umusbong ang kamalayang makabansa
+                            at hangaring ipaglaban ang
+                            karapatan ng mga Pilipino.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="content-box">
+
+                        <h3>
+                            Pangwakas na Kaisipan
+                        </h3>
+
+                        <p>
+
+                            Sa kabuuan, ipinapakita ng
+                            <em>El Filibusterismo</em> na
+                            ang tunay na kalayaan ay hindi
+                            nakakamit sa pamamagitan lamang
+                            ng paghihiganti o kayamanan.
+                            Ito ay nangangailangan ng
+                            pagmamahal sa bayan,
+                            pagkakaisa, at paninindigan
+                            para sa katarungan.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="card-navigation">
+
+                        <a href="#sanggunian">
+                            ← Previous
+                        </a>
+
+                        <span class="card-number">
+                            8 / 8
+                        </span>
+
+                        <a href="#panimula">
+                            Back to Start ↻
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+        </main>
+
+
+
+        <!-- ==================================================
+             FOOTER
+             ================================================== -->
+
+        <footer>
+
+            <h6>
+                Grade 9 Property
+            </h6>
+
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <script>
+
+
+        /* ==================================================
+           PIXIE DUST
+           ================================================== */
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const sparkle =
+                    document.createElement("div");
+
+                sparkle.classList.add(
+                    "pixie-dust"
+                );
+
+
+                sparkle.style.left =
+                    event.clientX + "px";
+
+                sparkle.style.top =
+                    event.clientY + "px";
+
+
+                const randomX =
+                    (Math.random() - 0.5) * 50;
+
+                const randomY =
+                    (Math.random() - 0.5) * 50;
+
+
+                sparkle.style.setProperty(
+                    "--random-x",
+                    randomX + "px"
+                );
+
+                sparkle.style.setProperty(
+                    "--random-y",
+                    randomY + "px"
+                );
+
+
+                document.body.appendChild(
+                    sparkle
+                );
+
+
+                setTimeout(
+                    function() {
+
+                        sparkle.remove();
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+
+
+        /* ==================================================
+           BACK TO TOP
+           ================================================== */
+
+        const backToTop =
+            document.getElementById("backToTop");
+
+
+        window.addEventListener(
+            "scroll",
+            function() {
+
+                if (window.scrollY > 400) {
+
+                    backToTop.classList.add("show");
+
+                } else {
+
+                    backToTop.classList.remove("show");
+
+                }
+
+            }
+        );
+
+
+        /* ==================================================
+           BACK TO TOP CLICK
+           ================================================== */
+
+        backToTop.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                window.scrollTo({
+
+                    top: 0,
+
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>

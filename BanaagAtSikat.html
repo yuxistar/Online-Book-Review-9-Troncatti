@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Banaag at Sikat | Online Book Review</title>
+
+<style>
+
+/* ==================================================
+   GENERAL
+   ================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    margin: 0;
+    background-color: #F4F0E5;
+    color: #28313B;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+
+/* ==================================================
+   MOON INTRO
+   ================================================== */
+
+#moon-toggle {
+    display: none;
+}
+
+.moon-intro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #29435C 0%,
+            #172B3D 45%,
+            #07131F 100%
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    opacity: 1;
+    visibility: visible;
+
+    overflow: hidden;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 0s;
+}
+
+.moon-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ==================================================
+   STARS
+   ================================================== */
+
+.star {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    background: #FFF4C7;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px #FFF4C7;
+
+    animation:
+        starTwinkle 2s ease-in-out infinite alternate;
+}
+
+.star:nth-child(1) {
+    top: 15%;
+    left: 18%;
+}
+
+.star:nth-child(2) {
+    top: 25%;
+    right: 20%;
+    animation-delay: .4s;
+}
+
+.star:nth-child(3) {
+    top: 65%;
+    left: 12%;
+    animation-delay: .8s;
+}
+
+.star:nth-child(4) {
+    top: 72%;
+    right: 15%;
+    animation-delay: 1.2s;
+}
+
+.star:nth-child(5) {
+    top: 12%;
+    right: 42%;
+    animation-delay: 1.5s;
+}
+
+.star:nth-child(6) {
+    top: 42%;
+    left: 8%;
+    animation-delay: .6s;
+}
+
+.star:nth-child(7) {
+    top: 48%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+@keyframes starTwinkle {
+
+    from {
+        opacity: .25;
+        transform: scale(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+
+/* ==================================================
+   MOON GLOW
+   ================================================== */
+
+.moon-glow {
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,239,174,.38) 0%,
+            rgba(255,226,130,.18) 35%,
+            rgba(255,215,100,.07) 55%,
+            transparent 75%
+        );
+
+    filter: blur(15px);
+
+    animation:
+        moonGlow 2.5s ease-in-out infinite alternate;
+
+    pointer-events: none;
+}
+
+@keyframes moonGlow {
+
+    from {
+        transform: scale(.9);
+        opacity: .6;
+    }
+
+    to {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+/* ==================================================
+   MOON
+   ================================================== */
+
+.moon {
+    position: relative;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #FFFBE3 0%,
+            #FBE8A5 45%,
+            #E8C76A 75%,
+            #C49B45 100%
+        );
+
+    cursor: pointer;
+
+    z-index: 2;
+
+    box-shadow:
+        0 0 20px #FFF3B0,
+        0 0 50px rgba(255,224,120,.75),
+        0 0 100px rgba(255,210,80,.35);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.moon:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 30px #FFF8D0,
+        0 0 70px rgba(255,224,120,.9),
+        0 0 130px rgba(255,210,80,.45);
+}
+
+
+/* ==================================================
+   MOON CRATERS
+   ================================================== */
+
+.moon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: rgba(190,153,75,.25);
+
+    top: 45px;
+    left: 45px;
+
+    box-shadow:
+        55px 35px 0 8px rgba(190,153,75,.18),
+        30px 85px 0 3px rgba(190,153,75,.22),
+        90px 75px 0 5px rgba(190,153,75,.15);
+}
+
+
+/* ==================================================
+   INTRO TEXT
+   ================================================== */
+
+.moon-text {
+    color: #FFF8E1;
+
+    margin-top: 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    animation:
+        textPulse 2s ease-in-out infinite alternate;
+
+    z-index: 3;
+}
+
+@keyframes textPulse {
+
+    from {
+        opacity: .55;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ==================================================
+   SUN
+   ================================================== */
+
+.sun {
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #FFFDE2 0%,
+            #FFD85C 40%,
+            #FFB52E 75%,
+            #F28C28 100%
+        );
+
+    opacity: 0;
+
+    transform:
+        translateY(250px)
+        scale(.3);
+
+    z-index: 4;
+
+    box-shadow:
+        0 0 30px #FFE99A,
+        0 0 70px #FFC94F,
+        0 0 130px rgba(255,166,45,.6);
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   SUN RAYS
+   ================================================== */
+
+.sun::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -45px;
+
+    border-radius: 50%;
+
+    background:
+        repeating-conic-gradient(
+            from 0deg,
+            rgba(255,218,91,.75) 0deg 8deg,
+            transparent 8deg 18deg
+        );
+
+    animation:
+        sunRotate 10s linear infinite;
+}
+
+@keyframes sunRotate {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ==================================================
+   MOON DISAPPEAR
+   ================================================== */
+
+#moon-toggle:checked ~ .moon-intro .moon {
+    animation:
+        moonDisappear 1s ease-in forwards;
+}
+
+@keyframes moonDisappear {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    45% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(.05);
+        opacity: 0;
+    }
+}
+
+
+#moon-toggle:checked ~ .moon-intro .moon-text {
+    animation:
+        textDisappear .6s ease-out forwards;
+}
+
+@keyframes textDisappear {
+
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+}
+
+
+/* ==================================================
+   MOON GLOW EXPLOSION
+   ================================================== */
+
+#moon-toggle:checked ~ .moon-intro .moon-glow {
+    animation:
+        glowExpand 1.6s ease-out forwards;
+}
+
+@keyframes glowExpand {
+
+    0% {
+        transform: scale(1);
+        opacity: .7;
+    }
+
+    45% {
+        transform: scale(2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(7);
+        opacity: 0;
+    }
+}
+
+
+/* ==================================================
+   SUNRISE
+   ================================================== */
+
+#moon-toggle:checked ~ .moon-intro .sun {
+    animation:
+        sunrise 1.6s .45s ease-out forwards;
+}
+
+@keyframes sunrise {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(250px)
+            scale(.3);
+    }
+
+    40% {
+        opacity: 1;
+
+        transform:
+            translateY(80px)
+            scale(.8);
+    }
+
+    75% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(-10px)
+            scale(1);
+    }
+}
+
+
+/* ==================================================
+   SUNRISE LIGHT
+   ================================================== */
+
+.sun-light {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,225,120,.85) 0%,
+            rgba(255,190,70,.35) 25%,
+            rgba(255,150,50,.12) 45%,
+            transparent 70%
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+#moon-toggle:checked ~ .moon-intro .sun-light {
+    animation:
+        sunlight 1.7s .5s ease-out forwards;
+}
+
+@keyframes sunlight {
+
+    0% {
+        opacity: 0;
+        transform: scale(.5);
+    }
+
+    45% {
+        opacity: .9;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: .35;
+        transform: scale(2);
+    }
+}
+
+
+/* ==================================================
+   INTRO FADE OUT
+   ================================================== */
+
+#moon-toggle:checked ~ .moon-intro {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 1.5s ease 1.8s,
+        visibility 0s 3.3s;
+}
+
+
+/* ==================================================
+   MAIN PAGE REVEAL
+   ================================================== */
+
+.page-wrapper {
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation:
+        pageReveal 1.6s 1.8s ease-out forwards;
+}
+
+@keyframes pageReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==================================================
+   HEADER
+   ================================================== */
+
+header {
+    background:
+        linear-gradient(
+            135deg,
+            #183B56,
+            #245B73
+        );
+
+    color: #FFF7DD;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+header h1 {
+    font-family:
+        "Times New Roman",
+        Times,
+        serif;
+
+    font-size: 45px;
+
+    margin: 0;
+}
+
+header p {
+    font-size: 18px;
+    margin: 5px 0 0;
+}
+
+
+/* ==================================================
+   NAVIGATION BAR
+   ================================================== */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style-type: none;
+
+    background-color: #D18B32;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: visible;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar a {
+    color: #FFF8E8;
+
+    text-decoration: none;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    transition:
+        background-color .3s ease,
+        color .3s ease;
+}
+
+.navbar a:hover {
+    background-color: #FFE2A3;
+    color: #21465A;
+}
+
+
+/* ==================================================
+   GROUP MEMBERS DROPDOWN
+   ================================================== */
+
+.dropdown {
+    position: relative;
+}
+
+/* Make Group Members look exactly like the other navbar links */
+
+.dropdown details {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown summary {
+    list-style: none;
+
+    color: #F5F3EF;
+
+    padding: 15px 20px;
+
+    display: block;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+/* Remove the default arrow */
+
+.dropdown summary::-webkit-details-marker {
+    display: none;
+}
+
+.dropdown summary::marker {
+    display: none;
+}
+
+/* Hover effect matches Homepage and About */
+
+.dropdown summary:hover {
+    background-color: #FFE9D1;
+
+    color: #B89B5E;
+}
+
+
+/* ==================================================
+   MEMBER LIST
+   ================================================== */
+
+.member-list {
+    display: none;
+
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    background-color: #302B27;
+
+    min-width: 280px;
+
+    padding: 8px 0;
+
+    margin: 0;
+
+    box-shadow:
+        0 5px 10px
+        rgba(0, 0, 0, 0.3);
+
+    z-index: 2000;
+}
+
+
+/* Show dropdown when clicked */
+
+.dropdown details[open] .member-list {
+    display: block;
+}
+
+
+/* ==================================================
+   MEMBER NAMES
+   ================================================== */
+
+.member-list a {
+    display: block;
+
+    color: #F5F3EF;
+
+    text-decoration: none;
+
+    padding: 10px 18px;
+
+    margin: 0;
+
+    font-size: 17px;
+
+    line-height: 1.4;
+
+    font-weight: normal;
+
+    white-space: nowrap;
+
+    transition: 0.3s ease;
+}
+
+
+/* Member hover */
+
+.member-list a:hover {
+    background-color: #FFE9D1;
+
+    color: #8A6F35;
+}
+
+/* ==================================================
+   CLEAR NAVIGATION FLOAT
+   ================================================== */
+
+.navbar ul::after {
+    content: "";
+
+    display: table;
+
+    clear: both;
+}
+
+
+/* ==================================================
+   IMAGE BANNER
+   ================================================== */
+
+.banaag-picture {
+    position: relative;
+
+    min-height: 500px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    color: #FFFFFF;
+
+    background-color: #183B56;
+}
+
+.banaag-picture img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: 0;
+}
+
+
+/* ==================================================
+   BANNER OVERLAY
+   ================================================== */
+
+.image-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(18,46,62,.35),
+            rgba(18,46,62,.78)
+        );
+
+    z-index: 1;
+}
+
+
+/* ==================================================
+   CINEMATIC GLOW
+   ================================================== */
+
+.image-glow {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0,0,0,.25) 75%,
+            rgba(0,0,0,.65) 100%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   BANNER TEXT
+   ================================================== */
+
+.banner-text {
+    position: relative;
+
+    z-index: 3;
+
+    padding: 30px;
+
+    animation:
+        bannerAppear 1.2s 2s ease-out both;
+}
+
+@keyframes bannerAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banaag-picture h1 {
+    font-family: Georgia, serif;
+
+    font-size: 60px;
+
+    margin: 0;
+
+    text-shadow:
+        0 3px 15px rgba(0,0,0,.8);
+}
+
+.banaag-picture p {
+    font-size: 21px;
+
+    margin-top: 8px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.8);
+}
+
+
+/* ==================================================
+   MAIN CONTENT
+   ================================================== */
+
+main {
+    width: 85%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+}
+
+
+/* ==================================================
+   INTRO
+   ================================================== */
+
+.intro {
+    background-color: #FFFFFF;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid #D9C8A8;
+
+    margin-bottom: 30px;
+}
+
+.intro h2 {
+    font-family:
+        Cambria,
+        Cochin,
+        Georgia,
+        Times,
+        "Times New Roman",
+        serif;
+
+    color: #21465A;
+}
+
+
+/* ==================================================
+   CONTENT SLIDER
+   ================================================== */
+
+.content-slider {
+    position: relative;
+
+    width: 100%;
+
+    margin: 30px auto;
+}
+
+.content-card {
+    display: none;
+
+    background-color: #F0E8D7;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    border-left:
+        5px solid #D18B32;
+
+    box-shadow:
+        0 5px 14px rgba(24,59,86,.12);
+
+    min-height: 500px;
+
+    overflow: hidden;
+}
+
+
+/* ==================================================
+   CARD TRANSITION
+   ================================================== */
+
+.content-card:target {
+    display: block;
+
+    animation:
+        cardSlide .65s ease-out both;
+}
+
+@keyframes cardSlide {
+
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+/* ==================================================
+   SHOW FIRST CARD BY DEFAULT
+   ================================================== */
+
+.content-slider:not(:has(.content-card:target))
+#panimula {
+    display: block;
+
+    animation:
+        cardSlide .65s ease-out both;
+}
+
+.content-slider:has(.content-card:target)
+#panimula {
+    display: none;
+}
+
+.content-slider:has(#panimula:target)
+#panimula {
+    display: block;
+
+    animation:
+        cardSlide .65s ease-out both;
+}
+
+
+/* ==================================================
+   CARD HEADINGS
+   ================================================== */
+
+.content-card h2 {
+    color: #21465A;
+
+    font-family: Georgia, serif;
+
+    text-align: center;
+
+    border-bottom:
+        2px solid #D18B32;
+
+    padding-bottom: 10px;
+
+    margin-top: 0;
+}
+
+.content-card h3 {
+    color: #2E6175;
+
+    font-family: Georgia, serif;
+}
+
+.content-card p {
+    text-align: justify;
+}
+
+
+/* ==================================================
+   BOOK INFORMATION
+   ================================================== */
+
+.book-info {
+    background-color: #FFFFFF;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #D9C8A8;
+
+    text-align: center;
+
+    transition: .3s ease;
+}
+
+.book-info h3 {
+    margin-bottom: 5px;
+    color: #21465A;
+}
+
+
+/* ==================================================
+   CHARACTERS
+   ================================================== */
+
+.characters {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.character {
+    background-color: #FFFFFF;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    border-top:
+        4px solid #D18B32;
+
+    border-left:
+        1px solid #D9C8A8;
+
+    border-right:
+        1px solid #D9C8A8;
+
+    border-bottom:
+        1px solid #D9C8A8;
+
+    transition: .3s ease;
+}
+
+.character h3 {
+    margin-top: 0;
+    color: #21465A;
+}
+
+
+/* ==================================================
+   BANGHAY
+   ================================================== */
+
+.banghay {
+    background-color: #FFFFFF;
+
+    padding: 20px;
+
+    margin: 15px 0;
+
+    border-radius: 8px;
+
+    border-left:
+        4px solid #D18B32;
+
+    border-top:
+        1px solid #D9C8A8;
+
+    border-right:
+        1px solid #D9C8A8;
+
+    border-bottom:
+        1px solid #D9C8A8;
+
+    transition: .3s ease;
+}
+
+.banghay h3 {
+    margin-top: 0;
+    color: #21465A;
+}
+
+
+/* ==================================================
+   SINGLE PARAGRAPH SECTIONS
+   ================================================== */
+
+.single-paragraph-card {
+    background-color: #FFFFFF;
+
+    padding: 28px;
+
+    margin-top: 20px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #D9C8A8;
+
+    border-left:
+        5px solid #D18B32;
+
+    box-shadow:
+        0 5px 14px rgba(24,59,86,.10);
+}
+
+.single-paragraph-card p {
+    text-align: justify;
+
+    text-indent: 45px;
+
+    margin: 0;
+
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   PUNA
+   ================================================== */
+
+.puna-box {
+    background-color: #FFFFFF;
+
+    padding: 28px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #D9C8A8;
+
+    border-left:
+        5px solid #D18B32;
+
+    box-shadow:
+        0 5px 14px rgba(24,59,86,.10);
+
+    margin-top: 20px;
+}
+
+.puna-box p {
+    text-align: justify;
+
+    text-indent: 45px;
+
+    margin: 0;
+
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   SANGGUNIAN
+   ================================================== */
+
+.source-list {
+    background-color: #FFFFFF;
+
+    padding: 28px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #D9C8A8;
+
+    border-left:
+        5px solid #D18B32;
+
+    box-shadow:
+        0 5px 14px rgba(24,59,86,.10);
+
+    margin-top: 20px;
+}
+
+.source-list p {
+    text-align: left;
+
+    margin: 0;
+
+    line-height: 1.8;
+}
+
+.source-list a {
+    color: #A86620;
+
+    word-break: break-word;
+
+    transition: .3s ease;
+}
+
+.source-list a:hover {
+    color: #D18B32;
+}
+
+
+/* ==================================================
+   CONCLUSION
+   ================================================== */
+
+.conclusion {
+    background:
+        linear-gradient(
+            135deg,
+            #EAD7A6,
+            #F2E5C5
+        );
+
+    color: #35434B;
+}
+
+.conclusion h2 {
+    color: #21465A;
+}
+
+.conclusion-card {
+    background-color: rgba(255,255,255,.75);
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid #D9C8A8;
+
+    border-left:
+        5px solid #D18B32;
+
+    box-shadow:
+        0 5px 14px rgba(24,59,86,.10);
+}
+
+.conclusion-card p {
+    text-align: justify;
+
+    text-indent: 45px;
+
+    margin: 0;
+
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   HOVER EFFECTS
+   ================================================== */
+
+.character:hover,
+.book-info:hover,
+.banghay:hover {
+
+    box-shadow:
+        0 10px 25px rgba(209,139,50,.35);
+
+    transform:
+        translateY(-5px);
+
+    border-top-color: #E4A64B;
+
+    transition:
+        .3s ease;
+}
+
+
+/* ==================================================
+   NEXT / PREVIOUS BUTTONS
+   ================================================== */
+
+.card-navigation {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid #D5C7AE;
+}
+
+.card-navigation a {
+    background-color: #21465A;
+
+    color: #FFF8E8;
+
+    text-decoration: none;
+
+    padding: 10px 20px;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    transition:
+        background-color .3s ease,
+        color .3s ease,
+        transform .3s ease;
+
+    text-align: center;
+}
+
+.card-navigation a:hover {
+    background-color: #D18B32;
+
+    color: #FFFFFF;
+
+    transform:
+        translateY(-2px);
+}
+
+.card-number {
+    color: #A86620;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   FOOTER
+   ================================================== */
+
+footer {
+    background-color: #183B56;
+
+    color: #FFF7DD;
+
+    text-align: center;
+
+    padding: 15px;
+
+    margin-top: 30px;
+}
+
+footer h6 {
+    margin: 0;
+
+    font-size: 14px;
+
+    font-weight: normal;
+}
+
+
+/* ==================================================
+   BACK TO TOP
+   ================================================== */
+
+.back-to-top {
+    position: fixed;
+
+    bottom: 30px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+
+    background:
+        #D18B32;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.3);
+
+    z-index: 999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease,
+        transform .3s ease;
+
+    animation:
+        showBackToTop linear;
+
+    animation-timeline:
+        scroll();
+}
+
+@keyframes showBackToTop {
+
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    15% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.back-to-top:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        #E4A64B;
+}
+
+
+/* ==================================================
+   MOBILE RESPONSIVE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+    body {
+        font-size: 17px;
+    }
+
+    .moon {
+        width: 145px;
+        height: 145px;
+    }
+
+    .sun {
+        width: 130px;
+        height: 130px;
+    }
+
+    .moon-text {
+        font-size: 15px;
+        padding: 0 20px;
+    }
+
+    header h1 {
+        font-size: 34px;
+    }
+
+    .navbar li {
+        float: none;
+        text-align: center;
+    }
+
+    .member-list {
+        position: static;
+        width: 100%;
+    }
+
+    .banaag-picture {
+        min-height: 400px;
+    }
+
+    .banaag-picture h1 {
+        font-size: 40px;
+    }
+
+    .banaag-picture p {
+        font-size: 17px;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    .content-card {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    .characters {
+        grid-template-columns: 1fr;
+    }
+
+    .card-navigation {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card-navigation a {
+        padding: 9px 14px;
+    }
+
+    .card-number {
+        order: -1;
+
+        width: 100%;
+
+        margin-bottom: 5px;
+    }
+
+    .single-paragraph-card,
+    .puna-box,
+    .source-list,
+    .conclusion-card {
+        padding: 20px;
+    }
+
+    .single-paragraph-card p,
+    .puna-box p,
+    .conclusion-card p {
+        text-indent: 30px;
+    }
+
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+
+        right: 18px;
+        bottom: 18px;
+    }
+}
+
+
+/* ==================================================
+   GOLDEN PIXIE DUST CURSOR
+   ================================================== */
+
+.pixie-dust {
+    position: fixed;
+
+    width: 7px;
+    height: 7px;
+
+    background: #D9A441;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    box-shadow:
+        0 0 5px #D9A441,
+        0 0 10px #FFE29A;
+
+    animation:
+        pixieFade .9s ease-out forwards;
+}
+
+@keyframes pixieFade {
+
+    0% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translate(0,0);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0)
+            translate(
+                var(--random-x),
+                var(--random-y)
+            );
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<a id="top"></a>
+
+
+<a href="#panimula" class="back-to-top">
+    ↑
+</a>
+
+
+<!-- ==================================================
+     MOON INTRO
+     ================================================== -->
+
+<input type="checkbox" id="moon-toggle">
+
+<div class="moon-intro">
+
+    <div class="moon-container">
+
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+
+        <div class="moon-glow"></div>
+
+        <div class="sun-light"></div>
+
+        <div class="sun"></div>
+
+        <label for="moon-toggle">
+
+            <div class="moon"></div>
+
+        </label>
+
+        <p class="moon-text">
+            Pindutin ang buwan para sumikat ang araw.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     ENTIRE WEBSITE
+     ================================================== -->
+
+<div class="page-wrapper">
+
+
+<header>
+
+    <h1>
+        Online Book Review
+    </h1>
+
+</header>
+
+
+<!-- ================================
+         NAVIGATION BAR
+         ================================ -->
+
+ <nav class="navbar">
+
+    <ul>
+
+        <!-- HOMEPAGE -->
+        <li>
+            <a href="Overview.html">
+                Home
+            </a>
+        </li>
+
+
+        <!-- ABOUT -->
+        <li>
+            <a href="About.html">
+                About
+            </a>
+        </li>
+
+
+        <!-- GROUP MEMBERS -->
+        <li class="dropdown">
+
+            <details>
+
+                <summary>
+                    Mga Miyembro
+                </summary>
+
+                <div class="member-list">
+
+                    <a href="JercarlBongoyan.html">
+                        Jercarl Bongoyan
+                    </a>
+
+                    <a href="AlyssaGelaDelMundo.html">
+                        Alyssa Gela Del Mundo
+                    </a>
+
+                    <a href="MishaKyleeDifuntorum.html">
+                        Misha Kylee Difuntorum
+                    </a>
+
+                    <a href="ZeusVincentEgino.html">
+                        Zeus Vincent Egino
+                    </a>
+
+                    <a href="KeanZacharyGarcia.html">
+                        Kean Zachary Garcia
+                    </a>
+
+                    <a href="ArabellaChaceMonroy.html">
+                        Arabella Chace Monroy
+                    </a>
+
+                </div>
+
+            </details>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- ==================================================
+     IMAGE BANNER
+     ================================================== -->
+
+<div class="banaag-picture">
+
+    <img
+        src="sunrise.jpg"
+        alt="Banaag at Sikat"
+    >
+
+    <div class="image-overlay"></div>
+
+    <div class="image-glow"></div>
+
+    <div class="banner-text">
+
+        <h1>
+            Banaag at Sikat
+        </h1>
+
+        <p>
+            Isang Pangkalahatang-ideya ng Nobela
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MAIN
+     ================================================== -->
+
+<main>
+
+
+<div class="intro">
+
+    <h2>
+        Ito ay isang pangkalahatang-ideya ng Banaag at Sikat.
+    </h2>
+
+    <p>
+        Enjoy reading!
+    </p>
+
+</div>
+
+
+<div class="content-slider">
+
+
+<!-- ==================================================
+     1. PANIMULA
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="panimula"
+>
+
+    <h2>
+        Panimula / Pagkilala sa Akda
+    </h2>
+
+    <div class="book-info">
+
+        <h3>
+            Pamagat ng Nobela
+        </h3>
+
+        <p style="text-align:center;">
+
+            <strong>
+                BANAAG AT SIKAT
+            </strong>
+
+        </p>
+
+    </div>
+
+
+    <div class="book-info">
+
+        <h3>
+            May-akda
+        </h3>
+
+        <p>
+
+            Lope K. Santos – si Lope K. Santos ay isang Pilipinong
+            manunulat na naging mahalagang bahagi ng pag-unlad ng
+            panitikang Tagalog. Kilala siya sa paggamit ng kanyang
+            mga akda upang talakayin ang mga suliranin sa lipunan
+            at kalagayan ng mga manggagawa.
+
+        </p>
+
+    </div>
+
+
+    <div class="book-info">
+
+        <h3>
+            Uri ng Akdang Pampanitikan
+        </h3>
+
+        <p style="text-align:center;">
+            Nobela
+        </p>
+
+    </div>
+
+
+    <div class="book-info">
+
+        <h3>
+            Bansang Pinagmulan
+        </h3>
+
+        <p>
+
+            Ang nobelang <em>Banaag at Sikat</em> ay nagmula sa
+            Pilipinas. Ito ay isinulat sa wikang Tagalog at
+            inilathala noong 1906. Makikita rito ang mga kalagayan
+            at suliraning panlipunan ng mga Pilipino noong unang
+            bahagi ng panahon ng mga Amerikano.
+
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <span></span>
+
+        <span class="card-number">
+            1 / 8
+        </span>
+
+        <a href="#tauhan">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     2. TAUHAN
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="tauhan"
+>
+
+    <h2>
+        Tauhan
+    </h2>
+
+    <div class="characters">
+
+        <div class="character">
+
+            <h3>
+                Delfin
+            </h3>
+
+            <p>
+                Siya ang pangunahing tauhan at isa siyang mahirap na
+                nag-aaral ng abogasya at nagtatrabaho bilang manunulat
+                sa isang pahayagan. Naniniwala siya sa sosyalismo at
+                nais niyang magkaroon ng mas pantay na karapatan ang
+                mga mahihirap at manggagawa.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Felipe
+            </h3>
+
+            <p>
+                Siya ang matalik na kaibigan ni Delfin. Galing siya sa
+                isang mayamang pamilya ngunit hindi niya gusto ang
+                paraan ng pamumuhay at pamumuno ng kanyang ama.
+                Mas radikal ang kanyang paniniwala at naniniwala
+                siyang kailangan magkaroon ng malaking pagbabago
+                sa lipunan upang mawala ang hindi pagkakapantay-pantay.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Meni Miranda
+            </h3>
+
+            <p>
+                Siya ay anak ni Don Ramon at minamahal ni Delfin.
+                Bagama't galing siya sa mayamang pamilya, pinili
+                niyang makasama si Delfin kahit hindi ito mayaman.
+                Ipinakita niya na hindi lamang pera o katayuan sa
+                buhay ang mahalaga sa isang relasyon.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Tentay
+            </h3>
+
+            <p>
+                Siya ang minamahal ni Felipe. Isa siyang karaniwang
+                babae na nagmula sa mahirap na kalagayan. Sa kabila
+                nito, ipinakita niya ang kanyang dignidad at sariling
+                paninindigan.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Don Ramon
+            </h3>
+
+            <p>
+                Siya ang ama nina Meni at Thalia at isang mayaman na
+                may-ari ng pagawaan. Kinatawan niya ang mayamang uri
+                ng lipunan na madalas na nakikinabang sa paggawa ng
+                mga manggagawa. Ang kanyang pakikitungo sa mga taong
+                nagtatrabaho para sa kanya ay nagiging mahalagang
+                bahagi ng tunggalian sa nobela.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Ruperto
+            </h3>
+
+            <p>
+                Siya ang matagal nang nawawalang kapatid ni Tentay.
+                Siya ang nagdala pabalik sa Pilipinas ng katawan ni
+                Don Ramon at nagbigay ng impormasyon tungkol sa
+                nangyari rito.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#panimula">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            2 / 8
+        </span>
+
+        <a href="#tagpuan">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     3. TAGPUAN
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="tagpuan"
+>
+
+    <h2>
+        Tagpuan
+    </h2>
+
+    <div class="characters">
+
+        <div class="character">
+
+            <h3>
+                Pilipinas
+            </h3>
+
+            <p>
+                Ang kuwento ay naganap sa Pilipinas noong unang
+                bahagi ng panahon ng mga Amerikano. Makikita rito
+                ang kalagayan ng lipunan at ang pagkakaiba ng buhay
+                ng mga mayayaman at mahihirap.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Maynila
+            </h3>
+
+            <p>
+                Isa sa mahahalagang lugar sa nobela ang Maynila,
+                kung saan makikita ang mga pangunahing pangyayari
+                sa buhay ng mga tauhan at ang malaking pagkakaiba
+                ng kalagayan ng iba't ibang uri ng tao.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Bayan ng Silangan
+            </h3>
+
+            <p>
+                Mahalaga rin ang bayan ng Silangan bilang isa sa
+                mga tagpuan ng kuwento. Ipinapakita nito ang
+                kalagayan ng mga ordinaryong mamamayan at ang
+                mga suliraning panlipunan na tinatalakay ng nobela.
+            </p>
+
+        </div>
+
+
+        <div class="character">
+
+            <h3>
+                Kahalagahan ng Tagpuan
+            </h3>
+
+            <p>
+                Hindi lamang nagsisilbing lugar ng mga pangyayari
+                ang tagpuan. Ipinapakita rin nito ang kalagayan ng
+                lipunan, lalo na ang problema sa pagitan ng mga
+                mayayaman, manggagawa, at mahihirap.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#tauhan">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            3 / 8
+        </span>
+
+        <a href="#banghay">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     4. BANGHAY
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="banghay"
+>
+
+    <h2>
+        Banghay ng Pangyayari
+    </h2>
+
+
+    <div class="banghay">
+
+        <h3>
+            1. Panimula
+        </h3>
+
+        <p>
+            Ipinakilala sina Delfin at Felipe, dalawang magkaibigan
+            na may magkaibang pananaw tungkol sa pagbabago ng
+            lipunan. Si Delfin ay naniniwala sa sosyalismo at sa
+            mapayapang pagbabago sa pamamagitan ng edukasyon at
+            pagkakaroon ng pantay na karapatan. Si Felipe naman
+            ay mas radikal at tutol sa kapangyarihan ng mga
+            mayayamang mapang-abuso.
+        </p>
+
+    </div>
+
+
+    <div class="banghay">
+
+        <h3>
+            2. Saglit na Kasiglahan
+        </h3>
+
+        <p>
+            Dahil ayaw ni Felipe sa buhay na kasama ang kanyang
+            mayamang ama, iniwan niya ang kanyang marangyang
+            tahanan at nakatira sa kanyang ninong na si Don Ramon
+            sa Maynila. Ngunit nakita rin niya na hindi naiiba si
+            Don Ramon sa kanyang ama dahil hindi rin maganda ang
+            pakikitungo nito sa mga taong nagtatrabaho para sa kanya.
+        </p>
+
+        <p>
+            Samantala, nahulog ang loob ni Felipe kay Tentay,
+            isang karaniwang babae. Si Delfin naman ay umibig
+            kay Meni, anak ni Don Ramon.
+        </p>
+
+    </div>
+
+
+    <div class="banghay">
+
+        <h3>
+            3. Kasukdulan
+        </h3>
+
+        <p>
+            Lalong naging komplikado ang mga pangyayari nang
+            mabuntis si Meni at dahil dito ay itinakwil siya
+            ng kanyang ama. Sa halip na bumalik sa marangyang
+            buhay, pinili niyang makasama si Delfin at mamuhay
+            nang mas simple.
+        </p>
+
+        <p>
+            Kasabay nito, patuloy ang pagtutol nina Delfin at
+            Felipe sa hindi patas na pagtrato sa mga mahihirap
+            at manggagawa.
+        </p>
+
+    </div>
+
+
+    <div class="banghay">
+
+        <h3>
+            4. Kakalasan
+        </h3>
+
+        <p>
+            Dahil sa mga pangyayari, umalis si Don Ramon ng
+            Pilipinas kasama ang isang pinagkakatiwalaang
+            tauhan na si Tekong. Samantala, patuloy na
+            ipinapahayag nina Delfin at Felipe ang kanilang
+            mga paniniwala tungkol sa pagkakapantay-pantay
+            at pagbabago sa lipunan.
+        </p>
+
+        <p>
+            Kalaunan, namatay si Don Ramon sa New York.
+            Ang kanyang katawan ay ibinalik sa Pilipinas
+            ni Ruperto, ang kapatid ni Tentay.
+        </p>
+
+    </div>
+
+
+    <div class="banghay">
+
+        <h3>
+            5. Wakas
+        </h3>
+
+        <p>
+            Sa huli, nagtungo sina Delfin at Felipe sa puntod
+            ni Don Ramon. Nag-usap sila tungkol sa kanilang
+            mga paniniwala at sa uri ng lipunang nais nilang
+            makita. Pagkatapos, umalis sila sa sementeryo
+            habang papalalim ang gabi.
+        </p>
+
+        <p>
+            Ang wakas ay nagpapakita na kahit maraming problema
+            ang lipunan, patuloy pa rin ang paghahanap ng mga
+            tauhan sa mas makatarungan at pantay na kinabukasan.
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#tagpuan">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            4 / 8
+        </span>
+
+        <a href="#buod">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     5. BUOD
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="buod"
+>
+
+    <h2>
+        Buod ng Nobela
+    </h2>
+
+
+    <div class="single-paragraph-card">
+
+        <p>
+            Ang <em>Banaag at Sikat</em> ay umiikot sa buhay nina
+            Delfin at Felipe, dalawang magkaibigan na may
+            magkaibang pananaw tungkol sa pagbabago ng lipunan.
+            Si Delfin ay isang mahirap na nag-aaral ng abogasya
+            at nagtatrabaho bilang manunulat. Naniniwala siya sa
+            sosyalismo at sa pagkakaroon ng mas pantay na
+            karapatan para sa mga mahihirap at manggagawa.
+            Si Felipe naman ay anak ng isang mayamang pamilya
+            ngunit tutol siya sa paraan ng pamumuhay ng kanyang
+            ama at sa pang-aabuso ng mga mayayaman. Iniwan niya
+            ang kanyang marangyang buhay at nakitira sa kanyang
+            ninong na si Don Ramon. Sa kanyang pananatili roon,
+            nahulog ang loob niya kay Tentay, isang karaniwang
+            babae. Samantala, umibig si Delfin kay Meni, anak ni
+            Don Ramon. Nang mabuntis si Meni, itinakwil siya ng
+            kanyang ama. Pinili niyang makasama si Delfin at
+            mamuhay bilang isang karaniwang tao. Habang
+            nagpapatuloy ang kuwento, ipinapakita ang mga problema
+            ng lipunan, lalo na ang pagkakaiba ng kalagayan ng
+            mayayaman at mahihirap. Ipinapakita rin ang mga
+            suliranin ng mga manggagawa at ang pangangailangan
+            para sa pagbabago. Sa huli, namatay si Don Ramon at
+            ibinalik sa Pilipinas ang kanyang katawan. Nagpunta
+            sina Delfin at Felipe sa kanyang puntod at nag-usap
+            tungkol sa kanilang mga paniniwala at sa uri ng
+            lipunang nais nilang makamit.
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#banghay">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            5 / 8
+        </span>
+
+        <a href="#puna">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     6. PUNA
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="puna"
+>
+
+    <h2>
+        Puna
+    </h2>
+
+
+    <div class="puna-box">
+
+        <p>
+            Ang pangunahing tema ng <em>Banaag at Sikat</em> ay
+            pagkakapantay-pantay sa lipunan. Ipinapakita ng nobela
+            ang malaking pagkakaiba ng buhay ng mga mayayaman at
+            mahihirap, pati na rin ang mga problemang dulot ng
+            hindi pantay na pagtrato sa mga tao. Mahalaga rin sa
+            akda ang usapin ng karapatan ng mga manggagawa,
+            kahirapan, at pagbabago sa lipunan. Makikita ito sa
+            magkaibang paniniwala nina Delfin at Felipe. Kahit
+            magkaiba ang kanilang paraan ng pagtingin sa pagbabago,
+            pareho nilang nais na magkaroon ng mas pantay at
+            makatarungang lipunan. Sa aking palagay, ipinapakita
+            ng nobela na hindi sapat na makita lamang ang mga
+            problema ng lipunan. Kailangan ding magkaroon ng
+            paninindigan at gumawa ng paraan upang magkaroon ng
+            pagbabago. Ipinapakita rin ng akda kung paano
+            naaapektuhan ng hindi pagkakapantay-pantay ang mga
+            ordinaryong tao, lalo na ang mga manggagawa at
+            mahihirap. Sa pamamagitan nina Delfin at Felipe,
+            makikita ang iba't ibang paraan ng pagtingin sa
+            pagbabago at ang kahalagahan ng pagkakaroon ng
+            paninindigan para sa isang mas makatarungang lipunan.
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#buod">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            6 / 8
+        </span>
+
+        <a href="#sanggunian">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     7. SANGGUNIAN
+     ================================================== -->
+
+<section
+    class="content-card"
+    id="sanggunian"
+>
+
+    <h2>
+        Sanggunian
+    </h2>
+
+
+    <div class="source-list">
+
+        <p>
+
+            Santos, Lope K.
+            <em>Banaag at Sikat.</em>
+            1906.
+
+            <br><br>
+
+            <a
+                href="https://books.google.com.ph/books?id=J0RKAAAAYAAJ&redir_esc=y"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                https://books.google.com.ph/books?id=J0RKAAAAYAAJ&redir_esc=y
+            </a>
+
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#puna">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            7 / 8
+        </span>
+
+        <a href="#konklusyon">
+            Next →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     8. CONCLUSION
+     ================================================== -->
+
+<section
+    class="content-card conclusion"
+    id="konklusyon"
+>
+
+    <h2>
+        Conclusion
+    </h2>
+
+
+    <div class="conclusion-card">
+
+        <p>
+            Ang mensahe ng <em>Banaag at Sikat</em> ay mahalagang
+            maging mulat sa mga problemang nararanasan ng ibang
+            tao, lalo na ng mga naaapi at nahihirapan. Ipinapakita
+            rin ng nobela na ang yaman at katayuan sa buhay ay
+            hindi dapat maging dahilan upang maliitin o abusuhin
+            ang ibang tao. Lahat ay dapat magkaroon ng pantay na
+            karapatan at pagkakataon. Para sa akin, natutunan ko
+            na mahalaga ang pagkakapantay-pantay at paggalang sa
+            bawat tao. Hindi man pare-pareho ang ating buhay at
+            katayuan, lahat ay dapat magkaroon ng karapatan at
+            pagkakataong mabuhay nang maayos. Ipinapaalala rin
+            ng nobela na ang pagbabago ay hindi lamang tungkol sa
+            pagkilala sa mga problema ng lipunan. Kailangan din
+            itong samahan ng paninindigan, pagkilos, at malasakit
+            sa kapwa. Sa huli, ang <em>Banaag at Sikat</em> ay isang
+            akdang nagpapakita ng kahalagahan ng
+            pagkakapantay-pantay, karapatan, at makatarungang
+            pagtrato sa bawat tao.
+        </p>
+
+    </div>
+
+
+    <div class="card-navigation">
+
+        <a href="#sanggunian">
+            ← Previous
+        </a>
+
+        <span class="card-number">
+            8 / 8
+        </span>
+
+        <a href="#panimula">
+            Back to Start ↻
+        </a>
+
+    </div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<!-- ==================================================
+     FOOTER
+     ================================================== -->
+
+<footer>
+
+    <h6>
+        Grade 9 Property
+    </h6>
+
+</footer>
+
+
+</div>
+
+
+<!-- ==================================================
+     PIXIE DUST CURSOR
+     ================================================== -->
+
+<script>
+
+document.addEventListener(
+    "mousemove",
+    function(event) {
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.classList.add(
+            "pixie-dust"
+        );
+
+        sparkle.style.left =
+            event.clientX + "px";
+
+        sparkle.style.top =
+            event.clientY + "px";
+
+
+        const randomX =
+            (Math.random() - 0.5) * 50;
+
+        const randomY =
+            (Math.random() - 0.5) * 50;
+
+
+        sparkle.style.setProperty(
+            "--random-x",
+            randomX + "px"
+        );
+
+        sparkle.style.setProperty(
+            "--random-y",
+            randomY + "px"
+        );
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
+        setTimeout(
+            function() {
+
+                sparkle.remove();
+
+            },
+            900
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
