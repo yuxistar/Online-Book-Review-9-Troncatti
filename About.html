@@ -623,6 +623,58 @@
 
         }
 
+        
+        /* ==================================================
+           ✨ GOLDEN PIXIE DUST CURSOR
+           ================================================== */
+
+        .pixie-dust {
+            position: fixed;
+
+            width: 7px;
+            height: 7px;
+
+            background: #ffebc0;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            box-shadow:
+                0 0 5px #e8ff78,
+                0 0 10px #ffeec4;
+
+            animation:
+                pixieFade 0.9s ease-out forwards;
+        }
+
+
+        @keyframes pixieFade {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translate(0, 0);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    scale(0)
+                    translate(
+                        var(--random-x),
+                        var(--random-y)
+                    );
+            }
+
+        }
+
+
     </style>
 
 </head>
@@ -831,6 +883,76 @@
     </footer>
 
 
+    <!-- ================================
+         PIXIE DUST JAVASCRIPT
+         ================================ -->
+
+    <script>
+
+        /* ==================================================
+           GOLDEN PIXIE DUST CURSOR
+           ================================================== */
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                const sparkle =
+                    document.createElement("div");
+
+                sparkle.classList.add(
+                    "pixie-dust"
+                );
+
+                sparkle.style.left =
+                    event.clientX + "px";
+
+                sparkle.style.top =
+                    event.clientY + "px";
+
+
+                /* Random direction */
+
+                const randomX =
+                    (Math.random() - 0.5) * 50;
+
+                const randomY =
+                    (Math.random() - 0.5) * 50;
+
+
+                sparkle.style.setProperty(
+                    "--random-x",
+                    randomX + "px"
+                );
+
+                sparkle.style.setProperty(
+                    "--random-y",
+                    randomY + "px"
+                );
+
+
+                document.body.appendChild(
+                    sparkle
+                );
+
+
+                /* Remove sparkle */
+
+                setTimeout(
+                    function() {
+
+                        sparkle.remove();
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+    </script>
+
+    
 </body>
 
 </html>
