@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html>
@@ -533,25 +534,44 @@
 
             background-position: center;
 
-            /* NORMAL STARTING SCALE */
             transform: scale(1);
 
-            /* SLOW BUT NORMAL ZOOM */
+            /* SMOOTH PULL BACK WHEN MOUSE LEAVES */
             transition:
-                transform 3s ease;
+                transform 1.5s ease-out;
         }
 
 
         /* ================================
-           SLOW ZOOM ON HOVER
+           CONTINUOUS SLOW ZOOM ON HOVER
            ================================ */
 
         .my-button:hover
         .book-image::before {
 
-            /* NORMAL ZOOM AMOUNT */
-            transform:
-                scale(1.12);
+            animation:
+                continuousZoom 8s ease-in forwards;
+        }
+
+
+        /* ================================
+           CONTINUOUS ZOOM ANIMATION
+           ================================ */
+
+        @keyframes continuousZoom {
+
+            0% {
+
+                transform:
+                    scale(1);
+            }
+
+            100% {
+
+                transform:
+                    scale(1.18);
+            }
+
         }
 
 
@@ -1543,3 +1563,4 @@
 </body>
 
 </html>
+```
