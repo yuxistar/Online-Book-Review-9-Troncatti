@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 
 <html>
@@ -534,11 +533,17 @@
 
             background-position: center;
 
+            /*
+               START AT NORMAL SIZE.
+               THE TRANSITION MAKES IT
+               SMOOTHLY PULL BACK WHEN
+               THE MOUSE LEAVES.
+            */
+
             transform: scale(1);
 
-            /* SMOOTH PULL BACK WHEN MOUSE LEAVES */
             transition:
-                transform 1.5s ease-out;
+                transform 1.2s ease-out;
         }
 
 
@@ -550,7 +555,7 @@
         .book-image::before {
 
             animation:
-                continuousZoom 8s ease-in forwards;
+                continuousZoom 4s ease-in-out infinite alternate;
         }
 
 
@@ -569,7 +574,7 @@
             100% {
 
                 transform:
-                    scale(1.18);
+                    scale(1.20);
             }
 
         }
