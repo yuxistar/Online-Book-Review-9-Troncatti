@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
 
-
+<html>
 
 <head>
 
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Online Library</title>
+    <title>Online Book Review</title>
 
     <style>
 
@@ -34,6 +29,7 @@
         }
 
         @keyframes pageFadeIn {
+
             from {
                 opacity: 0;
             }
@@ -41,6 +37,7 @@
             to {
                 opacity: 1;
             }
+
         }
 
 
@@ -56,9 +53,9 @@
             background-color: #ffd79c;
             color: #252525;
             margin: 0;
-            padding: 22px 40px;
+            padding: 20px 40px;
             font-family: Georgia, serif;
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: 1px;
             border-bottom: 1px solid #E2DED7;
         }
@@ -79,7 +76,7 @@
         .navbar ul {
             list-style-type: none;
             margin: 0;
-            padding: 0 45px;
+            padding: 0 40px;
             display: flex;
             align-items: stretch;
         }
@@ -91,13 +88,9 @@
         .navbar a {
             color: #555555;
             text-decoration: none;
-
-            /* BIGGER NAVBAR */
-            padding: 20px 28px;
-
+            padding: 18px 25px;
             display: block;
-
-            font-size: 17px;
+            font-size: 16px;
 
             font-family:
                 'Gill Sans',
@@ -128,13 +121,9 @@
         .dropdown summary {
             color: #555555;
             text-decoration: none;
-
-            /* MATCH BIGGER NAVBAR */
-            padding: 20px 28px;
-
+            padding: 18px 25px;
             display: block;
-
-            font-size: 17px;
+            font-size: 16px;
 
             font-family:
                 'Gill Sans',
@@ -167,15 +156,11 @@
 
         .member-list {
             display: none;
-
             position: absolute;
-
             top: 100%;
             left: 0;
-
             background-color: #302B27;
-
-            min-width: 260px;
+            min-width: 240px;
 
             box-shadow:
                 0 5px 10px
@@ -195,19 +180,12 @@
 
         .member-list a {
             display: block;
-
             color: #F5F3EF;
-
             text-decoration: none;
-
-            padding: 13px 17px;
-
-            font-size: 16px;
-
+            padding: 10px 15px;
+            font-size: 17px;
             font-weight: normal;
-
             white-space: nowrap;
-
             background-color: #302B27;
         }
 
@@ -224,17 +202,11 @@
         .book-banner {
             width: 92%;
             max-width: 1250px;
-
             height: 670px;
-
             margin: 45px auto 20px;
-
             position: relative;
-
             overflow: hidden;
-
             border-radius: 16px;
-
             background-color: #DDD8CF;
 
             box-shadow:
@@ -250,7 +222,6 @@
         .banner-slides {
             position: absolute;
             inset: 0;
-
             width: 100%;
             height: 100%;
         }
@@ -262,9 +233,7 @@
 
         .banner-slide {
             position: absolute;
-
             inset: 0;
-
             background-size: cover;
             background-position: center;
 
@@ -353,12 +322,11 @@
 
 
         /* ================================
-           BANNER OVERLAY
+           FIXED SEMI-TRANSPARENT BOX
            ================================ */
 
         .banner-overlay {
             position: absolute;
-
             z-index: 10;
 
             left: 60px;
@@ -389,13 +357,9 @@
 
         .banner-label {
             margin-bottom: 8px;
-
             font-size: 11px;
-
             font-weight: bold;
-
             letter-spacing: 2px;
-
             color: #8B7355;
         }
 
@@ -410,7 +374,6 @@
             font-family: Georgia, serif;
 
             font-size: 30px;
-
             font-weight: normal;
 
             color: #252525;
@@ -425,7 +388,6 @@
             margin: 0;
 
             font-size: 14px;
-
             line-height: 1.6;
 
             color: #555555;
@@ -440,61 +402,31 @@
             width: 92%;
             max-width: 1250px;
 
-            margin: 55px auto 25px;
+            margin: 50px auto 25px;
+
+            padding: 25px 30px;
 
             text-align: center;
 
-            padding: 20px;
+            background-color: #ffd79c;
 
-            background-color: rgb(235, 226, 205);
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.06);
         }
 
-        .book-section-title h2 {
-            background: none;
-
-            padding: 0;
-
+        .book-section-title h1 {
             margin: 0;
-
-            border: none;
 
             font-family: Georgia, serif;
 
-            font-size: 32px;
+            font-size: 30px;
 
             font-weight: normal;
 
-            letter-spacing: 0.5px;
-
             color: #252525;
-        }
-
-        .book-section-title p {
-            margin: 10px 0 0;
-
-            color: #777777;
-
-            font-size: 14px;
-
-            line-height: 1.6;
-        }
-
-
-        /* ================================
-           SMALL DECORATIVE LINE
-           ================================ */
-
-        .title-line {
-            width: 70px;
-
-            height: 3px;
-
-            margin: 14px auto 0;
-
-            background-color: #8B7355;
-
-            border-radius: 10px;
-
         }
 
 
@@ -523,7 +455,6 @@
 
         .my-button {
             display: flex;
-
             flex-direction: row;
 
             position: relative;
@@ -557,6 +488,7 @@
            ================================ */
 
         .my-button:hover {
+
             transform:
                 translateY(-5px);
 
@@ -572,7 +504,6 @@
 
         .book-image {
             width: 43%;
-
             height: 100%;
 
             position: relative;
@@ -588,6 +519,7 @@
            ================================ */
 
         .book-image::before {
+
             content: "";
 
             position: absolute;
@@ -601,10 +533,12 @@
 
             background-position: center;
 
+            /* NORMAL STARTING SCALE */
             transform: scale(1);
 
+            /* SLOW BUT NORMAL ZOOM */
             transition:
-                transform 1.5s ease;
+                transform 3s ease;
         }
 
 
@@ -615,8 +549,9 @@
         .my-button:hover
         .book-image::before {
 
+            /* NORMAL ZOOM AMOUNT */
             transform:
-                scale(30);
+                scale(1.12);
         }
 
 
@@ -625,6 +560,7 @@
            ================================ */
 
         .book-image::after {
+
             content: "";
 
             position: absolute;
@@ -635,8 +571,9 @@
                 rgba(0, 0, 0, 0.05);
 
             transition:
-                background 100s ease;
+                background 0.5s ease;
         }
+
 
         .my-button:hover
         .book-image::after {
@@ -651,6 +588,7 @@
            ================================ */
 
         .start-reading {
+
             position: absolute;
 
             left: 50%;
@@ -704,6 +642,7 @@
            ================================ */
 
         .book-info {
+
             width: 57%;
 
             padding: 30px 25px;
@@ -721,6 +660,7 @@
            ================================ */
 
         .book-info h1 {
+
             margin: 0 0 8px;
 
             font-family: Georgia, serif;
@@ -740,6 +680,7 @@
            ================================ */
 
         .author {
+
             margin: 0 0 16px;
 
             color: #8B7355;
@@ -759,6 +700,7 @@
            ================================ */
 
         .description {
+
             margin: 0;
 
             color: #6D6D6D;
@@ -770,7 +712,7 @@
 
 
         /* ================================
-           BOOK COVER FILENAMES
+           EXACT BOOK COVER FILENAMES
            ================================ */
 
         .noli {
@@ -809,6 +751,7 @@
            ================================ */
 
         footer {
+
             text-align: center;
 
             padding: 30px;
@@ -824,6 +767,7 @@
            ================================ */
 
         .back-to-top {
+
             position: fixed;
 
             bottom: 30px;
@@ -845,7 +789,6 @@
             display: flex;
 
             align-items: center;
-
             justify-content: center;
 
             box-shadow:
@@ -877,17 +820,23 @@
         @keyframes showBackToTop {
 
             0% {
+
                 opacity: 0;
+
                 visibility: hidden;
             }
 
             10% {
+
                 opacity: 1;
+
                 visibility: visible;
             }
 
             100% {
+
                 opacity: 1;
+
                 visibility: visible;
             }
 
@@ -914,14 +863,17 @@
         @media (max-width: 900px) {
 
             .button-container {
+
                 grid-template-columns: 1fr;
             }
 
             .book-banner {
+
                 height: 550px;
             }
 
             .banner-overlay {
+
                 left: 30px;
 
                 bottom: 30px;
@@ -936,38 +888,45 @@
         @media (max-width: 600px) {
 
             .navbar ul {
+
                 padding: 0;
             }
 
             .navbar a {
-                padding: 15px 12px;
 
-                font-size: 13px;
+                padding: 12px 10px;
+
+                font-size: 12px;
             }
 
             .dropdown summary {
-                padding: 15px 12px;
 
-                font-size: 13px;
+                padding: 12px 10px;
+
+                font-size: 12px;
             }
 
             .member-list {
+
                 min-width: 220px;
             }
 
             .member-list a {
+
                 font-size: 14px;
 
                 padding: 10px 14px;
             }
 
             .book-banner {
+
                 height: 500px;
 
                 width: 94%;
             }
 
             .banner-overlay {
+
                 left: 20px;
 
                 bottom: 20px;
@@ -979,44 +938,39 @@
             }
 
             .banner-overlay h1 {
+
                 font-size: 24px;
             }
 
             .banner-overlay p {
-                font-size: 12px;
-            }
 
-            .book-section-title {
-                margin-top: 40px;
-            }
-
-            .book-section-title h2 {
-                font-size: 25px;
-            }
-
-            .book-section-title p {
                 font-size: 12px;
             }
 
             .my-button {
+
                 height: auto;
 
                 min-height: 300px;
             }
 
             .book-info {
+
                 padding: 20px;
             }
 
             .book-info h1 {
+
                 font-size: 20px;
             }
 
             .description {
+
                 font-size: 12px;
             }
 
             .back-to-top {
+
                 width: 45px;
 
                 height: 45px;
@@ -1034,6 +988,7 @@
            ================================================== */
 
         .pixie-dust {
+
             position: fixed;
 
             width: 7px;
@@ -1059,6 +1014,7 @@
         @keyframes pixieFade {
 
             0% {
+
                 opacity: 1;
 
                 transform:
@@ -1067,6 +1023,7 @@
             }
 
             100% {
+
                 opacity: 0;
 
                 transform:
@@ -1098,7 +1055,6 @@
     </a>
 
 
-
     <!-- ================================
          HEADER
          ================================ -->
@@ -1106,11 +1062,10 @@
     <header>
 
         <h2>
-            Online Library
+            Online Book Review
         </h2>
 
     </header>
-
 
 
     <!-- ================================
@@ -1121,11 +1076,11 @@
 
         <ul>
 
-            <!-- HOME -->
+            <!-- HOMEPAGE -->
 
             <li>
 
-                <a href="index.html">
+                <a href="Overview.html">
                     Home
                 </a>
 
@@ -1137,7 +1092,7 @@
             <li>
 
                 <a href="About.html">
-                    Tungkol sa Atin
+                    About
                 </a>
 
             </li>
@@ -1190,7 +1145,6 @@
     </nav>
 
 
-
     <!-- ================================
          SLIDING BANNER
          ================================ -->
@@ -1209,8 +1163,6 @@
 
         </div>
 
-
-        <!-- FIXED WHITE BOX -->
 
         <div class="banner-overlay">
 
@@ -1235,26 +1187,17 @@
     </section>
 
 
-
     <!-- ================================
-         BOOK SECTION HEADER
+         BOOK SECTION TITLE
          ================================ -->
 
     <section class="book-section-title">
 
-        <h2>
+        <h1>
             Piliin ang Iyong Gustong Aklat
-        </h2>
-
-        <div class="title-line"></div>
-
-        <p>
-            Tuklasin ang iba't ibang akda ng Panitikang Pilipino
-            at piliin ang kuwentong nais mong basahin.
-        </p>
+        </h1>
 
     </section>
-
 
 
     <!-- ================================
@@ -1266,9 +1209,7 @@
         <div class="button-container">
 
 
-            <!-- ================================
-                 NOLI ME TANGERE
-                 ================================ -->
+            <!-- NOLI ME TANGERE -->
 
             <a
                 href="NoliMeTangere.html"
@@ -1291,15 +1232,17 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Alyssa Gela Del Mundo
+                        Analisis by Alyssa Gela Del Mundo
                     </p>
 
                     <p class="description">
+
                         Isang kuwentong naglalahad ng kapangyarihan,
                         pananampalataya, at kawalang-katarungan sa
                         lipunang Pilipino. Tuklasin ang mga lihim at
                         suliraning nagmulat sa mga taong handang
                         lumaban para sa pagbabago.
+
                     </p>
 
                 </div>
@@ -1307,10 +1250,7 @@
             </a>
 
 
-
-            <!-- ================================
-                 EL FILIBUSTERISMO
-                 ================================ -->
+            <!-- EL FILIBUSTERISMO -->
 
             <a
                 href="ElFilibusterismo.html"
@@ -1333,14 +1273,16 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Zeus Vincent Egino
+                        Analisis by Zeus Vincent Egino
                     </p>
 
                     <p class="description">
+
                         Isang mas madilim na pagpapatuloy na puno ng
                         paghihiganti, pang-aapi, at pagnanais ng pagbabago.
                         Alamin kung paano maaaring baguhin ng
                         kawalang-katarungan ang pag-asa tungo sa panganib.
+
                     </p>
 
                 </div>
@@ -1348,10 +1290,7 @@
             </a>
 
 
-
-            <!-- ================================
-                 BANAAG AT SIKAT
-                 ================================ -->
+            <!-- BANAAG AT SIKAT -->
 
             <a
                 href="BanaagAtSikat.html"
@@ -1374,14 +1313,16 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Arabella Chace Monroy
+                        Analisis by Arabella Chace Monroy
                     </p>
 
                     <p class="description">
+
                         Isang kuwento tungkol sa paggising ng kamalayan,
                         hindi pagkakapantay-pantay, at paghahangad ng
                         mas magandang kinabukasan. Sundan ang mga tauhang
                         humaharap sa tunay na kalagayan ng lipunan.
+
                     </p>
 
                 </div>
@@ -1389,10 +1330,7 @@
             </a>
 
 
-
-            <!-- ================================
-                 CANAL DE LA REINA
-                 ================================ -->
+            <!-- CANAL DE LA REINA -->
 
             <a
                 href="CanalDeLaReina.html"
@@ -1415,15 +1353,17 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Jercarl Bongoyan
+                        Analisis by Jercarl Bongoyan
                     </p>
 
                     <p class="description">
+
                         Isang kuwentong puno ng pagsubok, tunggalian,
                         at katatagan ng isang komunidad. Tuklasin kung
                         paano nagkakaisa ang mga tao upang ipaglaban
                         ang kanilang tahanan at pag-asang magkaroon
                         ng mas magandang buhay.
+
                     </p>
 
                 </div>
@@ -1431,10 +1371,7 @@
             </a>
 
 
-
-            <!-- ================================
-                 MGA IBONG MANDARAGIT
-                 ================================ -->
+            <!-- MGA IBONG MANDARAGIT -->
 
             <a
                 href="MgaIbongMandaragit.html"
@@ -1457,14 +1394,16 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Kean Zachary Garcia
+                        Analisis by Kean Zachary Garcia
                     </p>
 
                     <p class="description">
+
                         Sa likod ng pangakong bagong simula ay nananatili
                         ang kasakiman at katiwalian sa lipunan. Tuklasin
                         ang isang kuwentong nagtatanong kung sino nga ba
                         ang tunay na may kapangyarihan.
+
                     </p>
 
                 </div>
@@ -1472,10 +1411,7 @@
             </a>
 
 
-
-            <!-- ================================
-                 LUHA NG BUWAYA
-                 ================================ -->
+            <!-- LUHA NG BUWAYA -->
 
             <a
                 href="LuhaNgBuwaya.html"
@@ -1498,15 +1434,17 @@
                     </h1>
 
                     <p class="author">
-                        Analisis ni Misha Kylee Difuntorum
+                        Analisis by Misha Kylee Difuntorum
                     </p>
 
                     <p class="description">
+
                         Isang kuwento ng mga ordinaryong taong nagkakaisa
                         laban sa kawalang-katarungan at hindi
                         pagkakapantay-pantay. Tuklasin ang kanilang tapang,
                         pagkakaisa, at pakikipaglaban para sa lupa at
                         mas magandang kinabukasan.
+
                     </p>
 
                 </div>
@@ -1517,7 +1455,6 @@
         </div>
 
     </main>
-
 
 
     <!-- ================================
@@ -1531,7 +1468,6 @@
         </h6>
 
     </footer>
-
 
 
     <!-- ================================
