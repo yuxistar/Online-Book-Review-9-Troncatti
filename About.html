@@ -324,53 +324,95 @@
         }
 
 
-        /* ==================================================
-           FLOATING CARD
-           ================================================== */
+/* ==================================================
+   FLOATING CARD
+   ================================================== */
 
-        .about-card {
+.about-card {
 
-            width: 90%;
+    width: 90%;
 
-            max-width: 950px;
+    max-width: 950px;
 
-            padding:
-                65px 75px;
+    padding: 65px 75px;
 
-            background:
+    background:
+        rgba(255,255,255,0.82);
 
-                rgba(255,255,255,0.82);
+    backdrop-filter:
+        blur(15px);
 
-            backdrop-filter:
-                blur(15px);
+    -webkit-backdrop-filter:
+        blur(15px);
 
-            -webkit-backdrop-filter:
-                blur(15px);
+    border:
+        1px solid
+        rgba(255,255,255,0.9);
 
-            border:
-                1px solid
-                rgba(255,255,255,0.85);
+    border-radius:
+        30px;
 
-            border-radius:
-                30px;
+    box-shadow:
 
-            box-shadow:
+        0 25px 60px
+        rgba(74,52,34,0.20),
 
-                0 25px 60px
-                rgba(74,52,34,0.20),
+        0 8px 20px
+        rgba(74,52,34,0.08);
 
-                0 8px 20px
-                rgba(74,52,34,0.08);
+    text-align:
+        center;
 
-            text-align: center;
+    position:
+        relative;
 
-            position: relative;
+    animation:
+        floatingCard 5s ease-in-out infinite;
 
-            animation:
-                floatingCard 5s ease-in-out infinite;
+    /* SMOOTH GLOW TRANSITION */
+    transition:
+        box-shadow 0.5s ease,
+        transform 0.5s ease,
+        border-color 0.5s ease;
 
-        }
+}
 
+
+/* ==================================================
+   STRONG GLOW WHEN HOVERED
+   ================================================== */
+
+.about-card:hover {
+
+    box-shadow:
+
+        /* INNER GLOW */
+        0 0 15px
+        rgba(255,255,255,1),
+
+        /* GOLD GLOW */
+        0 0 30px
+        rgba(255,220,150,0.95),
+
+        /* STRONG OUTER GLOW */
+        0 0 60px
+        rgba(255,194,92,0.85),
+
+        /* LARGE SOFT GLOW */
+        0 0 100px
+        rgba(255,180,70,0.55),
+
+        /* ORIGINAL SHADOW */
+        0 25px 60px
+        rgba(74,52,34,0.20);
+
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(255,225,170,0.95);
+
+}
 
         @keyframes floatingCard {
 
@@ -671,22 +713,6 @@
                         var(--random-y)
                     );
             }
-
-            .about:hover {
-
-            background-color: #FFFFFF;
-
-            box-shadow:
-                0 8px 20px
-                rgba(255, 162, 0, 0.5);
-
-            filter:
-                brightness(1.02);
-
-            transform:
-                translateY(-3px);
-        }
-
 
         }
 
